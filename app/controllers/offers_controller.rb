@@ -10,7 +10,7 @@ class OffersController < ApplicationController
       format.xml  { render :xml => @offers }
     end
   end
-
+  
   # GET /offers/1
   # GET /offers/1.xml
   def show
@@ -80,9 +80,5 @@ class OffersController < ApplicationController
       format.html { redirect_to(offers_url) }
       format.xml  { head :ok }
     end
-  end
-  
-  def purchase
-    
   end
 end

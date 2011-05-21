@@ -1,0 +1,25 @@
+.grid_1
+  %strong Kategorie:
+  =@categories.each do |category|
+    =link_to category.name, category
+    %br
+.grid_11
+  =@offers.each do |offer|
+    .grid_2.alpha
+      =image_tag offer.photo_url, {:width => "120px", :border => "1px"}
+    .grid_4
+      %h1= offer.title
+      %span.description= offer.description
+      %br
+      =offer.finish_time
+      =offer.hours
+      =offer.minutes
+      =offer.seconds
+      %br
+      %h1= distance_of_time_in_words(Time.now, offer.end_date)
+      =link_to 'Zobacz szczegóły', offer
+      %strong Cena:
+      =offer.price
+
+= link_to 'New Offer', new_offer_path
+.clear
