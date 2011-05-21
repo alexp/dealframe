@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company_profile.name %>
+</p>
+
+<p>
+  <b>Website url:</b>
+  <%= @company_profile.website_url %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @company_profile.type %>
+</p>
+
+<p>
+  <b>Open times:</b>
+  <%= @company_profile.open_times %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @company_profile.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @company_profile.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_profile_path(@company_profile) %> |
+<%= link_to 'Back', company_profiles_path %>

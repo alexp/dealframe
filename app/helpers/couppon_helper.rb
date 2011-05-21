@@ -1,0 +1,2 @@
+module CoupponHelper
+end

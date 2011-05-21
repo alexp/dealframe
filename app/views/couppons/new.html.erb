@@ -1,0 +1,49 @@
+<h1>Kupujesz kupon zniżkowy online:</h1>
+
+<div style="width: 500px; border: 1px solid #cccccc; background-color: #faebd7">
+  <h1>
+    <%= number_to_percentage(@offer.discount, {:precision => 0}) %> 
+    discount on 
+    <%= @offer.title %>
+  </h1>
+
+  <%= image_tag @offer.photo_url, {:width => "180px", :border => "1px"} %>
+
+  <p>
+    <b>Offer details:</b>
+    <%= raw(@offer.additional_info) %>
+  </p>
+
+  <% 
+    finish_time = (@offer.end_date - Time.now).to_i 
+    hours = finish_time / 3600
+    minutes = (finish_time / 60) % 60
+    seconds = finish_time % 60
+  %> 
+  <b>Do końca:</b> <%=hours%>:<%=minutes%>:<%=seconds%><br /> 
+
+  <b>Cena przed zniżką: </b><%= @offer.value %> zł<br />
+  <h2 style="color: red">Rabat: -<%= number_to_percentage(@offer.discount, {:precision => 0}) %></h2>
+  <h2>Cena: <%= @offer.value - (( @offer.value * @offer.discount) / 100) %> zł</h2>
+
+  <hr />
+
+  <h3>Kupon zniżkowy oferuje:</h3>
+
+  <%= @offer.company.full_name %><br />
+  <%= @offer.company.address %><br />
+  <%= @offer.company.zip_code + " " + @offer.company.city %><br />
+</div>
+
+<%= form_for(@user) do |f|%>
+  <%= f.label :email %><br />
+  <%= f.text_field :email %><br />
+  
+
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+  
+  <%= f.submit %>
+<% end %>
+
+<%= debug(@couppon) %>

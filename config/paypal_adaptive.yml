@@ -1,0 +1,23 @@
+development:
+  environment: "sandbox"
+  username: "chuj_1305557281_biz_api1.gmail.com"
+  password: "1305557299"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31An4nCYroh3.Q7vNAdCLLLayUJhB2"
+  application_id: "APP-80W284485P519543T"
+  ssl_cert_file:
+
+test:
+  environment: "sandbox"
+  username: "chuj_1305557281_biz_api1.gmail.com"
+  password: "1305557299"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31An4nCYroh3.Q7vNAdCLLLayUJhB2"
+  application_id: "APP-80W284485P519543T"
+  ssl_cert_file:
+
+production:
+  environment: "production"
+  username: "my_production_username"
+  password: "my_production_password"
+  signature: "my_production_signature"
+  application_id: "my_production_app_id"
+  ssl_cert_file:

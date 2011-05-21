@@ -1,0 +1,62 @@
+body {
+  background: url(/images/bg.png) repeat-x;
+}
+
+.container_12 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /*background: url(/images/12_col.gif) repeat-y;*/
+}
+
+.top-menu { 
+  text-align: right;
+  font-size: 11px;
+}
+
+.top-menu ul {
+  list-style-type: none;
+}
+
+.top-menu li {
+  display: inline; 
+}
+
+#header {
+  margin-bottom: 40px;
+}
+
+.footer {
+  background-color: #cccccc;
+  height: 300px;
+  margin-top: 30px;
+}
+
+.description {
+  font-size: 11px;
+}
+
+.offer-info {
+  text-align: center;
+  margin-top: 10px;
+  border-left: 1px dotted #cccccc;
+}
+
+.offer-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1E90FF;
+  text-decoration: line-through;
+}
+
+.offer-price {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.discount-value {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff0000;
+  padding: 6px;
+  color: #fff;
+}

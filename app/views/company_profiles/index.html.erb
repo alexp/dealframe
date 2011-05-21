@@ -1,0 +1,33 @@
+<h1>Listing company_profiles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Website url</th>
+    <th>Type</th>
+    <th>Open times</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @company_profiles.each do |company_profile| %>
+  <tr>
+    <td><%= company_profile.name %></td>
+    <td><%= company_profile.website_url %></td>
+    <td><%= company_profile.type %></td>
+    <td><%= company_profile.open_times %></td>
+    <td><%= company_profile.lat %></td>
+    <td><%= company_profile.lng %></td>
+    <td><%= link_to 'Show', company_profile %></td>
+    <td><%= link_to 'Edit', edit_company_profile_path(company_profile) %></td>
+    <td><%= link_to 'Destroy', company_profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company profile', new_company_profile_path %>

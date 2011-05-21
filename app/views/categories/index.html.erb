@@ -1,0 +1,31 @@
+<h1>Listing categories</h1>
+
+<% @categories.each do |category| %>
+
+    <h2><%= category.name %></h2>
+    
+    <%= category.parent_id %>
+    <%= link_to 'Show', category %>
+    <%= link_to 'Edit', edit_category_path(category) %>
+    <%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %>
+    
+    <h3>Deals in category:</h3>
+
+      <% category.offers.each do |offer| %>
+        <b>Tytuł:</b> <%= offer.title %>
+        <% 
+          finish_time = (offer.end_date - Time.now).to_i 
+          hours = finish_time / 3600
+          minutes = (finish_time / 60) % 60
+          seconds = finish_time % 60
+        %> 
+        <b>Do końca:</b> <%=hours%>:<%=minutes%>:<%=seconds%> 
+        <%= link_to 'Show', offer %>
+        <br />
+      <% end %>
+<hr /> 
+<% end %>
+
+<br /><br />
+
+<%= link_to 'New Category', new_category_path %>
