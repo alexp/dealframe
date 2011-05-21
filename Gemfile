@@ -8,6 +8,8 @@ gem 'rails', '3.0.7'
 gem 'mysql2','< 0.3'
 gem 'paypal_adaptive'
 gem 'json'
+gem 'jquery-rails', '>=1.0.3'
+gem 'haml'
 
 group :development do
   gem 'rspec-rails', '2.5.0'
