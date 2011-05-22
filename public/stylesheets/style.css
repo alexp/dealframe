@@ -1,62 +1,100 @@
 body {
-  background: url(/images/bg.png) repeat-x;
-}
+  background: url(/images/bg.png) repeat-x; }
 
-.container_12 {
+.container_24 {
   margin-bottom: 20px;
   margin-top: 20px;
-  /*background: url(/images/12_col.gif) repeat-y;*/
-}
+  /*background: url(/images/12_col.gif) repeat-y;*/ }
 
-.top-menu { 
+.top-menu {
   text-align: right;
-  font-size: 11px;
-}
-
-.top-menu ul {
-  list-style-type: none;
-}
-
-.top-menu li {
-  display: inline; 
-}
+  font-size: 10px; }
+  .top-menu ul {
+    list-style-type: none; }
+  .top-menu li {
+    display: inline; }
 
 #header {
-  margin-bottom: 40px;
-}
+  margin-bottom: 40px; }
 
 .footer {
   background-color: #cccccc;
   height: 300px;
-  margin-top: 30px;
-}
+  margin-top: 30px; }
 
 .description {
-  font-size: 11px;
-}
+  font-size: 11px; }
 
 .offer-info {
   text-align: center;
   margin-top: 10px;
-  border-left: 1px dotted #cccccc;
-}
-
-.offer-value {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1E90FF;
-  text-decoration: line-through;
-}
+  border-left: 1px dotted #cccccc; }
 
 .offer-price {
   font-size: 22px;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .discount-value {
   font-size: 18px;
   font-weight: bold;
   background-color: #ff0000;
   padding: 6px;
-  color: #fff;
-}
+  color: #fff; }
+
+.categories {
+  position: relative;
+  top: -20px; }
+  .categories a {
+    margin-bottom: 3px;
+    display: block;
+    width: 53px;
+    height: 40px; }
+
+.filter {
+  background: url("/images/filter_bg.png") repeat-x 0px 0px;
+  height: 81px; }
+
+.deals {
+  height: 133px;
+  margin-bottom: 10px;
+  padding: 2px 0px 0px 2px; }
+  .deals h1, .deals h2 {
+    margin-top: 10px;
+    margin-bottom: 0px; }
+  .deals h2 {
+    font-size: 14px; }
+  .deals p.description {
+    color: #707070;
+    margin-bottom: -10px; }
+  .deals .timer {
+    font-weight: bold;
+    margin-top: 10px; }
+  .deals .details {
+    text-align: center;
+    padding-top: 10px; }
+  .deals .init-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E90FF;
+    text-decoration: line-through; }
+  .deals .price-tag {
+    background-color: red;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 8px; }
+  .deals .price {
+    float: left;
+    border: 1px solid;
+    width: 90px;
+    background-color: #fff; }
+  .deals .discount {
+    float: left; }
+
+.odd {
+  background: url("/images/deal_bg_odd.png") no-repeat; }
+
+.even {
+  background: url("/images/deal_bg_even.png") no-repeat; }
+
+.right-column {
+  text-align: right; }

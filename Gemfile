@@ -10,6 +10,7 @@ gem 'paypal_adaptive'
 gem 'json'
 gem 'jquery-rails', '>=1.0.3'
 gem 'haml'
+gem 'sass'
 
 group :development do
   gem 'rspec-rails', '2.5.0'

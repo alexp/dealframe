@@ -1,0 +1,10 @@
+.grid_1.categories
+  -if current_page?(:controller => 'offers', :action => 'index')
+    =link_to(image_tag('cat.png'), '/offers')
+  -else
+    =link_to(image_tag('cat_inactive.png'), '/offers')
+  =@categories.each do |category|
+    -if current_page?(:id => category.id)
+      =link_to(image_tag('cat.png'), category)
+    -else
+      =link_to(image_tag('cat_inactive.png'), category)

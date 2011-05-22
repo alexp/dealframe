@@ -1,0 +1,134 @@
+body {
+  background: url(/images/bg.png) repeat-x;
+}
+
+.container_24 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /*background: url(/images/12_col.gif) repeat-y;*/
+}
+
+.top-menu { 
+  text-align: right;
+  font-size: 10px;
+
+  ul { list-style-type: none; }
+  li { display: inline; }
+}
+
+#header {
+  margin-bottom: 40px;
+}
+
+.footer {
+  background-color: #cccccc;
+  height: 300px;
+  margin-top: 30px;
+}
+
+.description {
+  font-size: 11px;
+}
+
+.offer-info {
+  text-align: center;
+  margin-top: 10px;
+  border-left: 1px dotted #cccccc;
+}
+
+.offer-value {
+}
+
+.offer-price {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.discount-value {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff0000;
+  padding: 6px;
+  color: #fff;
+}
+
+.categories {
+  position: relative;
+  top: -20px;
+  a {
+    margin-bottom: 3px;
+    display:block;
+    width: 53px;
+    height: 40px;
+  }
+}
+
+.filter {
+  background: url('/images/filter_bg.png') repeat-x 0px 0px;
+  height: 81px;
+}
+
+.deals {
+  height: 133px;
+  margin-bottom: 10px;
+  padding: 2px 0px 0px 2px;
+
+  h1,h2 { 
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+  p.description {
+    color: #707070;
+    margin-bottom: -10px;
+  }
+
+  .timer {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .details {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .init-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E90FF;
+    text-decoration: line-through;
+  }
+
+  .price-tag {
+    background-color: red;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+
+  .price {
+    float: left;
+    border: 1px solid;
+    width: 90px;
+    background-color: #fff;
+  }
+  
+  .discount {
+    float: left;
+  }
+}
+
+.odd {
+  background: url('/images/deal_bg_odd.png') no-repeat;
+}
+
+.even {
+  background: url('/images/deal_bg_even.png') no-repeat;
+}
+
+.right-column {
+  text-align: right;
+}

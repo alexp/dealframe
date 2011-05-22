@@ -1,25 +1,38 @@
-.grid_1
-  %strong Kategorie:
-  =@categories.each do |category|
-    =link_to category.name, category
-    %br
-.grid_11
+.grid_16.push_1.filter &nbsp;
+.clear
+=render "shared/categories"
+.grid_16
   =@offers.each do |offer|
-    .grid_2.alpha
-      =image_tag offer.photo_url, {:width => "120px", :border => "1px"}
-    .grid_4
-      %h1= offer.title
-      %span.description= offer.description
-      %br
-      =offer.finish_time
-      =offer.hours
-      =offer.minutes
-      =offer.seconds
-      %br
-      %h1= distance_of_time_in_words(Time.now, offer.end_date)
-      =link_to 'Zobacz szczegóły', offer
-      %strong Cena:
-      =offer.price
+    .grid_16.deals{:class => cycle("even", "odd")}
+      .grid_4.alpha
+        =image_tag offer.photo_url, {:width => "120px", :border => "1px"}
+      .grid_7
+        %h1= offer.title
+        %p.description= offer.description
 
-= link_to 'New Offer', new_offer_path
+        :javascript
+          $(function() {
+            var var_end_date = new Date('#{offer.end_date}');
+            $('#offer-#{offer.id}').countdown({
+              until: var_end_date,
+              format: 'HMS',
+              compact: true,
+              description: ''
+            });
+          });
+        
+        %div{:id => "offer-#{offer.id}", :class => "timer"}
+
+        =link_to 'Zobacz szczegóły', offer
+      .grid_4.details.omega
+        %h2 Kupon zniżkowy:
+        .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .price-tag
+          .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+          .clear
+    .clear
+.grid_7.right-column
+  =image_tag 'how_it_works.png'
+  = link_to 'New Offer', new_offer_path
 .clear

@@ -2,6 +2,8 @@
 
 <h1><%= @category.name %></h1>
 
+<%= render "shared/categories" %>
+
 <% unless @category.offers.blank? %>
 
   <% @category.offers.each do |offer| %>
