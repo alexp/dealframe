@@ -103,21 +103,26 @@ body {
   }
 
   .price-tag {
-    background-color: red;
+    background: url('/images/price.png');
     font-size: 1.6em;
     font-weight: bold;
     margin-top: 8px;
+    width: 143px;
+    height: 41px;
   }
 
   .price {
     float: left;
-    border: 1px solid;
     width: 90px;
-    background-color: #fff;
+    font-size: 1.2em;
+    margin-top: 2px;
   }
   
   .discount {
     float: left;
+    color: #fff;
+    font-size: 0.9em;
+    margin-top: 5px;
   }
 }
 

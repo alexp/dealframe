@@ -1,8 +1,7 @@
-.grid_16.push_1.filter &nbsp;
-.clear
-=render "shared/categories"
+.grid_1
+  =render "shared/categories"
 .grid_16
-  =@offers.each do |offer|
+  -@offers.each do |offer|
     .grid_16.deals{:class => cycle("even", "odd")}
       .grid_4.alpha
         =image_tag offer.photo_url, {:width => "120px", :border => "1px"}
@@ -10,16 +9,7 @@
         %h1= offer.title
         %p.description= offer.description
 
-        :javascript
-          $(function() {
-            var var_end_date = new Date('#{offer.end_date}');
-            $('#offer-#{offer.id}').countdown({
-              until: var_end_date,
-              format: 'HMS',
-              compact: true,
-              description: ''
-            });
-          });
+        =render :partial => 'time_counter', :locals => {:offer => offer }
         
         %div{:id => "offer-#{offer.id}", :class => "timer"}
 
@@ -32,7 +22,6 @@
           .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
           .clear
     .clear
-.grid_7.right-column
+.grid_4
   =image_tag 'how_it_works.png'
-  = link_to 'New Offer', new_offer_path
 .clear

@@ -78,17 +78,22 @@ body {
     color: #1E90FF;
     text-decoration: line-through; }
   .deals .price-tag {
-    background-color: red;
+    background: url("/images/price.png");
     font-size: 1.6em;
     font-weight: bold;
-    margin-top: 8px; }
+    margin-top: 8px;
+    width: 143px;
+    height: 41px; }
   .deals .price {
     float: left;
-    border: 1px solid;
     width: 90px;
-    background-color: #fff; }
+    font-size: 1.2em;
+    margin-top: 2px; }
   .deals .discount {
-    float: left; }
+    float: left;
+    color: #fff;
+    font-size: 0.9em;
+    margin-top: 5px; }
 
 .odd {
   background: url("/images/deal_bg_odd.png") no-repeat; }

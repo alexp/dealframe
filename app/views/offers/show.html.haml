@@ -1,0 +1,40 @@
+.grid_24{:style => "text-align: center;"}
+  .grid_8.alpha
+    %h1 1. Potwierdź zamówienie
+  .grid_8
+    %h1 2. Dokonaj płatności
+  .grid_8.omega
+    %h1 3. Wydrukuj kupon
+
+.clear
+  
+.grid_24
+  .grid_16.deals.odd.push_4
+    .grid_4.alpha
+      =image_tag @offer.photo_url, {:width => "120px", :border => "1px"}
+    .grid_7
+      %h1= @offer.title
+      %p.description= @offer.description
+
+      =render :partial => 'time_counter', :locals => {:offer => @offer}
+      
+      %div{:id => "offer-#{@offer.id}", :class => "timer"}
+
+      =link_to 'Zobacz szczegóły', @offer
+    .grid_4.details.omega
+      %h2 Kupon zniżkowy:
+      .init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+      .price-tag
+        .price= number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
+        .clear
+  .clear
+=link_to 'GET THIS DEAL', purchase_url(:id => @offer.id)
+
+<hr />
+
+<h3>Kupon zniżkowy oferuje:</h3>
+
+=@offer.company.full_name
+=@offer.company.address
+=@offer.company.zip_code + " " + @offer.company.city
