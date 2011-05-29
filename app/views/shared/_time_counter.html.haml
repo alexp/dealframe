@@ -1,0 +1,10 @@
+:javascript
+  $(function() {
+    var var_end_date = new Date('#{offer.end_date}');
+    $('#offer-#{offer.id}').countdown({
+      until: var_end_date,
+      format: 'HMS',
+      compact: true,
+      description: ''
+    });
+  });

@@ -96,10 +96,26 @@ body {
     margin-top: 5px; }
 
 .odd {
-  background: url("/images/deal_bg_odd.png") no-repeat; }
+  background: url("/images/deal_bg_odd.png") no-repeat;
+  /*border: 4px dashed #000;*/ }
 
 .even {
   background: url("/images/deal_bg_even.png") no-repeat; }
 
 .right-column {
   text-align: right; }
+
+.order-page th {
+  text-transform: uppercase;
+  color: #656565;
+  font-size: 1.1em;
+  border-bottom: 4px solid #656565;
+  text-align: center; }
+.order-page th.desc {
+  text-align: left; }
+.order-page td.desc {
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 40%; }
+.order-page td.quantity, .order-page .mult, .order-page .price, .order-page .total {
+  text-align: center; }

@@ -9,7 +9,7 @@
         %h1= offer.title
         %p.description= offer.description
 
-        =render :partial => 'time_counter', :locals => {:offer => offer }
+        =render :partial => 'shared/time_counter', :locals => {:offer => offer }
         
         %div{:id => "offer-#{offer.id}", :class => "timer"}
 

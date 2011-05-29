@@ -16,7 +16,7 @@
       %h1= @offer.title
       %p.description= @offer.description
 
-      =render :partial => 'time_counter', :locals => {:offer => @offer}
+      =render :partial => 'shared/time_counter', :locals => {:offer => @offer}
       
       %div{:id => "offer-#{@offer.id}", :class => "timer"}
 
@@ -31,10 +31,18 @@
   .clear
 =link_to 'GET THIS DEAL', purchase_url(:id => @offer.id)
 
-<hr />
+%hr
 
-<h3>Kupon zniżkowy oferuje:</h3>
+%h3 Additional info:
+=raw(@offer.additional_info)
 
+%h3 Details: 
+=raw(@offer.details)
+
+%h3 Fine print:
+=raw(@offer.fine_print)
+
+%h3 Kupon zniżkowy oferuje:
 =@offer.company.full_name
 =@offer.company.address
 =@offer.company.zip_code + " " + @offer.company.city

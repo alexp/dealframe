@@ -1,16 +1,14 @@
 class CoupponsController < ApplicationController
 
   def new
-
-
   end
 
   def generate_security_code(length)
     return ActiveSupport::SecureRandom.hex(length)
   end
-
-  def purchase
   
+  def paypal_payment
+    
     @offer = Offer.find(params[:id])    
     @couppon = Couppon.create(
         :security_code => generate_security_code(5),
@@ -45,10 +43,24 @@ class CoupponsController < ApplicationController
       redirect_to @offer
     end
     
-#respond_to do |format|
-#     format.html # buy.html.erb
-#     format.xml  { render :xml => @category }
-#    end
+    #respond_to do |format|
+    #     format.html # buy.html.erb
+    #     format.xml  { render :xml => @category }
+    #    end
+  end
+
+  def purchase 
+    @offer = Offer.find(params[:id])
+        
+    @couppon = Couppon.create(
+        :security_code => generate_security_code(5),
+        :couppon_code => generate_security_code(4),
+        :offer_id => params[:id],
+        :status => 0,
+        :company_id => @offer.company.id,
+        :expiration_date => @offer.expiration_date)
+    
+    @user = User.new
   end
 
   def complete
