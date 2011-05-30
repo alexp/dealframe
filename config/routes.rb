@@ -10,6 +10,8 @@ Dealframe::Application.routes.draw do
 
   match 'offers/:id/purchase' => 'couppons#purchase', :as => :purchase
   match 'couppons/:id/complete' => 'couppons#complete', :as => :complete
+  match '/signup', :to => 'users#new'
+
 # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -17,5 +17,8 @@
             %li= link_to 'Blog', '#'
             %li= link_to 'Zaloguj się', '#'
         .clear
+      %section.round
+        =flash.each do |key, value|
+          .flash{:class => "#{key}"}= value
       = yield
-    -#= debug(params) if Rails.env.development?
+    = debug(params) if Rails.env.development?
