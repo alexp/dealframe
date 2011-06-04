@@ -7,10 +7,13 @@ Dealframe::Application.routes.draw do
   resources :company_profiles
   resources :users  
   resources :couppons
+  resources :sessions, :only => [:new, :create, :destroy]
 
   match 'offers/:id/purchase' => 'couppons#purchase', :as => :purchase
   match 'couppons/:id/complete' => 'couppons#complete', :as => :complete
   match '/signup', :to => 'users#new'
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
 
 # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,7 +2,7 @@
 !!!
 %html
   %head
-    %title Dealframe
+    %title= @title
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js"
@@ -15,10 +15,16 @@
           %ul
             %li= link_to 'Dealframe dla biznesu', '#'
             %li= link_to 'Blog', '#'
-            %li= link_to 'Zaloguj się', 'signup'
+            -if signed_in?
+              %li
+                ="Zalogowany jako: #{current_user.email}"
+              %li= link_to "My Dealframe", current_user
+              %li= link_to "Sign out", signout_path, :method => :delete
+            -else 
+              %li= link_to "Sign in", signin_path
         .clear
       %section.round
-        =flash.each do |key, value|
+        -flash.each do |key, value|
           .flash{:class => "#{key}"}= value
       = yield
     = debug(params) if Rails.env.development?

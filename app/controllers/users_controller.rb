@@ -15,8 +15,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       flash[:success] = "welcome to Dealframe"
-      redirect_to @user
+      redirect_to root_path
     else
       render 'new'
     end
