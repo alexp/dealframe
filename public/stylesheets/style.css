@@ -33,15 +33,58 @@ hr {
   padding-top: 4px;
   background: url("/images/topinfo_bg.png") repeat-x; }
 
+.left {
+  float: left;
+  width: 610px;
+  position: relative; }
+
+.right {
+  float: right;
+  width: 330px; }
+
+.close {
+  margin-left: 260px; }
+
+#panel-container {
+  position: relative;
+  position: absolute;
+  width: 940px; }
+
+#panel-frame {
+  display: none;
+  max-width: 900px;
+  position: relative; }
+  #panel-frame .panel {
+    background-color: #fff;
+    border: 1px solid #1EFB05;
+    width: 300px;
+    height: 540px;
+    margin-top: 0px;
+    position: relative;
+    position: absolute;
+    left: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 6px; }
+  #panel-frame .data {
+    width: 240px;
+    padding-left: 35px;
+    font-size: 11px; }
+    #panel-frame .data li {
+      margin-left: 15px; }
+    #panel-frame .data img {
+      width: 240px;
+      margin-bottom: 10px; }
+
 .wrapper {
   width: 990px;
-  margin: auto;
+  margin: 0 auto;
   padding: 4px 20px; }
   .wrapper #left-col {
     margin-bottom: 40px;
-    margin-right: 20px;
+    margin-right: 0px;
     float: left;
-    width: 650px; }
+    width: 650px;
+    position: relative; }
     .wrapper #left-col #header {
       height: 94px; }
     .wrapper #left-col #logo {
@@ -56,7 +99,8 @@ hr {
       float: left;
       width: 40px;
       position: relative;
-      top: 70px; }
+      top: 70px;
+      z-index: 4; }
       .wrapper #left-col #categories a {
         margin-bottom: 3px;
         display: block;
@@ -65,7 +109,8 @@ hr {
     .wrapper #left-col #filter {
       background: url("/images/filter_bg.png") repeat-x 0px 0px;
       height: 81px;
-      margin-bottom: 0px; }
+      margin-bottom: 0px;
+      width: 610px; }
     .wrapper #left-col #offers {
       float: left;
       margin-top: 10px; }

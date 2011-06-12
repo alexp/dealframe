@@ -1,12 +1,37 @@
 #categories
   =render "shared/categories"
 
-
 :javascript
   $(function() {
-    
+    $.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script; 
+    $('.data').ajaxStart(function(){
+      $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
+    });
+
     $('.deals').click(function() {
-      window.location = "/offers/"+this.id.split("-")[1]
+      
+
+      var panel = $('.panel');
+      $('#panel-frame').css("display", "block");
+
+      $('.data').empty(); 
+      
+      if(panel.css('left') == "592px") {
+      
+      } else {
+        panel.animate({
+          left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth()+290 : 0
+        });
+      }
+
+      $.ajax({
+        url: "/offers/"+this.id.split("-")[1],
+        type: "get",
+        success: function(data) {
+          $(".data").html(data);
+        },
+        dataType: "html"
+      });
     });
     
     $('.deals').mouseenter(function() {
@@ -16,31 +41,43 @@
     $('.deals').mouseleave(function() {
       $('.check.'+this.id).hide();
     });
+
+    $('.close').click(function() {
+      var panel= $('.panel');
+      panel.animate({left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth() : 0});
+      return false;
+    });
   });
 
 #offers
   =render "shared/filter"
-  -@offers.each do |offer|
-    .deals{:class => (offer == @offers.first ? "first" : cycle("even", "odd")), :id => "deal-#{offer.id}"}
-      .photo
-        =link_to(image_tag(offer.photo_url), offer)
-      .content
-        %h1= link_to offer.title, offer
-        %p.description= offer.description
-        %span.clock= image_tag 'clock.png'
-        =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-        
-        %div{:id => "offer-#{offer.id}", :class => "timer"}
-        %hr
-        %span.quo &rsaquo;
-        =link_to "Zobacz szczegóły", offer
-      .details
-        %h2 Kupon zniżkowy:
-        .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-        .price-tag
-          .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-          .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
-          .clear
-      .check{:style => "display: none;", :class => "deal-#{offer.id}"}
+  #panel-container
+    .right
+    #panel-frame 
+      .panel
+        .head
+          %a{:href =>"#", :class => "close"} zamknij
+        .data 
+    .left
+      -@offers.each do |offer|
+        .deals{:class => (offer == @offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+          .photo
+            =link_to(image_tag(offer.photo_url), offer)
+          .content
+            %h1= link_to offer.title, offer
+            %p.description= offer.description
+            %span.clock= image_tag 'clock.png'
+            =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+            
+            %div{:id => "offer-#{offer.id}", :class => "timer"}
+            %hr
+            %span.quo &rsaquo;
+            =link_to "Zobacz szczegóły", offer
+          .details
+            %h2 Kupon zniżkowy:
+            .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+            .price-tag
+              .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+              .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+          .check{:style => "display: none;", :class => "deal-#{offer.id}"}
     .clear
-.clear

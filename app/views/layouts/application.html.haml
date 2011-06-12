@@ -5,7 +5,7 @@
     %title= @title
     %meta{:name => "robots", :content => "noindex"}
     = csrf_meta_tag
-    = stylesheet_link_tag 'reset', 'style', 'text'
+    = stylesheet_link_tag 'reset', 'style', 'text' 
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js"
   %body
@@ -22,10 +22,10 @@
           -if params[:controller] == 'offers' && params[:action] == 'index'
             #doodles
           .clear
-        %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}
-          
+        %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
           =yield
-      
+          .clear
+
       #right-col
         .top-menu
           %ul
@@ -46,14 +46,11 @@
               %li= link_to "Zaloguj się", signin_path
         #add-offer
           link dodaj ofertę
+        
         #sidebar
           =image_tag 'how_it_works.png'
           =image_tag 'separator.png'
           =image_tag 'partners.png'
           %br
           =link_to(image_tag('logo_vedia.gif'),"http://vedia.pl")
-        .clear
       .clear
-  .clear
-.footer      
-  = debug(params) if Rails.env.development?
