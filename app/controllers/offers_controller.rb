@@ -1,18 +1,9 @@
 class OffersController < ApplicationController
-  # GET /offers
-  # GET /offers.xml
   def index
     @offers = Offer.where("end_date >= :now", {:now => Time.now}).all
     @categories = Category.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @offers }
-    end
   end
   
-  # GET /offers/1
-  # GET /offers/1.xml
   def show
     @offer = Offer.find(params[:id])
 
@@ -22,24 +13,14 @@ class OffersController < ApplicationController
     end
   end
 
-  # GET /offers/new
-  # GET /offers/new.xml
   def new
     @offer = Offer.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @offer }
-    end
   end
 
-  # GET /offers/1/edit
   def edit
     @offer = Offer.find(params[:id])
   end
 
-  # POST /offers
-  # POST /offers.xml
   def create
     @offer = Offer.new(params[:offer])
 
@@ -54,8 +35,6 @@ class OffersController < ApplicationController
     end
   end
 
-  # PUT /offers/1
-  # PUT /offers/1.xml
   def update
     @offer = Offer.find(params[:id])
 
@@ -80,5 +59,9 @@ class OffersController < ApplicationController
       format.html { redirect_to(offers_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def purchase
+    @offer = Offer.find(params[:id])
   end
 end

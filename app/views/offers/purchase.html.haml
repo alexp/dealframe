@@ -1,0 +1,75 @@
+-form_tag('/couppons/payment') do
+  =hidden_field_tag 'offer_id', @offer.id
+
+  %h1 Twoje zamówienie:
+
+  :javascript
+    function updatePrice(el, quantity, unit) {
+      if(quantity) {
+        el.html((parseInt(quantity) * unit).toFixed(2) + " zł");
+        $('#quantity').html(quantity);
+      } else {
+        el.html(#{@offer.price} + " zł");
+        $('#quantity').html(1);
+      }
+    }
+  .grid_24.order-page
+    .grid_3
+      =text_field_tag 'qnt', '1', :style => "width: 60px; font-size: 3.0em; text-align: center", :onkeyup => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"
+      -#{:name => 'qnt', :value => '1', :style => "width: 60px; font-size: 3.0em; text-align: center", :onkeyup => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"}
+    .grid_1 X
+    .grid_16.deals.d
+      .grid_4.alpha
+        =image_tag @offer.photo_url, {:width => "120px", :border => "1px"}
+      .grid_7
+        %h1= @offer.title
+        %p.description= @offer.description
+
+        =render :partial => 'shared/time_counter', :locals => {:offer => @offer}
+        
+        %div{:id => "offer-#{@offer.id}", :class => "timer"}
+
+      .grid_4.details.omega
+        %h2 Kupon zniżkowy:
+        .init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .price-tag
+          .price= number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
+          .clear
+    .clear
+    .grid_16.push_4
+      %table
+        %thead
+          %th.desc opis
+          %th.quantity ilość
+          %th.mult
+          %th.price cena
+          %th.total total
+        %tbody
+          %tr 
+            %td.desc=@offer.description
+            %td.quantity#quantity 1
+            %td.mult x
+            %td.price=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+            %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
+      .clear
+  .grid_24
+    %ol
+      -if !signed_in? 
+        %li 
+          %h1 Twoje dane
+          Email:
+          =text_field :user, :email
+
+          Hasło:
+          =password_field :user, :password
+
+          Potwierdzenie:
+          =password_field :user, :confirmation
+      %li 
+        %h1 Płatność
+        =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal"
+
+  -# link_to paypal payment
+  =image_submit_tag 'http://www.sightmax.com/Sitefinity/WebsiteTemplates/SightMaxCSS/App_Themes/SightMaxTheme/global/images/buttons/buyBtn.png', :name => "payment_method", :value => "cc"
+

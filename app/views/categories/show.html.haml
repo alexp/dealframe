@@ -1,25 +1,23 @@
-
-%h1= @category.name
-
-=render "shared/categories"
-
--unless @category.active_offers.blank?
-
-  .grid_16
+#categories
+  =render "shared/categories"
+#offers 
+  =render "shared/filter"
+  -unless @category.active_offers.blank?
     -@category.active_offers.each do |offer|
-      .grid_16.deals{:class => cycle("even", "odd")}
-        .grid_4.alpha
-          =image_tag offer.photo_url, {:width => "120px", :border => "1px"}
-        .grid_7
-          %h1= offer.title
+      .deals{:class => (offer == @category.active_offers.first ? "first" : cycle("even", "odd"))}
+        .photo
+          =link_to(image_tag(offer.photo_url), offer)
+        .content
+          %h1= link_to offer.title, offer
           %p.description= offer.description
-
+          %span.clock= image_tag 'clock.png'
           =render :partial => 'shared/time_counter', :locals => {:offer => offer }
           
           %div{:id => "offer-#{offer.id}", :class => "timer"}
-
+          %br
+          %span.quo &rsaquo;
           =link_to 'Zobacz szczegóły', offer
-        .grid_4.details.omega
+        .details
           %h2 Kupon zniżkowy:
           .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
           .price-tag
@@ -27,12 +25,9 @@
             .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
             .clear
       .clear
-  .grid_4
-    =image_tag 'how_it_works.png'
-  .clear
+  -else
+    .grid_16.push_4
+      Na razie nic nie dają w tej kategorii...<br />
+      =image_tag "http://t3.gstatic.com/images?q=tbn:ANd9GcSF4tCtdVsB8yVzBLa4ThUrhoBj6t2O5FKcnE0HGHOkjnZdQ1EC-Q"
 
-
--else
-  .grid_16.push_4
-    Na razie nic nie dają w tej kategorii...<br />
-    =image_tag "http://t3.gstatic.com/images?q=tbn:ANd9GcSF4tCtdVsB8yVzBLa4ThUrhoBj6t2O5FKcnE0HGHOkjnZdQ1EC-Q"
+.clear

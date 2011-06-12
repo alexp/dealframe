@@ -2,36 +2,71 @@ class CoupponsController < ApplicationController
 
   def new
   end
+  
+  def payment
+    # kod do wyjebania (oprocz tego do paypala
+    #
+    # tutaj z jestesmy przekierowani z podstrony potwierdzenia
+    # zakupu. Czyli /offers/:id/pruchase -> click "KUP"
+    # postem wysylamy dane formularza tutaj i procesujemy caly 
+    # pierdolnik.
+    # * odpowiednie dzialanie wz. od  metody płatności
+    # * zalozenie konta uzytkownikowi
+    # * wysylka maila
+    # * procesowanie platnosci
+    # * z platnosci, jesli wszystko ok, przekierowanie do podlgadu kuponu.
+    
+    @offer = Offer.find(params[:offer_id])
+    
+    if !signed_in?
+      if params[:user][:email].blank?
+        flash[:error] = "Uzupełnij pole email"
+        redirect_to :back
+      else
+        @user = User.new(params[:user])
+        if @user.save
+          sign_in @user
+          flash[:success] = "signed in!!"
+        else
+          flash[:error] = "problem ze stworzeniem usera"
+        end
+      end
+    end
 
-  def generate_security_code(length)
-    return ActiveSupport::SecureRandom.hex(length)
+    case params[:payment_method]
+      when "paypal"
+        paypal_payment(@offer, params[:qnt])
+      else
+        # dotpay_payment 
+    end
+
   end
   
-  def paypal_payment
+  def complete
+  
+  end
+
+  
+  def ipn_notification
     
-    @offer = Offer.find(params[:id])    
-    @couppon = Couppon.create(
-        :security_code => generate_security_code(5),
-        :couppon_code => generate_security_code(4),
-        :offer_id => params[:id],
-        :status => 0,
-        :company_id => @offer.company.id,
-        :expiration_date => @offer.expiration_date)
-    
-    @user = User.new
-    
+  end
+  
+  private
+
+  def paypal_payment(offer, quantity)
+  
+    price = offer.price * quantity.to_i
+
     pay_request = PaypalAdaptive::Request.new
- 
-    #TODO: move to offer methos (i.e. @offer.calculate_price)
-    price = @offer.value - ((@offer.value*@offer.discount) / 100)
+    
     data = {
-      "returnUrl" => "http://94.75.125.226:3000/couppons/#{@couppon.id}/complete", 
+      "returnUrl" => "http://localhost:3000/couppons/complete", 
       "requestEnvelope" => {"errorLanguage" => "en_US"},
       "currencyCode"=>"PLN",  
       "receiverList"=>{"receiver"=>[{"email"=>"chuj_1305557281_biz@gmail.com", "amount"=>price}]},
-      "cancelUrl"=>"http://94.75.125.226:3000/offers/#{@offer.id}",
+      "cancelUrl"=>"http://localhost:3000/offers/#{offer.id}",
       "actionType"=>"PAY",
-      "ipnNotificationUrl"=>"http://testserver.com/payments/ipn_notification"
+      "ipnNotificationUrl"=>"http://localhost:3000/couppons/ipn_notification"
     }
 
     pay_response = pay_request.pay(data)
@@ -40,31 +75,8 @@ class CoupponsController < ApplicationController
       redirect_to pay_response.approve_paypal_payment_url
     else
       puts pay_response.errors.first['message']
+      flash[:error] = "ERRORRR!!!!!!"
       redirect_to @offer
     end
-    
-    #respond_to do |format|
-    #     format.html # buy.html.erb
-    #     format.xml  { render :xml => @category }
-    #    end
   end
-
-  def purchase 
-    @offer = Offer.find(params[:id])
-        
-    @couppon = Couppon.create(
-        :security_code => generate_security_code(5),
-        :couppon_code => generate_security_code(4),
-        :offer_id => params[:id],
-        :status => 0,
-        :company_id => @offer.company.id,
-        :expiration_date => @offer.expiration_date)
-    
-    @user = User.new
-  end
-
-  def complete
-    @couppon = Couppon.where(:id => params[:id]) 
-  end
-
 end
