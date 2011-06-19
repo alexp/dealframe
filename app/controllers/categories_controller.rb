@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
   # GET /categories.xml
   
   def index
-    @categories = Category.joins(:offers).where(:offers => { ":end_date >= :now", {:now => Time.now }  })
+    #@categories = Category.joins(:offers).where(:offers => { ":end_date >= :now", {:now => Time.now }  })
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.html.erb
