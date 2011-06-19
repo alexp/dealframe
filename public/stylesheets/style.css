@@ -56,6 +56,8 @@ hr {
   position: relative; }
   #panel-frame .panel {
     background-color: #fff;
+    background-image: url("images/offer_stripes_bg.png");
+    background-position: 0px 100px;
     border: 1px solid #1EFB05;
     width: 300px;
     height: 540px;
@@ -74,6 +76,11 @@ hr {
     #panel-frame .data img {
       width: 240px;
       margin-bottom: 10px; }
+
+.offer-body-details {
+  margin-top: 20px; }
+  .offer-body-details p {
+    margin-bottom: 2px; }
 
 .wrapper {
   width: 990px;

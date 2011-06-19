@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110529115138) do
+ActiveRecord::Schema.define(:version => 20110619181038) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20110529115138) do
   create_table "offers", :force => true do |t|
     t.datetime "start_date"
     t.datetime "expiration_date"
-    t.decimal  "value",           :precision => 10, :scale => 0
+    t.decimal  "value",               :precision => 10, :scale => 0
     t.integer  "discount"
     t.string   "title"
     t.text     "description"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110529115138) do
     t.integer  "company_id"
     t.text     "fine_print"
     t.text     "details"
+    t.string   "invoice_description"
   end
 
   add_index "offers", ["category_id"], :name => "index_offers_on_category_id"

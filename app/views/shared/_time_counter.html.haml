@@ -1,10 +1,23 @@
-:javascript
-  $(function() {
-    var var_end_date = new Date('#{offer.end_date}');
-    $('#offer-#{offer.id}').countdown({
-      until: var_end_date,
-      format: 'HMS',
-      compact: true,
-      description: ''
+-unless defined? size
+  :javascript
+    $(function() {
+      var var_end_date = new Date('#{offer.end_date.strftime("%B %d, %Y %H:%M:%S")}');
+      $('#offer-#{offer.id}').countdown({
+        until: var_end_date,
+        format: 'HMS',
+        compact: true,
+        description: ''
+      });
     });
-  });
+-else
+  :javascript
+    $(function() {
+      var var_end_date = new Date('#{offer.end_date.strftime("%B %d, %Y %H:%M:%S")}');
+      $('#offer-#{offer.id}').countdown({
+        until: var_end_date,
+        format: 'HMS',
+        layout: '<ul>{y<}<li>{yn} {yl}</li>{y>}{o<}<li>{on} {ol}</li>{o>}' + 
+            '{d<}<li>{dn} {dl}</li>{d>}{h<}<li>{hn} {hl}</li>{h>}' + 
+                '{m<}<li>{mn} {ml}</li>{m>}{s<}<li>{sn} {sl}</li>{s>}</ul>'
+      });
+    });

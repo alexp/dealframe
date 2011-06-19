@@ -2,3 +2,10 @@
 =image_tag @offer.photo_url
 =raw(@offer.additional_info)
 %hr
+.offer-body-details
+  =link_to(image_tag('buy_now_btn.png'), :controller => "offers", :action => "purchase", :id => @offer.id)
+  %strong Ten kupon znizkowy oferuje:
+  %br
+  %p= link_to @offer.company.full_name, @offer.company
+  %p= @offer.company.address
+  %p= @offer.company.zip_code + " " + @offer.company.city

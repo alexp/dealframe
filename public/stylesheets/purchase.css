@@ -1,0 +1,64 @@
+.order-page {
+  width: 760px;
+  padding: 40px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 3px dashed #cccccc; }
+
+hr {
+  margin: 40px 0; }
+
+#new-user {
+  width: 200px;
+  padding-left: 10px; }
+  #new-user input {
+    margin-left: 40px; }
+  #new-user .left {
+    width: 100px; }
+  #new-user .right {
+    width: 100px; }
+  #new-user p {
+    margin: 6px 0; }
+
+#x {
+  margin: 20px; }
+
+#couppon-amount {
+  background-color: #f0f0f0;
+  padding: 10px; }
+  #couppon-amount #quantity, #couppon-amount #x {
+    float: left; }
+
+#couppon {
+  float: left;
+  border: 4px dashed #cccccc;
+  width: 560px;
+  padding: 10px; }
+  #couppon img, #couppon h1, #couppon .description {
+    float: left; }
+
+.timer.large {
+  background-color: #cccccc;
+  font-size: 18px;
+  font-weight: bold;
+  margin: auto;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px; }
+  .timer.large ul li {
+    list-style-type: none;
+    display: inline; }
+
+#timer-desc {
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px; }
+
+.total, .price, .quantity {
+  font-size: 16px; }
+
+.total {
+  color: green;
+  font-weight: bold; }

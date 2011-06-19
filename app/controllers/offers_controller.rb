@@ -64,5 +64,6 @@ class OffersController < ApplicationController
 
   def purchase
     @offer = Offer.find(params[:id])
+    render :layout => "purchase"
   end
 end

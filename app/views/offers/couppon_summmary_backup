@@ -1,0 +1,19 @@
+
+    -#couppon-amount
+      #quantity
+        =text_field_tag 'qnt', '1', :style => "width: 60px; font-size: 3.0em; text-align: center", :onkeyup => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"
+      #x X
+      #couppon
+        =image_tag @offer.photo_url, {:width => "220px", :border => "1px"}
+        %h1= @offer.title
+        %p.description
+          %span opis:
+          =@offer.description
+        .clear
+        %p.fine-print
+          %span uwagi i ograniczenia:
+          =@offer.fine_print
+        %p.additional-info
+          %span dodatkowe informacje:
+          =@offer.additional_info
+      .clear
