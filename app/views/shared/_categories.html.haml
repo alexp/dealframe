@@ -1,9 +1,9 @@
 -if current_page?(:controller => 'offers', :action => 'index')
-  =link_to(image_tag('cat.png'), '/offers')
+  =link_to(image_tag('cat.png'), '/offers', :class => "active")
 -else
   =link_to(image_tag('cat_inactive.png'), '/offers')
 -@categories.each do |category|
   -if current_page?(:id => category.id)
-    =link_to(image_tag('cat.png'), category)
+    =link_to(image_tag('cat.png'), category, :class => 'active')
   -else
-    =link_to(image_tag('cat_inactive.png'), category)
+    =link_to(image_tag(category.icon_url), category)

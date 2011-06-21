@@ -50,7 +50,7 @@
   });
 
 #offers
-  =render "shared/filter"
+  =render :partial => "shared/filter"
   #panel-container
     .right
     #panel-frame 
@@ -81,3 +81,4 @@
               .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
           .check{:style => "display: none;", :class => "deal-#{offer.id}"}
     .clear
+

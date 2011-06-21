@@ -67,9 +67,15 @@ hr {
   position:relative;
 
   .panel{
+    
+    /**
+     * background-image: url('/images/offer_stripes_bg.png');
+     * background-position: 0px 60%;
+     * background-repeat: no-repeat;
+     **/
+
+    
     background-color: #fff;
-    background-image: url('images/offer_stripes_bg.png');
-    background-position: 0px 100px;
     border: 1px solid #1EFB05;
     width: 300px;
     height: 540px;
@@ -79,6 +85,12 @@ hr {
     left:0;
     -moz-border-radius:5px;
     -webkit-border-radius:6px;
+
+    .clock {
+      float: left;
+      margin-right: 5px;
+      padding-top: 1px;
+    }
   }
 
   .data {
@@ -90,20 +102,64 @@ hr {
       margin-left: 15px;
     }
 
-    img {
+    .offer-pic {
       width: 240px;
       margin-bottom: 10px;
     }
   }
 }
 
+.offer-body-timer {
+  margin-top: 10px;
+}
 .offer-body-details {
   margin-top: 20px;
+
+
   p {
     margin-bottom: 2px;
   }
 }
-  
+ 
+.timer-medium {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+#doodles {
+  float:right;
+  width: 392px;
+  height: 94px;
+  background: url('/images/start.png') no-repeat right top;
+} 
+
+#header {
+  height: 94px;
+}
+
+#logo {
+  float: left; 
+  margin-top: 20px;
+}
+
+
+
+#categories {
+  float: left;
+  width: 40px;
+  position: relative;
+  top: 70px;
+  z-index: 4;
+  a {
+    margin-bottom: 3px;
+    display:block;
+    width: 53px;
+    height: 40px;
+  }
+
+}
+
 .wrapper {
   width: 990px;
   margin: 0 auto;
@@ -116,35 +172,11 @@ hr {
     width: 650px;
     position: relative;
 
-    #header {
-      height: 94px;
-    }
-    
-    #logo {
-      float: left; 
-      margin-top: 20px;
-    }
 
-    #doodles {
-      float:right;
-      width: 392px;
-      height: 94px;
-      background: url('/images/start.png') no-repeat right top;
-    } 
     
-    #categories {
-      float: left;
-      width: 40px;
-      position: relative;
-      top: 70px;
-      z-index: 4;
-      a {
-        margin-bottom: 3px;
-        display:block;
-        width: 53px;
-        height: 40px;
-      }
-    }
+
+
+
     
     
     #filter {
@@ -152,6 +184,33 @@ hr {
       height: 81px;
       margin-bottom: 0px;
       width: 610px;
+    }
+
+    #filter-wrap {
+      width: 571px;
+      margin: auto;
+      padding: 20px 0;
+  
+      #dropdowns.left {
+        width: 391px;
+      }
+
+      #dropdowns select {
+        height: 35px;
+        width: 150px;
+        background-color: #fff;
+        font-size: 1.2em;
+        border: 0;
+        color: #959ba2;
+      }
+
+      #buttons.right {
+        width: 175px;
+
+        img {
+          margin-right: 4px;  
+        }
+      }
     }
 
     #offers {
@@ -328,25 +387,27 @@ hr {
 
   }
 
+
+.top-menu { 
+  font-size: 10px;
+  margin: 0px auto 20px;
+
+  ul { list-style-type: none; padding: 0; margin: 0; }
+  li { display: inline; margin: 0 22px 0 0; }      
+}
+
+    #add-offer {
+    }
+
   #right-col { 
     float: left;
     width: 280px;
     text-align: center;
     
-    .top-menu { 
-      font-size: 10px;
-      margin: 0px auto 20px;
 
-      ul { list-style-type: none; padding: 0; margin: 0; }
-      li { display: inline; margin: 0 22px 0 0; }      
-    }
-
-    #add-offer {
-      margin-bottom: 40px;
-    }
     
     #sidebar {
-      padding-top: 20px;
+      margin-top: 30px;
       padding-left: 20px;
       text-align: left;
     }

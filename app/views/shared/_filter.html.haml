@@ -1,2 +1,13 @@
 #filter
+  #filter-wrap
+    #dropdowns.left
+      =image_tag("offers_in.png")
+      =select("cities", "id", {"Warszawa" => "1"})
+      =collection_select(:category, :id, Category.all, :id, :name, :prompt => "wszystkie")
 
+    #buttons.right
+      =image_tag("top_menu_special.png", :alt => "Oferta specjalna")
+      =image_tag("top_menu_kids.png")
+      =image_tag("top_menu_her.png")
+      =image_tag("top_menu_him.png")
+    .clear

@@ -1,7 +1,14 @@
 %h1= @offer.title
-=image_tag @offer.photo_url
+=image_tag @offer.photo_url, :class => "offer-pic"
 =raw(@offer.additional_info)
 %hr
+
+.offer-body-timer
+  %span.clock= image_tag 'clock.png'
+  =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "medium"}
+  %div{:id => "offer-#{@offer.id}-medium", :class => "timer-medium"}
+  .clear 
+
 .offer-body-details
   =link_to(image_tag('buy_now_btn.png'), :controller => "offers", :action => "purchase", :id => @offer.id)
   %strong Ten kupon znizkowy oferuje:

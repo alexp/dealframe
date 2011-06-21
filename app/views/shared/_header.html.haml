@@ -1,0 +1,27 @@
+#header
+  .left
+    #logo= link_to(image_tag('dealframe.png'), '/offers')
+    -if params[:controller] == 'offers' && params[:action] == 'index'
+      #doodles
+    .clear
+  .right
+    .top-menu
+      %ul
+        %li
+          %span.quo &rsaquo;
+          =link_to 'Dealframe dla biznesu', '#'
+        %li
+          %span.quo &rsaquo;
+          =link_to 'Blog', '#'
+        -if signed_in?
+          %li
+            %span.quo &rsaquo;
+            ="Zalogowany jako: #{current_user.email}"
+          %li= link_to "Mój Dealframe", current_user
+          %li= link_to "Wyloguj", signout_path, :method => :delete
+        -else
+          %span.quo &rsaquo;
+          %li= link_to "Zaloguj się", signin_path
+    #add-offer
+      =link_to(image_tag("add_offer.png"), :controller => "offers", :action => "new")
+  .clear

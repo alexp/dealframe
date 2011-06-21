@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   #before_filter :authenticate if Rails.env.production? 
-
+  @categories = Category.all
   protected 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|

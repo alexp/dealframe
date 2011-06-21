@@ -16,36 +16,15 @@
         -flash.each do |key, value|
           .flash{:class => "#{key}"}= value
 
+      =render :partial => 'shared/header'
+      
+      =yield(:company_profile) if @content_for_company_profile
+
       #left-col
-        #header
-          #logo= link_to(image_tag('dealframe.png'), '/offers')
-          -if params[:controller] == 'offers' && params[:action] == 'index'
-            #doodles
-          .clear
         %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
           =yield
           .clear
-      #right-col
-        .top-menu
-          %ul
-            %li
-              %span.quo &rsaquo;
-              =link_to 'Dealframe dla biznesu', '#'
-            %li
-              %span.quo &rsaquo;
-              =link_to 'Blog', '#'
-            -if signed_in?
-              %li
-                %span.quo &rsaquo;
-                ="Zalogowany jako: #{current_user.email}"
-              %li= link_to "Mój Dealframe", current_user
-              %li= link_to "Wyloguj", signout_path, :method => :delete
-            -else
-              %span.quo &rsaquo;
-              %li= link_to "Zaloguj się", signin_path
-        #add-offer
-          link dodaj ofertę
-        
+      #right-col 
         #sidebar
           =image_tag 'how_it_works.png'
           =image_tag 'separator.png'

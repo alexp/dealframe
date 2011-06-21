@@ -14,9 +14,10 @@ class CompaniesController < ApplicationController
   # GET /companies/1.xml
   def show
     @company = Company.find(params[:id])
-
+    @categories = Category.all
+    @content_for_company_profile = true
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :xml => @company }
     end
   end

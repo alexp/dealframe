@@ -15,14 +15,8 @@
       %section.round
         -flash.each do |key, value|
           .flash{:class => "#{key}"}= value
-
+      =render :partial => "shared/header"
       #left-col
-        #header
-          #logo= link_to(image_tag('dealframe.png'), '/offers')
-          -if params[:controller] == 'offers' && params[:action] == 'index'
-            #doodles
-          .clear
-      .clear
       %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
         =yield
         .clear

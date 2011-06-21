@@ -1,2 +1,69 @@
+-content_for :company_profile do
+  =stylesheet_link_tag "companies"
+  #categories
+    =render "shared/categories"
+  #company-profile
+    #company-header
+      .left
+        #company-logo
+          =image_tag @company.logo_url, :width => "100px"
+        %h1
+          =@company.full_name
+      .right
+        #follow-venue
+          =image_tag("follow_venue.png")
+      .clear
+    #company-profile-body
+      .left
+        #col-1
+          %p Poleć wystawcę:
+          =image_tag "company_email.png"
+          =image_tag "company_facebook.png"
+          =image_tag "company_twitter.png"
+        #col-2= @company.description
+      .right
+        #col-3
+          #contact-details
+            #address
+              %p
+                %strong Adres:
+                %br
+                =@company.address
+                %br
+                =@company.zip_code + " " + @company.city
+            #contact
+              %p
+                %strong Kontakt:
+                %br
+                =@company.phone_number
+                %br
+                =@company.email
+            .clear
+          #map
+      .clear
+  .clear
+#bottom-content
+  #company-offers-nav Aktywne oferty zniżkowe:
+  #company-offers-nav-bottom
+  #offers
 
-
+    -@company.offers.each do |offer|
+      .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+        .photo
+          =link_to(image_tag(offer.photo_url), offer)
+        .content
+          %h1= link_to offer.title, offer
+          %p.description= offer.description
+          %span.clock= image_tag 'clock.png'
+          =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+          
+          %div{:id => "offer-#{offer.id}", :class => "timer"}
+          %hr
+          %span.quo &rsaquo;
+          =link_to "Zobacz szczegóły", offer
+        .details
+          %h2 Kupon zniżkowy:
+          .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .price-tag
+            .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+            .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
