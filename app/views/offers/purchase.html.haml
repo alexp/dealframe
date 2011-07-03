@@ -11,6 +11,7 @@
       }
     }
 
+
   .order-page
     
 
@@ -56,7 +57,7 @@
           .right
             =text_field :user, :email
             =password_field :user, :password
-            =password_field :user, :confirmation
+            =password_field :user, :password_confirmation
           .clear
           
         %hr
@@ -65,5 +66,5 @@
           =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal"
 
     -# link_to paypal payment
-    =image_submit_tag 'http://www.sightmax.com/Sitefinity/WebsiteTemplates/SightMaxCSS/App_Themes/SightMaxTheme/global/images/buttons/buyBtn.png', :name => "payment_method", :value => "cc"
+    =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay"
 

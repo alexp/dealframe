@@ -1,3 +1,13 @@
+.flash {
+  width: 760px;
+  padding: 10px 40px;
+  border: 1px solid #cccccc;
+  margin: 20px auto;
+  background-color: #FF8080;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3em; }
+
 .order-page {
   width: 760px;
   padding: 40px;

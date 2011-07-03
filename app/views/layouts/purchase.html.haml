@@ -12,11 +12,12 @@
     #top-info Witamy w Dealframe - Wersja alpha 0.1 
 
     .wrapper
-      %section.round
-        -flash.each do |key, value|
-          .flash{:class => "#{key}"}= value
       =render :partial => "shared/header"
-      #left-col
+      
       %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
+        
+        %section.round
+          -flash.each do |key, value|
+            .flash{:class => "#{key}"}= value
         =yield
         .clear
