@@ -13,9 +13,6 @@
 
 
   .order-page
-    
-
-    
     #timer-desc do końca pozostało:
     %div{:id => "offer-#{@offer.id}", :class => "timer large"}
     =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
@@ -44,9 +41,9 @@
             %td.price=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
             %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
       .clear
-      %hr
+      
       -if !signed_in? 
-        
+        %hr 
         %h2 Twoje dane
         
         #new-user
@@ -60,11 +57,12 @@
             =password_field :user, :password_confirmation
           .clear
           
-        %hr
+    %hr
 
-          %h2 Płatność
-          =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal"
+    %h2 Płatność
+    =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal"
 
-    -# link_to paypal payment
+    %hr
+    
     =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay"
 

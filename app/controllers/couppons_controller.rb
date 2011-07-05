@@ -20,32 +20,49 @@ class CoupponsController < ApplicationController
         if @user.save
           sign_in @user
           flash[:success] = "signed in!!"
-
-          
-          case params[:payment_method]
-            when "paypal"
-              if !flash[:error] 
-                paypal_payment(@offer, params[:quantity][:value])
-              end
-            when "dotpay"
-              
-              if !flash[:error]
-                safe_desc = CGI::escape(@offer.invoice_description)
-                amount = params[:quantity][:value].to_i * @offer.price
-                redir_url = url_for(:controller => 'users', :action => 'show', :id => @user.id)
-                redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+params[:user][:email]+"&country=POL"
-                flash[:success] = "Kupiłeś kupon:#{@offer.invoice_description}"
-              end 
-  
-            when "cc"
-              puts "karta"
-          end
         else
           flash[:error] = @user.errors
           redirect_to :back
         end
       end
+    else
+      @user = current_user
     end
+    
+    case params[:payment_method]
+      when "paypal"
+        if !flash[:error] 
+          paypal_payment(@offer, params[:quantity][:value])
+        end
+      when "dotpay"
+        
+        if !flash[:error]
+          safe_desc = CGI::escape(@offer.invoice_description)
+          amount = params[:quantity][:value].to_i * @offer.price
+          redir_url = url_for(:controller => 'users', :action => 'show', :id => @user.id)
+          if signed_in?
+            user_email = current_user.email
+          else
+            user_email = params[:user][:email]
+          end
+
+          @couppon = Couppon.new 
+          @couppon.user = @user
+          @couppon.company = @offer.company
+          @couppon.offer = @offer
+          @couppon.status = 0
+
+
+          if @couppon.save
+            redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"
+            
+            flash[:success] = "Kupiłeś kupon:#{@offer.invoice_description}"
+          end
+        end 
+
+      when "cc"
+        puts "karta"
+      end
   end
   
   def complete
@@ -53,10 +70,13 @@ class CoupponsController < ApplicationController
   end
 
   def verifying
-    
-    if(request.remote_ip == "195.150.9.37")
-      if(params[:t_status] == '2')
-        @couppon = Couppon.new
+    if request.remote_ip == "195.150.9.37"
+      @couppon = Couppon.find(params[:control])
+      
+      if params[:t_status] == '2' and !@couppon.nil?
+
+        @couppon.status = 1
+
         if @couppon.save
           render :text => "OK"
         end
