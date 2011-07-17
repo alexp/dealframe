@@ -1,0 +1,92 @@
+.user span.deal {
+  color: #009CD5; }
+.user span.frame {
+  color: #323A45; }
+.user span.red {
+  color: #E95D42; }
+.user hr.db {
+  height: 4px;
+  background: url("/images/hr.png") repeat-x; }
+.user a.pdf {
+  background: url("/images/pdf.png") no-repeat;
+  height: 30px;
+  display: block; }
+.user .page {
+  background-color: #fff;
+  border-left: 1px solid #cccccc; }
+  .user .page #content {
+    padding: 20px 0;
+    width: 80%;
+    margin: auto; }
+.user #left-col {
+  width: 118px; }
+  .user #left-col ul {
+    margin-top: 60px; }
+  .user #left-col ul li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: url("/images/btn_inactive.png") no-repeat;
+    width: 123px;
+    height: 41px; }
+    .user #left-col ul li a {
+      color: #363636;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-top: 10px;
+      display: block; }
+  .user #left-col li.active {
+    background: url("/images/btn_active.png") no-repeat;
+    width: 132px; }
+    .user #left-col li.active a {
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding-top: 10px;
+      display: block; }
+.user #right-col {
+  width: 820px;
+  text-align: left;
+  -moz-box-shadow: 1px 1px 3px #ccc;
+  -webkit-box-shadow: 1px 1px 3px #ccc;
+  box-shadow: 1px 1px 3px #ccc; }
+.user #top-nav {
+  padding: 0px 0px 0px 26px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -moz-box-shadow: 2px 2px 1px #ccc;
+  -webkit-box-shadow: 2px 2px 1px #ccc;
+  box-shadow: 2px 2px 1px #ccc;
+  background: url("/images/company_offers_nav_mid.png") repeat-x;
+  height: 57px; }
+  .user #top-nav h1 {
+    color: #fff;
+    padding: 16px 0 0;
+    margin: 0; }
+    .user #top-nav h1 span {
+      color: #E1EFF5; }
+.user #dashboard {
+  padding: 20px 20px 0 26px;
+  background-color: #f1f1f1;
+  height: 100px; }
+  .user #dashboard .left {
+    width: 60%; }
+  .user #dashboard .right {
+    width: 40%; }
+  .user #dashboard img {
+    border: 4px solid #fff;
+    float: left; }
+  .user #dashboard #hello {
+    color: #888888;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px; }
+  .user #dashboard #general-info {
+    color: #888888;
+    font-size: 10px;
+    text-align: right; }

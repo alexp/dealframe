@@ -1,0 +1,23 @@
+#dashboard
+  #avatar.left
+    =image_tag 'user.jpg'
+    #hello
+      %strong Witaj,
+      =@user.email
+      %br
+      %a Uzupełnij swój profil
+  #general-info.right
+    Użytkownik 
+    <span class="deal">deal</span><span class="frame">frame</span>
+    od
+    =@user.created_at.strftime('%d-%m-%Y')
+    %hr
+    %br
+    Skorzystałeś(-aś) z
+    %span.red
+      5 ofert zniżkowych
+    %br 
+    Obserwujesz
+    5 miejsc
+    %br
+%hr.db

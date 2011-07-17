@@ -1,0 +1,43 @@
+!!! XML
+!!!
+%html
+  %head
+    %title= @title
+    %meta{:name => "robots", :content => "noindex", :charset => "utf-8"}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'reset', 'style', 'text' 
+    = javascript_include_tag :defaults
+    = javascript_include_tag "jquery.countdown.js"
+  %body
+
+    -offer = @couppon.offer
+    .photo
+      =image_tag(offer.photo_url, :width => '200px')
+    .content
+
+      =offer.company.full_name
+      =offer.company.address
+      =offer.company.zip_code
+      =offer.company.city
+      %br 
+      Telefon: 
+      =offer.company.phone_number
+      %h1= offer.title
+      %p.description= offer.invoice_description
+      Kod kuponu:
+      =@couppon.couppon_code
+      %br
+      Ważny do: 
+      =offer.expiration_date
+      %br
+      Security Code:
+      =@couppon.security_code
+      %br
+      %h1 Istotne informacje:
+      =raw(offer.additional_info)
+      %hr
+
+    .details
+      %h2 
+        Kupon zniżkowy o wartości:
+        .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)

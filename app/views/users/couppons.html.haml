@@ -1,0 +1,66 @@
+-if !params[:status].nil?
+  -if params[:status] == "OK"
+    Kupiłeś kupon. Czekamy na weryfikację
+  -else
+    Coś poszło nie tak..sprawdzamy
+
+=render :partial => 'dashboard', :locals => { :user => @user }
+
+#content
+
+  %h1 Wykorzystaj poniższe kupony:
+
+  #offers
+
+    -@user.couppons.payed.each do |couppon|
+      -offer = couppon.offer
+      .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+        .photo
+          =link_to(image_tag(offer.photo_url), offer)
+        .content
+          %h1= link_to offer.title, offer
+          %p.description= offer.description
+          %span.clock= image_tag 'clock.png'
+          =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+          
+          %div{:id => "offer-#{offer.id}", :class => "timer"}
+          %hr
+          %span.quo &rsaquo;
+          =link_to "Zobacz szczegóły", offer
+        .details
+          %h2 Kupon zniżkowy:
+          .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .price-tag
+            .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+            .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+
+      %br
+      .actions
+        =link_to "PDF", {:controller => 'couppons', :action => 'print', :id => couppon.id, :format => 'pdf' }, :class => 'pdf'
+
+
+    %h1 Kupony oczekujące na weryfikację płatności:
+    .payment_pending
+
+      -@user.couppons.payment_pending.each do |couppon|
+        -offer = couppon.offer
+        .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+          .photo
+            =link_to(image_tag(offer.photo_url), offer)
+          .content
+            %h1= link_to offer.title, offer
+            %p.description= offer.description
+            %span.clock= image_tag 'clock.png'
+            =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+            
+            %div{:id => "offer-#{offer.id}", :class => "timer"}
+            %hr
+            %span.quo &rsaquo;
+            =link_to "Zobacz szczegóły", offer
+          .details
+            %h2 Kupon zniżkowy:
+            .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+            .price-tag
+              .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+              .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+        %br

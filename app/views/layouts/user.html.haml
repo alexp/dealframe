@@ -1,0 +1,42 @@
+!!! XML
+!!!
+%html
+  %head
+    %title= @title
+    %meta{:name => "robots", :content => "noindex"}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'reset', 'style', 'text', 'user' 
+    = javascript_include_tag :defaults
+    = javascript_include_tag "jquery.countdown.js"
+  %body.user
+    #top-info Witamy w Dealframe - Wersja alpha 0.1 
+
+    .wrapper
+
+      =render :partial => 'shared/header' 
+      
+      .flash
+        -flash.each do |key, value|
+          .flash{:class => "#{key}"}= value
+
+      #left-col
+        %ul 
+          %li{:class => params[:action]=="account"?"active":""} 
+            =link_to 'Twoje konto', :controller => 'users', :action => 'account'
+          %li{:class => params[:action]=="couppons"?"active":""} 
+            =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons' 
+          %li
+            =link_to 'Obserwowane', :controller => 'users', :action => 'following' 
+      #right-col
+        #top-nav
+          %h1
+            Panel użytkownika -
+            %span 
+              =@page_name
+        %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}
+          =yield
+          .clear
+      .clear
+
+
+=debug(params)

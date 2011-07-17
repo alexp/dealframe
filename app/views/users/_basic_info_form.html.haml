@@ -1,0 +1,11 @@
+=form_for(@user) do |f|
+  -if @user.errors.any?
+    #error_explenation
+      =pluralize(@user.errors.count, "error")
+
+      %ul
+        -@user.errors.full_messages.each do |msg|
+          %li= msg
+  =f.label :name
+  =f.text_field :name
+
