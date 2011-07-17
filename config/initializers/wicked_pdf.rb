@@ -1,5 +1,5 @@
 WickedPdf.config = {
-  :wkhtmltopdf => '/usr/bin/wkhtmltopdf',
+  :wkhtmltopdf => Rails.root.join('bin', 'wkhtmltopdf').to_s,
   #:layout => "pdf.html",
-  :exe_path => '/usr/bin/wkhtmltopdf'
+  :exe_path => Rails.root.join('bin', 'wkhtmltopdf').to_s
 }
