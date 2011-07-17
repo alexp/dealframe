@@ -12,6 +12,7 @@
       
 
       var panel = $('.panel');
+      panel.fadeIn();
       $('#panel-frame').css("display", "block");
 
       $('.data').empty(); 
@@ -45,6 +46,7 @@
     $('.close').click(function() {
       var panel= $('.panel');
       panel.animate({left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth() : 0});
+      panel.fadeOut();
       return false;
     });
   });

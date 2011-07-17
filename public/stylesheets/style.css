@@ -135,7 +135,13 @@ hr {
       background: url("/images/filter_bg.png") repeat-x 0px 0px;
       height: 81px;
       margin-bottom: 0px;
-      width: 610px; }
+      width: 610px;
+      border-top-left-radius: 6px;
+      -moz-border-radius-topleft: 6px;
+      -webkit-border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      -moz-border-radius-topright: 6px;
+      -webkit-border-top-right-radius: 6px; }
     .wrapper #left-col #filter-wrap {
       width: 571px;
       margin: auto;
@@ -153,110 +159,110 @@ hr {
         width: 175px; }
         .wrapper #left-col #filter-wrap #buttons.right img {
           margin-right: 4px; }
-    .wrapper #left-col #offers {
-      float: left;
-      margin-top: 10px; }
-      .wrapper #left-col #offers .odd {
-        background: url("/images/deal_bg_odd.png") no-repeat; }
-      .wrapper #left-col #offers .even {
-        background: url("/images/deal_bg_even.png") no-repeat; }
-      .wrapper #left-col #offers .first {
-        background: url("/images/deal_bg_first.png") no-repeat; }
-      .wrapper #left-col #offers .deals {
-        height: 133px;
-        margin-bottom: -9px;
-        padding: 2px 0px 0px 2px;
-        width: 608px; }
-        .wrapper #left-col #offers .deals:hover {
-          cursor: pointer; }
-        .wrapper #left-col #offers .deals h2 {
-          margin-top: 8px;
-          margin-bottom: 0;
-          font-size: 14px; }
-        .wrapper #left-col #offers .deals p.description {
-          color: #707070;
-          margin-bottom: 4px; }
-        .wrapper #left-col #offers .deals img {
-          margin: 13px 20px 0px 20px;
-          width: 140px;
-          height: 90px; }
-        .wrapper #left-col #offers .deals .photo {
-          float: left; }
-        .wrapper #left-col #offers .deals .content {
-          float: left;
-          margin-right: 20px;
-          width: 230px; }
-          .wrapper #left-col #offers .deals .content h1 {
-            line-height: 19px;
-            margin-top: 11px;
-            margin-bottom: 0; }
-          .wrapper #left-col #offers .deals .content h1 a {
-            color: #000;
-            text-decoration: none;
-            font-size: 18px; }
-            .wrapper #left-col #offers .deals .content h1 a:hover {
-              text-decoration: underline; }
-        .wrapper #left-col #offers .deals .description {
-          font-size: 11px; }
-        .wrapper #left-col #offers .deals .offer-info {
-          text-align: center;
-          margin-top: 10px;
-          border-left: 1px dotted #cccccc; }
-        .wrapper #left-col #offers .deals .offer-price {
-          font-size: 22px;
-          font-weight: bold; }
-        .wrapper #left-col #offers .deals .discount-value {
-          font-size: 18px;
-          font-weight: bold;
-          background-color: #ff0000;
-          padding: 6px;
-          color: #fff; }
-        .wrapper #left-col #offers .deals .clock img {
-          width: 16px;
-          height: 17px;
-          display: inline;
-          margin: -5px 0 0 0; }
-        .wrapper #left-col #offers .deals .timer {
-          font-weight: normal;
-          display: inline;
-          margin-top: 10px;
-          font-size: 11px; }
-        .wrapper #left-col #offers .deals .details {
-          text-align: center;
-          padding-top: 10px;
-          float: left;
-          margin-left: 20px; }
-        .wrapper #left-col #offers .deals .init-price {
-          font-size: 18px;
-          font-weight: bold;
-          color: #1E90FF;
-          text-decoration: line-through; }
-        .wrapper #left-col #offers .deals .price-tag {
-          background: url("/images/price.png");
-          font-size: 1.6em;
-          font-weight: bold;
-          margin-top: 8px;
-          width: 143px;
-          height: 41px; }
-        .wrapper #left-col #offers .deals .price {
-          float: left;
-          width: 90px;
-          font-size: 1.2em;
-          margin-top: 2px; }
-        .wrapper #left-col #offers .deals .discount {
-          float: left;
-          color: #fff;
-          font-size: 0.9em;
-          margin-top: 5px; }
-        .wrapper #left-col #offers .deals .check {
-          width: 72px;
-          height: 25px;
-          background: url("/images/check.png") no-repeat top right;
-          position: relative;
-          left: 555px;
-          top: -8px; }
-      .wrapper #left-col #offers .right-column {
-        text-align: right; }
+  .wrapper #offers {
+    float: left;
+    margin-top: 10px; }
+    .wrapper #offers .odd {
+      background: url("/images/deal_bg_odd.png") no-repeat; }
+    .wrapper #offers .even {
+      background: url("/images/deal_bg_even.png") no-repeat; }
+    .wrapper #offers .first {
+      background: url("/images/deal_bg_first.png") no-repeat; }
+    .wrapper #offers .deals {
+      height: 133px;
+      margin-bottom: -9px;
+      padding: 2px 0px 0px 2px;
+      width: 608px; }
+      .wrapper #offers .deals:hover {
+        cursor: pointer; }
+      .wrapper #offers .deals h2 {
+        margin-top: 8px;
+        margin-bottom: 0;
+        font-size: 14px; }
+      .wrapper #offers .deals p.description {
+        color: #707070;
+        margin-bottom: 4px; }
+      .wrapper #offers .deals img {
+        margin: 13px 20px 0px 20px;
+        width: 140px;
+        height: 90px; }
+      .wrapper #offers .deals .photo {
+        float: left; }
+      .wrapper #offers .deals .content {
+        float: left;
+        margin-right: 20px;
+        width: 230px; }
+        .wrapper #offers .deals .content h1 {
+          line-height: 19px;
+          margin-top: 11px;
+          margin-bottom: 0; }
+        .wrapper #offers .deals .content h1 a {
+          color: #000;
+          text-decoration: none;
+          font-size: 18px; }
+          .wrapper #offers .deals .content h1 a:hover {
+            text-decoration: underline; }
+      .wrapper #offers .deals .description {
+        font-size: 11px; }
+      .wrapper #offers .deals .offer-info {
+        text-align: center;
+        margin-top: 10px;
+        border-left: 1px dotted #cccccc; }
+      .wrapper #offers .deals .offer-price {
+        font-size: 22px;
+        font-weight: bold; }
+      .wrapper #offers .deals .discount-value {
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #ff0000;
+        padding: 6px;
+        color: #fff; }
+      .wrapper #offers .deals .clock img {
+        width: 16px;
+        height: 17px;
+        display: inline;
+        margin: -5px 0 0 0; }
+      .wrapper #offers .deals .timer {
+        font-weight: normal;
+        display: inline;
+        margin-top: 10px;
+        font-size: 11px; }
+      .wrapper #offers .deals .details {
+        text-align: center;
+        padding-top: 10px;
+        float: left;
+        margin-left: 20px; }
+      .wrapper #offers .deals .init-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1E90FF;
+        text-decoration: line-through; }
+      .wrapper #offers .deals .price-tag {
+        background: url("/images/price.png");
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-top: 8px;
+        width: 143px;
+        height: 41px; }
+      .wrapper #offers .deals .price {
+        float: left;
+        width: 90px;
+        font-size: 1.2em;
+        margin-top: 2px; }
+      .wrapper #offers .deals .discount {
+        float: left;
+        color: #fff;
+        font-size: 0.9em;
+        margin-top: 5px; }
+      .wrapper #offers .deals .check {
+        width: 72px;
+        height: 25px;
+        background: url("/images/check.png") no-repeat top right;
+        position: relative;
+        left: 555px;
+        top: -8px; }
+    .wrapper #offers .right-column {
+      text-align: right; }
   .wrapper .top-menu {
     font-size: 10px;
     margin: 0px auto 20px; }

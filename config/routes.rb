@@ -12,12 +12,17 @@ Dealframe::Application.routes.draw do
   match 'offers/:id/purchase' => 'offers#purchase', :as => :purchase
   match 'couppons/complete' => 'couppons#complete'
   match 'couppons/payment' => 'couppons#payment'
+  match 'couppons/print/:id' => 'couppons#print'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/verifying', :to => 'couppons#verifying'
   match '/users/:id', :to => 'users#show'
-# The priority is based upon order of creation:
+  match '/users/:id/account', :to => 'users#account'
+  match '/users/:id/couppons', :to => 'users#couppons'
+  match '/users/:id/following', :to => 'users#following' 
+
+  # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

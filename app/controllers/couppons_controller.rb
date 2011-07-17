@@ -5,7 +5,30 @@ class CoupponsController < ApplicationController
   def new
     @couppon = Couppon.new
   end
-  
+
+  def print
+    if !signed_in?
+      flash[:error] = "Przepraszamy, nie masz uprawnień do oglądania tej strony"
+      redirect_to root_path
+    else
+      @couppon = Couppon.find(params[:id])
+      if current_user.couppons.include?(@couppon)
+        respond_to do |format|
+          format.html
+          format.pdf do
+            render :pdf => "test.pdf",
+                   :template => 'couppons/show.pdf.haml',
+                   :orientation => 'Landscape',
+                   :encoding => 'utf-8'
+          end
+        end
+      else 
+        flash[:error] = "Przepraszamy, nie masz uprawnień do oglądania tej strony"
+        redirect_to root_path
+      end
+    end  
+  end
+
   def payment
     
     @offer = Offer.find(params[:offer_id])
@@ -51,7 +74,9 @@ class CoupponsController < ApplicationController
           @couppon.company = @offer.company
           @couppon.offer = @offer
           @couppon.status = 0
-
+          @couppon.couppon_code = @couppon.id.to_i + @couppon.offer.id.to_i
+          @couppon.security_code = @couppon.generate_security_code(6)
+          @couppon.expiration_date = @offer.expiration_date
 
           if @couppon.save
             redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"

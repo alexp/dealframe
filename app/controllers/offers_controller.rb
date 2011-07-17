@@ -5,6 +5,8 @@ class OffersController < ApplicationController
   end
   
   def show
+    #redirect_to :action => 'purchase'
+
     @offer = Offer.find(params[:id])
 
     respond_to do |format|
@@ -12,6 +14,7 @@ class OffersController < ApplicationController
       format.xml  { render :xml => @offer }
       format.js { render :partial => 'offer_body' } 
     end 
+
   end
 
   def new

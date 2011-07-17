@@ -1,7 +1,42 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id]) 
+    if signed_in?
+      @user = User.find(params[:id])
+      redirect_to :action => 'couppons'
+    else
+      redirect_to '/signin'
+    end
+  end
+
+  def account
+    if signed_in?
+      @user = User.find(params[:id])
+      @page_name = "Twoje konto"
+      render :layout => 'user'
+    else
+      redirect_to '/signin'
+    end
+  end
+
+  def couppons
+    if signed_in?
+      @user = User.find(params[:id])
+      @page_name = "Twoje kupony"
+      render :layout => 'user'
+    else
+      redirect_to '/signin'
+    end
+  end
+
+  def following
+    if signed_in?
+      @user = User.find(params[:id])
+      @page_name = "Obserwowane miejsca"
+      render :layout => 'user'
+    else 
+      redirect_to '/signin'
+    end
   end
 
   def new
@@ -11,6 +46,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
+
 
   def create
     @user = User.new(params[:user])
