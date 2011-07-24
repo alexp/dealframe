@@ -10,9 +10,17 @@
   .clear 
 
 .offer-body-details
-  =link_to(image_tag('buy_now_btn.png'), :controller => "offers", :action => "purchase", :id => @offer.id)
+  =link_to("KUP TERAZ", { :controller => "offers", :action => "purchase", :id => @offer.id }, {:class => "buynow"})
+  %br
+  %span.before Przed zniżką:
+  .init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+  .price-tag
+    .price= number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+    .discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
+  %br 
   %strong Ten kupon znizkowy oferuje:
   %br
   %p= link_to @offer.company.full_name, @offer.company
   %p= @offer.company.address
   %p= @offer.company.zip_code + " " + @offer.company.city
+  %br

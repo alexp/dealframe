@@ -16,6 +16,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @categories = Category.all
     @content_for_company_profile = true
+    @user = current_user
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @company }

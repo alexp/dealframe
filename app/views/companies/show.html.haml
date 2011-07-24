@@ -10,8 +10,9 @@
         %h1
           =@company.full_name
       .right
-        #follow-venue
-          =image_tag("follow_venue.png")
+        
+        =render 'follow_form' if signed_in?
+
       .clear
     #company-profile-body
       .left

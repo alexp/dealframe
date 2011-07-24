@@ -1,0 +1,24 @@
+-unless @category.offers.blank?
+  -@category.active_offers.each do |offer|
+    .deals{:class => (offer == @category.active_offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+      .photo
+        =image_tag(offer.photo_url)
+      .content
+        %h1= offer.title
+        %p.description= offer.description
+        %span.clock= image_tag 'clock.png'
+        =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+        
+        %div{:id => "offer-#{offer.id}", :class => "timer"}
+        %hr
+        %span.quo &rsaquo;
+        =link_to "Profil firmy", offer.company
+      .details
+        %h2 Kupon zniżkowy:
+        .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .price-tag
+          .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+      .check{:style => "display: none;", :class => "deal-#{offer.id}"}
+-else
+  %h1.empty Aktualnie, brak ofert w tej kategorii

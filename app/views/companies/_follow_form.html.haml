@@ -1,0 +1,7 @@
+#follow_form 
+  -if signed_in?
+    -if current_user.following?(@company)
+      =render 'unfollow'
+    -else
+      =render 'follow'
+      

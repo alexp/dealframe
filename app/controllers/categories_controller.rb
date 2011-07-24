@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
+      format.js { render :partial => 'category_offers'  }
     end
   end
 

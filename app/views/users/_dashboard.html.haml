@@ -15,9 +15,16 @@
     %br
     Skorzystałeś(-aś) z
     %span.red
-      5 ofert zniżkowych
+      = @user.couppons.payed.count
+      ofert zniżkowych
     %br 
-    Obserwujesz
-    5 miejsc
+    Obserwujesz:
+    =@user.following.count
+    -if @user.following.count == 1
+      miejsce
+    -elsif @user.following.count == 2..4
+      miejsca
+    -elsif @user.following.count > 4
+      miejsc
     %br
 %hr.db

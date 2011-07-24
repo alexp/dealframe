@@ -133,4 +133,31 @@
 
   }
 
+  .followed {
+    img {
+      float: left;
+    }
+    
+    .followed-company-content {
+      margin-left: 150px;  
+    }
+
+    span { 
+      font-size: 1.4em; 
+      font-weight: bold; 
+    }
+
+    p { 
+      margin: 10px 0;
+    }
+
+    a.venue {
+      font-weight: bold;
+      font-size: 1.6em;
+    }
+    hr {
+      margin: 24px 12px 24px 12px;
+    }
+  }
+
 }

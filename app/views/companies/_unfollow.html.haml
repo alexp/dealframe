@@ -1,0 +1,6 @@
+=form_for @company.reverse_relationships.find_by_followed_id(@company),
+  :html => { :method => :delete },
+  :remote => true do |f|
+  .actions.unfollow
+    = f.submit "Przestań obserwować"
+    %span.liloader=image_tag('loader.gif')

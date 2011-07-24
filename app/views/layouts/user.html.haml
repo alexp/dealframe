@@ -25,7 +25,7 @@
             =link_to 'Twoje konto', :controller => 'users', :action => 'account'
           %li{:class => params[:action]=="couppons"?"active":""} 
             =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons' 
-          %li
+          %li{:class => params[:action]=="following"?"active":""} 
             =link_to 'Obserwowane', :controller => 'users', :action => 'following' 
       #right-col
         #top-nav

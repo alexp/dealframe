@@ -1,14 +1,23 @@
 Dealframe::Application.routes.draw do
   get "pages/home"
 
-  resources :companies
+  resources :companies do
+    member do 
+      get :followers
+    end
+  end
   resources :offers
   resources :categories
   resources :company_profiles
-  resources :users  
+  resources :users do
+    member do
+      get :following
+    end
+  end
   resources :couppons
   resources :sessions, :only => [:new, :create, :destroy]
-
+  resources :relationships, :only => [:create, :destroy]
+  
   match 'offers/:id/purchase' => 'offers#purchase', :as => :purchase
   match 'couppons/complete' => 'couppons#complete'
   match 'couppons/payment' => 'couppons#payment'
@@ -21,7 +30,7 @@ Dealframe::Application.routes.draw do
   match '/users/:id/account', :to => 'users#account'
   match '/users/:id/couppons', :to => 'users#couppons'
   match '/users/:id/following', :to => 'users#following' 
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

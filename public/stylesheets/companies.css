@@ -25,8 +25,19 @@
   margin-left: 20px;
   float: left; }
 
-#follow-venue {
+#follow_form {
   margin-top: 4px; }
+
+.actions.follow input {
+  background: transparent url("/images/follow_venue_all.png") center top;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 179px;
+  height: 40px;
+  text-indent: -1000em; }
+  .actions.follow input:hover {
+    background: transparent url("/images/follow_venue_all.png") center 41px; }
 
 #company-profile-body {
   padding: 20px 10px 0; }
