@@ -38,8 +38,9 @@
   margin-top: 4px;
 }
 
-.actions.follow input {
+.actions.follow input, .actions.follow a {
   background: transparent url('/images/follow_venue_all.png') center top;
+  display:block;
   margin: 0;
   padding: 0;
   border: 0;

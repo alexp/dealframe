@@ -4,4 +4,5 @@
       =render 'unfollow'
     -else
       =render 'follow'
-      
+  -else 
+    .actions.follow= link_to("Obserwuj oferty", :controller => 'sessions', :action => 'new')

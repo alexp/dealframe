@@ -1,6 +1,9 @@
 class RelationshipsController < ApplicationController
 
   def create
+  
+    redirect_to login_path if current_user.blank?
+   
     @company = Company.find(params[:relationship][:followed_id])
     current_user.follow!(@company)
     
@@ -8,7 +11,6 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to @company }
       format.js 
     end
-
   end
 
   def destroy
