@@ -13,17 +13,19 @@
 
 
   .order-page
+  
+    %h1 1. Jak to działa?
+    
+    .flash 
+      Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności.
+
+    %h1 2. Twoje zamówienie:
+
     #timer-desc do końca pozostało:
     %div{:id => "offer-#{@offer.id}", :class => "timer large"}
     =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
-    .clear
-
-    #deal-summary
-    #details
-
-    %h2 Twoje zamówienie:
-
-    .grid_16.push_4
+    
+    #order-table.details
       %table
         %thead
           %th.desc opis
@@ -41,21 +43,34 @@
             %td.price=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
             %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
       .clear
+
+    #order-summary.details
+      =image_tag @offer.photo_url, :class => "left"
+      =link_to @offer.company.short_name, {}, :class => 'company-name'
+      #contact-details.left
+        %p=@offer.company.address
+        %p=@offer.company.zip_code + " " + @offer.company.city
+        %p=@offer.company.phone_number
+        %p=mail_to @offer.company.email
+      .clear
+
+
       
-      -if !signed_in? 
-        %hr 
-        %h2 Twoje dane
-        
-        #new-user
-          .left
-            %p Email:
-            %p Hasło:
-            %p Potwierdzenie:
-          .right
-            =text_field :user, :email
-            =password_field :user, :password
-            =password_field :user, :password_confirmation
-          .clear
+  
+    -if !signed_in? 
+      %hr 
+      %h2 Twoje dane
+      
+      #new-user
+        .left
+          %p Email:
+          %p Hasło:
+          %p Potwierdzenie:
+        .right
+          =text_field :user, :email
+          =password_field :user, :password
+          =password_field :user, :password_confirmation
+        .clear
           
     %hr
 

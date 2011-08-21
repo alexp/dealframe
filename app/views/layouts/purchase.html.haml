@@ -16,8 +16,5 @@
       
       %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
         
-        %section.round
-          -flash.each do |key, value|
-            .flash{:class => "#{key}"}= value
         =yield
         .clear

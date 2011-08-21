@@ -23,4 +23,5 @@
   %p= link_to @offer.company.full_name, @offer.company
   %p= @offer.company.address
   %p= @offer.company.zip_code + " " + @offer.company.city
+  %p= raw @offer.map_iframe
   %br

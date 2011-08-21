@@ -1,6 +1,8 @@
 class Offer < ActiveRecord::Base
   belongs_to :category
   belongs_to :company
+  
+  acts_as_taggable
 
   def price
     value - ((value * discount) / 100)
@@ -21,4 +23,5 @@ class Offer < ActiveRecord::Base
   def seconds
     self.finish_time % 60
   end
+
 end

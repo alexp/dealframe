@@ -19,6 +19,12 @@
     <%= f.label :category_id %><br />
     <%= f.collection_select(:category_id, Category.all, :id, :name, { :prompt => true}) %>
   </div>
+
+  <div class="field">
+    TAGS:
+    <%= f.text_field :tag_list  %>
+  </div>
+
   <div class="field">
     <%= f.label :start_date %><br />
     <%= f.datetime_select :start_date %>
@@ -59,6 +65,13 @@
     <%= f.label :lgn %><br />
     <%= f.text_field :lgn %>
   </div>
+  
+
+  <div class="field">
+    <%= f.label :map_iframe %><br />
+    <%= f.text_field :map_iframe %>
+  </div>
+
   <div class="field">
     <%= f.label :additional_info %><br />
     <%= f.text_area :additional_info %>

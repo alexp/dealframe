@@ -6,8 +6,22 @@
       =collection_select(:category, :id, Category.all, :id, :name, :prompt => "wszystkie")
 
     #buttons.right
-      =image_tag("top_menu_special.png", :alt => "Oferta specjalna")
-      =image_tag("top_menu_kids.png")
-      =image_tag("top_menu_her.png")
-      =image_tag("top_menu_him.png")
+      =#image_tag("top_menu_special.png", :alt => "Oferta specjalna", :id => "promoted")
+      =#image_tag("top_menu_kids.png", :id => "for_kids")
+      =#image_tag("top_menu_her.png", :id => "for_women")
+      =#image_tag("top_menu_him.png", :id => "for_men")
+
+      %ul
+        %li
+          %a{:href => "#", :id => "promoted"}
+            Oferta specjalna
+        %li
+          %a{:href => "#", :id => "for_kids"}
+            Dla dzieci
+        %li
+          %a{:href => "#", :id => "for_women"}
+            Dla kobiet
+        %li
+          %a{:href => "#", :id => "for_men"}
+            Dla mezczyzn
     .clear

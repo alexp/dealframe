@@ -14,10 +14,6 @@
     .wrapper
 
       =render :partial => 'shared/header' 
-      
-      .flash
-        -flash.each do |key, value|
-          .flash{:class => "#{key}"}= value
 
       #left-col
         %ul 

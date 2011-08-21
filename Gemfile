@@ -11,6 +11,8 @@ gem 'json'
 gem 'jquery-rails', '>=1.0.3'
 gem 'haml'
 gem 'sass'
+gem 'acts-as-taggable-on'
+
 #gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
 
 group :development do

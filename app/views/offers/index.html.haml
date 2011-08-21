@@ -11,25 +11,28 @@
           %a{:href =>"#", :class => "close"} zamknij
         .data 
     #deallist.left
-      -@offers.each do |offer|
-        .deals{:class => (offer == @offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
-          .photo
-            =image_tag(offer.photo_url)
-          .content
-            %h1= offer.title
-            %p.description= offer.description
-            %span.clock= image_tag 'clock.png'
-            =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-            
-            %div{:id => "offer-#{offer.id}", :class => "timer"}
-            %hr
-            =link_to "Profil firmy", offer.company, { :class => "company_profile"  }
-          .details
-            %h2 Kupon zniżkowy:
-            .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-            .price-tag
-              .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-              .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
-          .check{:style => "display: none;", :class => "deal-#{offer.id}"}
+      -if !@offers.blank? 
+        -@offers.each do |offer| 
+          .deals{:class => (offer == @offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+            .photo
+              =image_tag(offer.photo_url)
+            .content
+              %h1= offer.title
+              %p.description= offer.description
+              %span.clock= image_tag 'clock.png'
+              =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+              
+              %div{:id => "offer-#{offer.id}", :class => "timer"}
+              %hr
+              =link_to "Profil firmy", offer.company, { :class => "company_profile"  }
+            .details
+              %h2 Kupon zniżkowy:
+              .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+              .price-tag
+                .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+                .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+            .check{:style => "display: none;", :class => "deal-#{offer.id}"}
+      -else 
+        %h1.empty Aktualnie, brak ofert w tej kategorii
     .clear
 

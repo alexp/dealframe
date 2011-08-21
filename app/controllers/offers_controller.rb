@@ -1,7 +1,21 @@
 class OffersController < ApplicationController
   def index
-    @offers = Offer.where("end_date >= :now", {:now => Time.now}).all
+    
+    if !params[:tag].blank?
+      @offers = Offer.where(
+        "end_date >= :now", 
+        {:now => Time.now}).tagged_with(params[:tag])
+    else
+      @offers = Offer.where("end_date >= :now", {:now => Time.now}).all
+    end
+
     @categories = Category.all
+    
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @offers }
+      format.js { render :partial => 'shared/deallist', :locals => {:offers => @offers} }
+    end
   end
   
   def show
@@ -27,6 +41,7 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(params[:offer])
+    @offer.tag_list = params[:offer][:tag_list]
 
     respond_to do |format|
       if @offer.save

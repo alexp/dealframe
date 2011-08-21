@@ -13,11 +13,7 @@
 
     .wrapper
 
-      =render :partial => 'shared/header' 
-      
-      .flash
-        -flash.each do |key, value|
-          .flash{:class => "#{key}"}= value
+      =render :partial => 'shared/header'  
 
       =yield(:company_profile) if @content_for_company_profile
 

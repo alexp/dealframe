@@ -51,24 +51,101 @@ $(function() {
     panel.animate({left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth() : 0});
     panel.fadeOut();
     return false;
-  });
+  }); 
+  
 
-  $('#category_id').change(function() {
-    var category_id = $('#category_id option:selected').val()
-     
+  $('#promoted').click(function() {
+    
     $('#deallist').ajaxStart(function(){
       $("#deallist").html("<div style='width: 220px; margin: auto; padding-top: 50px;'><img src='/images/big_loader.gif' border='0' align='center' style='width: 220px; height: 19px;' /></div>");
     });
-    
-
-    //TODO: refactor
-    var current_location = window.location.href;
-
-    if(current_location.indexOf("/#!/categories/") != -1) {
-      window.location.href = current_location.split("#!")[0] + "#!/categories/"+category_id;
+      
+    if(!$(this).hasClass("active")) {
+      $.ajax({
+        url: "/offers?tag[]=Promowane&tag[]=Dla kobiet",
+        type: "get",
+        success: function(data) {
+          $("#deallist").empty();
+          $("#deallist").html(data);
+          $("#promoted").addClass("active");
+        },
+        dataType: "html"
+      });
     } else {
-      window.location.href = current_location + "/#!/categories/"+category_id;
+      $.ajax({
+        url: "/offers",
+        type: "get",
+        success: function(data) {
+          $("#deallist").empty();
+          $("#deallist").html(data);
+          $("#promoted").removeClass("active");
+        },
+        dataType: "html"
+      });
     }
+  });
+
+
+  $('#for_kids').click(function() {
+
+    $('#deallist').ajaxStart(function(){
+      $("#deallist").html("<div style='width: 220px; margin: auto; padding-top: 50px;'><img src='/images/big_loader.gif' border='0' align='center' style='width: 220px; height: 19px;' /></div>");
+    });
+
+    if(!$(this).hasClass("active")) {
+      $.ajax({
+        url: "/offers?tag[]=Dla dzieci",
+        type: "get",
+        success: function(data) {
+          $("#deallist").empty();
+          $("#deallist").html(data);
+          $("#for_kids").addClass("active");
+        },
+        dataType: "html"
+      });
+    } else {
+      $.ajax({
+        url: "/offers",
+        type: "get",
+        success: function(data) {
+          $("#deallist").empty();
+          $("#deallist").html(data);
+          $("#for_kids").removeClass("active");
+        },
+        dataType: "html"
+      });
+    }
+  });
+  
+  // ajax na kategoriach
+  //$('#categories a').click(function() {
+  //  
+  //  $('#deallist').ajaxStart(function(){
+  //    $("#deallist").html("<div style='width: 220px; margin: auto; padding-top: 50px;'><img src='/images/big_loader.gif' border='0' align='center' style='width: 220px; height: 19px;' /></div>");
+  //  });
+
+  //  $("#deallist").ajaxComplete(function(e, xhr, settings){
+  //      $("#deallist").empty();  
+        //$("#deallist").html(xhr.responseHTML);
+  //      alert(xhr.responseHTML);
+  //  });
+
+  //});
+  
+  $('#category_id').change(function() {
+    var category_id = $('#category_id option:selected').val()
+
+    $('#deallist').ajaxStart(function(){
+      $("#deallist").html("<div style='width: 220px; margin: auto; padding-top: 50px;'><img src='/images/big_loader.gif' border='0' align='center' style='width: 220px; height: 19px;' /></div>");
+    });
+    //TODO: refactor
+    //var current_location = window.location.href;
+
+    //if(current_location.indexOf("/#!/categories/") != -1) {
+    //  window.location.href = current_location.split("#!")[0] + "#!/categories/"+category_id;
+    //} else {
+    //  window.location.href = current_location + "/#!/categories/"+category_id;
+    //}
 
     
     $.ajax({
@@ -78,10 +155,11 @@ $(function() {
         $("#deallist").empty();
         $("#deallist").html(data);
         $("#categories a").removeClass("active");
+        $("#categories a").find("span").removeClass("active");
         $("#categories a[href$='/categories/"+category_id+"']").addClass("active");
+        $("#categories a[href$='/categories/"+category_id+"']").find("span").addClass("active");
       },
-      dataType: "html",
-      timeout: 60000
+      dataType: "html"
     });
   });
 });
