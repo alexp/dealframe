@@ -1,10 +1,41 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %h1 Zaloguj się:
 
 =form_for(:session, :url => sessions_path) do |f|
-  .field
+  
+  #new-user.details
+    =f.label :email, "Email:", :class => "left"
+    =f.email_field :email
+
+    %hr.details-divider
+    
+    =f.label :password, "Hasło:", :class => "left"
+    =f.password_field :password  
+    
+    .clear
+  
+  
+  
+  
+  -#.field
     =f.label :email
     =f.text_field :email
-  .field
+  -#.field
     Hasło
     =f.password_field :password
   %br

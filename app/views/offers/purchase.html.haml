@@ -5,19 +5,31 @@
     function updatePrice(el, quantity, unit) {
       if(quantity) {
         el.html((parseInt(quantity) * unit).toFixed(2) + " zł");
+        $("#total-final").html("<div id=\"inf\">total</div><span>" + (parseInt(quantity) * unit).toFixed(2) + " zł</span>");
+        $("#quantity-final").html(quantity+"<span>x</span>");
       } else {
         el.html(#{@offer.price} + " zł");
         $('#quantity').html(1);
+        $("#quantity-final").html(1);
       }
     }
 
 
   .order-page
-  
+
     %h1 1. Jak to działa?
     
-    .flash 
-      Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności.
+    .flash.static  
+      -if signed_in?
+        Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności. 
+        %br 
+        Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
+      -else
+        Podaj swój adres email i wybierz hasło dostępu. Następnie wybierz formę płatności. 
+        %br
+        Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
+      %br
+      %strong Firma, która wystawia kupon została przez nas zweryfikowana. Gwarantujemy bezpieczeństwo zakupów.
 
     %h1 2. Twoje zamówienie:
 
@@ -44,40 +56,70 @@
             %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
       .clear
 
-    #order-summary.details
-      =image_tag @offer.photo_url, :class => "left"
-      =link_to @offer.company.short_name, {}, :class => 'company-name'
-      #contact-details.left
-        %p=@offer.company.address
-        %p=@offer.company.zip_code + " " + @offer.company.city
-        %p=@offer.company.phone_number
-        %p=mail_to @offer.company.email
-      .clear
-
-
+    #order-sumary.details
+      #company-summary
+        %h3 Oferent:
+        =image_tag @offer.company.logo_url, :class => "left"
+        #contact-details.left
+          =link_to @offer.company.short_name, {}, :class => 'company-name'
+          %p=@offer.company.address
+          %p=@offer.company.zip_code + " " + @offer.company.city
+          %p=@offer.company.phone_number
+          %p=mail_to @offer.company.email
       
+      #offer-summary  
+        %h3 Co dostajesz?
+        =@offer.description
+        =raw @offer.additional_info
+
+        #fine-print
+
+          =raw @offer.fine_print
+      .clear 
+    
+    -unless @offer.details.blank?
+      #offer-details.details
+        %h3 Szczegółowy opis
+        =raw @offer.details
   
     -if !signed_in? 
-      %hr 
-      %h2 Twoje dane
+      %br 
+      %h1 3. Twoje dane
       
-      #new-user
-        .left
-          %p Email:
-          %p Hasło:
-          %p Potwierdzenie:
-        .right
-          =text_field :user, :email
-          =password_field :user, :password
-          =password_field :user, :password_confirmation
+      #new-user.details
+        =label_tag :email, "Email:", :class => "left"
+        =email_field :user, :email
+
+        %hr.details-divider
+        
+        =label_tag :password, "Hasło:", :class => "left"
+        =password_field :user, :password
+        
+        %hr.details-divider
+        
+        =label_tag :password_confirmation, "Potwierdzenie hasła:", :class => "left"
+        =password_field :user, :password_confirmation
+        
         .clear
           
-    %hr
+    %br
 
-    %h2 Płatność
-    =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal"
-
-    %hr
+    %h1 4. Płatność
     
-    =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay"
+    #final-summary.details
+      %h3 Kupujesz:
+      #quantity-final.left
+        1
+        %span x
+      #invdesc.left
+        =@offer.invoice_description
+      %hr.details-divider
+      #total-final.right 
+        #inf Total: 
+        %span=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
+      .clear 
+    %br
+    =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal", :class => "left"    
+    =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay", :class => "left"
+    .clear
 

@@ -1,4 +1,5 @@
-class SessionsController < ApplicationController
+class SessionsController < ApplicationController 
+
   def new
     @title = "Sign in"
   end
@@ -7,8 +8,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:session][:email],
                              params[:session][:password])
     if user.nil?
-      flash.now[:error] = "Invalid email/password combination"
-      render 'new'
+      flash.now[:error] = "Niepoprawny login i/lub hasło"
     else
       sign_in user
       redirect_to root_path

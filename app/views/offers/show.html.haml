@@ -1,48 +1,38 @@
-.grid_24{:style => "text-align: center;"}
-  .grid_8.alpha
-    %h1 1. Potwierdź zamówienie
-  .grid_8
-    %h1 2. Dokonaj płatności
-  .grid_8.omega
-    %h1 3. Wydrukuj kupon
+.order-page
+  #timer-desc do końca pozostało:
+  %div{:id => "offer-#{@offer.id}", :class => "timer large"}
+  =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
 
-.clear
   
-.grid_24
-  .grid_16.deals.odd.push_4
-    .grid_4.alpha
-      =image_tag @offer.photo_url, {:width => "120px", :border => "1px"}
-    .grid_7
-      %h1= @offer.title
-      %p.description= @offer.description
+  %h1=@offer.title
+  #order-sumary.details
+    #company-summary
+      %h3 Oferent:
+      =image_tag @offer.company.logo_url, :class => "left"
+      #contact-details.left
+        =link_to @offer.company.short_name, {}, :class => 'company-name'
+        %p=@offer.company.address
+        %p=@offer.company.zip_code + " " + @offer.company.city
+        %p=@offer.company.phone_number
+        %p=mail_to @offer.company.email
+    
+    #offer-summary  
+      %h3 Co dostajesz?
+      =image_tag @offer.photo_url
+      %br
+      %br
+      =@offer.description
+      =raw @offer.additional_info
 
-      =render :partial => 'shared/time_counter', :locals => {:offer => @offer}
-      
-      %div{:id => "offer-#{@offer.id}", :class => "timer"}
+      #fine-print
 
-      =link_to 'Zobacz szczegóły', @offer
-    .grid_4.details.omega
-      %h2 Kupon zniżkowy:
-      .init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-      .price-tag
-        .price= number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-        .discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
-        .clear
-  .clear
-=link_to 'GET THIS DEAL', purchase_url(:id => @offer.id)
+        =raw @offer.fine_print
+    .clear 
+  
+  -unless @offer.details.blank?
+    #offer-details.details
+      %h3 Szczegółowy opis
+      =raw @offer.details
 
-%hr
-
-%h3 Additional info:
-=raw(@offer.additional_info)
-
-%h3 Details: 
-=raw(@offer.details)
-
-%h3 Fine print:
-=raw(@offer.fine_print)
-
-%h3 Kupon zniżkowy oferuje:
-=@offer.company.full_name
-=@offer.company.address
-=@offer.company.zip_code + " " + @offer.company.city
+  .offer-body-details 
+    =link_to("KUP TERAZ", { :controller => "offers", :action => "purchase", :id => @offer.id }, {:class => "buynow", :style => "margin: auto;"})

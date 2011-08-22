@@ -24,7 +24,7 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => 'purchase'}
       format.xml  { render :xml => @offer }
       format.js { render :partial => 'offer_body' } 
     end 

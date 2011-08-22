@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "welcome to Dealframe"
+      flash[:success] = "Witaj w Dealframe"
       redirect_to root_path
     else
       render 'new'

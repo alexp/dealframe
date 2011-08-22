@@ -1,24 +1,21 @@
-/*.flash {
-  padding: 10px 40px;
-  border: 1px solid #cccccc;
-  margin: 20px auto;
-  background-color: #FF8080;
-  font-weight: bold; 
-  font-size: 1.3em;
-}*/
+.static  {
+  text-align: left;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 14px 18px;
+}
 
 h1 { 
   font-size: 23px;
 }
 
-#contact-details p {
-  margin: 0 0 0 20px;
+h2 {
+  font-size: 18px;
 }
 
-.company-name {
+h3 {
   font-size: 16px;
-  font-weight: bold;
-  margin: 0 20px 0 20px;
+  margin-bottom: 12px;
 }
 
 .order-page {
@@ -46,10 +43,67 @@ hr { margin: 40px 0; }
   -webkit-border-radius: 10px;
 }
 
-#order-summary img {
-  width: 220px;
+#offer-summary{
+  float: left;
+  width: 320px;
+  font-size: 12px;
+  ul li {
+    margin: 4px 0px 0px 20px;  
+  }
 }
 
+#fine-print {
+  background: #DA8879;
+  color: #656565;
+  border: 1px solid #ebaeae;
+  padding: 5px 10px;
+  margin-top: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.18, rgb(255,168,168)),
+    color-stop(0.62, rgb(255,194,194))
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(255,168,168) 18%,
+    rgb(255,194,194) 62%
+  );
+}
+
+#offer-details {
+  font-size: 12px;
+}
+
+
+#company-summary {
+  font-size: 12px;
+  width: 300px;
+  float: right;
+}
+
+#company-summary img {
+  width: 100px;
+  margin: 4px;
+}
+
+#contact-details {
+  width: 180px;
+}
+
+#contact-details p {
+  margin: 0 0 0 20px;
+}
+
+.company-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 20px 0 20px;
+}
 .order-page {
 
   th { 
@@ -100,13 +154,27 @@ hr { margin: 40px 0; }
   font-size: 14px;
 }
 
+.details-divider {
+  clear: both;
+  border-bottom: 1px solid #cccccc;
+  margin: 11px -11px;
+  padding: 0;
+}
+
 #new-user {
-  width: 200px;
   padding-left: 10px;
+  font-size: 18px;
+  label {
+    margin-top: 6px;
+  }
   input {
     margin-left: 40px;
+    width: 250px;
+    font-size: 14px;
+    padding: 8px;
+    font-weight: bold;
   }
-  .left {width: 100px; }
+  .left {width: 170px; }
   .right { width: 100px;}
   p { margin: 6px 0;  }
 }
@@ -116,6 +184,48 @@ hr { margin: 40px 0; }
 
 #x {
   margin: 20px;
+}
+
+#quantity-final {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+  
+  span { 
+    font-size: 16px; 
+  }
+}
+
+#invdesc {
+  width: 400px;
+  margin-top: 4px;
+}
+
+#inf {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 4px 0px 4px 4px;
+}
+
+#total-final {
+  width: 200px;
+  margin-right:-11px;
+  margin-bottom: -11px;
+  margin-top: -11px;
+  background-color: #FCF8DC;
+  padding: 0px;
+  border: none;
+  border-left: 1px solid #cccccc;
+  -webkit-border-radius: 0px 0px 10px 0px;
+  -moz-border-radius: 0px 0px 10px 0px;
+  border-radius: 0px 0px 10px 0px;
+  span {
+    font-size: 34px;
+    font-weight: bold;
+    color: green;
+    margin-left: 4px;
+
+  }
 }
 
 #couppon-amount {
