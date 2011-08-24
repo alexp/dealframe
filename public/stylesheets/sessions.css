@@ -1,0 +1,75 @@
+#signin, #register {
+  margin: 80px auto 0 auto;
+  width: 450px;
+  padding: 14px 18px;
+  background-color: #fff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-box-shadow: 0 2px 10px #AAA;
+  -webkit-box-shadow: 0 2px 10px #AAA;
+  box-shadow: 0 2px 10px #AAA; }
+
+#register {
+  margin: 20px auto;
+  font-size: 18px;
+  text-align: center; }
+  #register a {
+    font-size: 18px; }
+
+h1 {
+  font-size: 23px; }
+
+h2 {
+  font-size: 18px; }
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 12px; }
+
+form {
+  margin: auto;
+  width: 400px; }
+
+.submit {
+  background: transparent url("/images/buy_now_btn_all.png") center top;
+  text-indent: -1000em;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 255px;
+  height: 41px;
+  display: block;
+  cursor: pointer;
+  margin: auto; }
+  .submit:hover {
+    background: transparent url("/images/buy_now_btn_all.png") center 40px; }
+
+.details-divider {
+  clear: both;
+  border-bottom: 1px solid #cccccc;
+  margin: 11px;
+  padding: 0; }
+
+#login {
+  padding-left: 10px;
+  font-size: 18px; }
+  #login label {
+    margin-top: 6px; }
+  #login input {
+    margin-left: 40px;
+    margin-bottom: 10px;
+    width: 250px;
+    font-size: 14px;
+    padding: 8px;
+    font-weight: bold; }
+  #login .right {
+    width: 100px; }
+  #login p {
+    margin: 6px 0; }
+  #login span {
+    font-size: 10px;
+    margin-left: 20px;
+    position: relative;
+    top: -26px;
+    left: -20px; }

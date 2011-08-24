@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => "sessions"
   end
 
   def edit
@@ -55,7 +56,8 @@ class UsersController < ApplicationController
       flash[:success] = "Witaj w Dealframe"
       redirect_to root_path
     else
-      render 'new'
+      flash[:error] = "Nie udało się dokonać rejestracji. Wszystkie pola muszą być wypełnione. Hasło musi mieć co najmniej 6 znaków."
+      render 'new', :layout => "sessions"
     end
   end
 

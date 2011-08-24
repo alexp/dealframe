@@ -1,47 +1,24 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%h1 Zaloguj się:
-
-=form_for(:session, :url => sessions_path) do |f|
+#signin  
   
-  #new-user.details
-    =f.label :email, "Email:", :class => "left"
-    =f.email_field :email
+  %h1 Zaloguj się:
 
-    %hr.details-divider
+  =form_for(:session, :url => sessions_path) do |f|
+    #login.details
+      =f.label :email, "Email:", :class => "left"
+      =f.email_field :email 
+      
+      .clear
+
+      =f.label :password, "Hasło:", :class => "left"
+      =f.password_field :password 
+      
+      .clear  
+    %br
     
-    =f.label :password, "Hasło:", :class => "left"
-    =f.password_field :password  
-    
-    .clear
-  
-  
-  
-  
-  -#.field
-    =f.label :email
-    =f.text_field :email
-  -#.field
-    Hasło
-    =f.password_field :password
-  %br
-  .actions
-    =f.submit "Zaloguj się"
-%p
+    .actions
+      =f.submit "Zaloguj się", :class => "submit"
+    %br
+#register
   Nie masz konta?
   =link_to "Zarejestruj się!", signup_path
 

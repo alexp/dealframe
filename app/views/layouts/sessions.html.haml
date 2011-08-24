@@ -1,0 +1,19 @@
+!!! XML
+!!!
+%html
+  %head
+    %title= @title
+    %meta{:name => "robots", :content => "noindex", :charset => "utf-8"}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'reset', 'style', 'text', 'sessions' 
+    = javascript_include_tag :defaults
+    = javascript_include_tag "jquery.countdown.js"
+  %body
+    #top-info Witamy w Dealframe - Wersja alpha 0.1 
+
+    .wrapper
+
+      =render :partial => 'shared/header' 
+
+      #content
+        =yield

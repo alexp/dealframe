@@ -1,29 +1,29 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
+  <div id="login" class="details">
+    <%= f.label :email, :class => "left" %>
     <%= f.text_field :email %>
+  
+    <div class="clear"></div>
+
+    <div class="field">
+      <%= f.label :password, "Hasło", :class => "left" %>
+      <%= f.password_field :password %>
+    </div> 
+    
+    <div class="field">
+      <%= f.label :password_confirmation, "Hasło", :class => "left" %>
+
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <span>(potwierdzenie)</span>
+    <div class="clear"></div>
+   
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", :class => "submit" %>
   </div>
+ <br />
 <% end %>
