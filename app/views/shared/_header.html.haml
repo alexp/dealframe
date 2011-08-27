@@ -16,7 +16,7 @@
             =link_to 'Blog', 'http://www.dealframe.pl/blog'
         -if signed_in?
           %li
-            ="Witaj #{current_user.email}"
+            ="Witaj #{current_user.name}!"
           %li 
             %span.quo &rsaquo; 
             =link_to "Profil użytkownika", current_user

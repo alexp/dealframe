@@ -1,11 +1,22 @@
 <%= form_for(@user) do |f| %>
 
   <div id="login" class="details">
+    
     <%= f.label :email, :class => "left" %>
     <%= f.text_field :email %>
   
     <div class="clear"></div>
-
+    
+    <%= f.label :name, "Imię", :class => "left" %>
+    <%= f.text_field :name %>
+  
+    <div class="clear"></div>
+    
+    <%= f.label :surname, "Nazwisko", :class => "left" %>
+    <%= f.text_field :surname %>
+  
+    <div class="clear"></div>
+    
     <div class="field">
       <%= f.label :password, "Hasło", :class => "left" %>
       <%= f.password_field :password %>
