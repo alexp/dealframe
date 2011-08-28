@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   layout "sessions"
 
   def new
-    @title = "Zaloguj się"
+    @title = "Zaloguj"
   end
 
   def create
