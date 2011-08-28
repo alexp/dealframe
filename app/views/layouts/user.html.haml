@@ -8,6 +8,7 @@
     = stylesheet_link_tag 'reset', 'style', 'text', 'user' 
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js"
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body.user
     #top-info Witamy w Dealframe - Wersja alpha 0.1 
 
@@ -17,8 +18,8 @@
 
       #left-col
         %ul 
-          %li{:class => params[:action]=="account"?"active":""} 
-            =link_to 'Twoje konto', :controller => 'users', :action => 'account'
+          %li{:class => params[:action]=="edit"?"active":""} 
+            =link_to 'Twoje konto', :controller => 'users', :action => 'edit'
           %li{:class => params[:action]=="couppons"?"active":""} 
             =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons' 
           %li{:class => params[:action]=="following"?"active":""} 
@@ -33,3 +34,4 @@
           =yield
           .clear
       .clear
+      =render 'shared/footer'

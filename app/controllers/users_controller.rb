@@ -9,16 +9,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def account
-    if signed_in?
-      @user = User.find(params[:id])
-      @page_name = "Twoje konto"
-      render :layout => 'user'
-    else
-      redirect_to '/signin'
-    end
-  end
-
   def couppons
     if signed_in?
       @user = User.find(params[:id])
@@ -45,7 +35,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if signed_in?
+      @user = User.find(params[:id])
+      @page_name = "Twoje konto"
+      render :layout => 'user'
+    else
+      redirect_to '/signin'
+    end
   end
 
 
@@ -70,7 +66,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { 
+          flash[:success] = "OK"
+          redirect_to @user 
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

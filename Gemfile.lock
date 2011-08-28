@@ -52,6 +52,9 @@ GEM
     mime-types (1.16)
     mysql2 (0.2.7)
     nokogiri (1.4.4)
+    paperclip (2.3.11)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
     paypal_adaptive (0.2.0)
     polyglot (0.3.1)
     rack (1.2.2)
@@ -106,6 +109,7 @@ DEPENDENCIES
   jquery-rails (>= 1.0.3)
   json
   mysql2 (< 0.3)
+  paperclip (~> 2.3)
   paypal_adaptive
   rails (= 3.0.7)
   rspec (= 2.5.0)

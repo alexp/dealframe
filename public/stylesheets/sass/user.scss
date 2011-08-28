@@ -1,7 +1,25 @@
+h1,h2 {
+  font-family: 'Droid Sans', Arial, sans-serif;
+}
+
+h2 {
+  font-size: 16px;
+}
+h3 {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 14px; 
+}
 .user {
-  
+  #offers {
+    margin-top: -20px; 
+    width: 608px;
+    .deals {
+      width: 608px;
+    }
+  }
   h1.empty {
-    margin: 20px auto;
+    margin: 20px auto 6px;
     text-align: center;
   }
 
@@ -14,26 +32,86 @@
   }
   
   a.pdf {
-    background: url('/images/pdf.png') no-repeat;
-    height: 30px;
+    background: url('/images/pdf_btn.png') no-repeat;
+    height: 28px;
     display: block;
+    margin-left: 478px;
+    text-indent: -9999px;
+    &:hover {
+      background-position: 0 -28px;
+    }
   }
+
   .page {
     background-color: #fff;
-    border-left: 1px solid #cccccc;
+    border-left: 1px solid #ccc;
+  }
+  
+  #content {
+    padding-bottom: 80px; 
 
-    #content {
-      padding: 20px 0;
-      width: 80%;
-      margin: auto;
+    h2 {
+      padding: 12px 0 10px 26px;
+      border-bottom: 1px solid #cccccc;
+      border-top: 1px solid #cccccc;
+      line-height: 20px;
+      text-shadow: 0 1px 0 white;
+      background-color: #FAFAFA;
+      span {
+        display:block;
+        float: left;
+        margin: -3px 10px 0 0;
+        img { width: 20px; }
+      }
     }
+  
+    ul {
+      list-style: none;  
+    }
+
+    ul li {
+      padding: 12px 0;
+      margin: 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    li.last {
+      border: 0;
+    }
+
+    label {
+      display: block;
+      width: 100px;
+      float: left;
+      text-align: right;
+      margin: 7px 10px 0 0;
+    }
+    input {
+     padding: 5px 4px;
+     background: white;
+     border: 1px solid #D2D2D2;
+     color: #393C3D;
+     border-radius: 3px;
+     -moz-border-radius: 3px;
+     -webkit-border-radius: 3px;
+     box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+     -o-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+     -webkit-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .section {
+    
+    padding: 0px 26px;
+    margin: auto;
   }
   
   #left-col {
     width: 119px;
     
     ul {
-      margin-top: 57px;  
+      margin-top: 55px;  
     }
 
     ul li {
@@ -85,6 +163,7 @@
     
     h1 {
       color: #fff;
+      font-family: 'Droid Sans', Arial, sans-serif;
       padding: 16px 0 0;
       margin:0;
       span { 
@@ -140,6 +219,7 @@
   }
 
   .followed {
+    padding-bottom: 80px;
     img {
       float: left;
     }

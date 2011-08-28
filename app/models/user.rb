@@ -3,6 +3,9 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :surname, :email, :password, :password_confirmation
+  
+  has_attached_file :avatar, :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"
+  
   has_many :couppons
   has_many :relationships, :foreign_key => "follower_id",
                            :dependent => :destroy
@@ -16,7 +19,8 @@ class User < ActiveRecord::Base
   
   validates :password,  :presence => true,
                         :confirmation => true,
-                        :length => { :within => 6..40 }
+                        :length => { :within => 6..40 },
+                        :on => :create
 
   validates :name, :presence => true
   validates :surname, :presence => true

@@ -1,11 +1,13 @@
 #dashboard
   #avatar.left
-    =image_tag 'user.jpg'
+    
+    =image_tag @user.avatar.url
+
     #hello
       %strong Witaj,
       =@user.email
       %br
-      %a Edytuj swój profil
+      =link_to "Edytuj swój profil", :action => "edit"
   #general-info.right
     Użytkownik 
     <span class="deal">deal</span><span class="frame">frame</span>
@@ -27,4 +29,3 @@
     -elsif @user.following.count > 4
       miejsc
     %br
-%hr.db

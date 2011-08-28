@@ -41,7 +41,8 @@
   height: 40px;
   text-indent: -1000em; }
   .actions.follow input:hover, .actions.follow a:hover {
-    background: transparent url("/images/follow_venue_all.png") center 41px; }
+    background: transparent url("/images/follow_venue_all.png") center 41px;
+    cursor: pointer; }
 
 #company-profile-body {
   padding: 20px 10px 0; }

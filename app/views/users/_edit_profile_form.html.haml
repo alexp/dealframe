@@ -1,0 +1,50 @@
+=form_for @user, :html => { :multipart => true } do |f|
+  -if @user.errors.any?
+    #error_explenation
+      =pluralize(@user.errors.count, "error")
+
+      %ul
+        -@user.errors.full_messages.each do |msg|
+          %li= msg
+  
+  %h2 
+    %span.icon=image_tag 'info_icon.png'
+    Podstawowe dane:
+  .section 
+    %ul
+      %li
+        =f.label :name, "Imię: "
+        =f.text_field :name
+      %li
+        =f.label :surname, "Nazwisko: "
+        =f.text_field :surname
+      %li.last
+        =f.label :email, "Email: "
+        =f.text_field :email
+  %h2 
+    %span.icon=image_tag 'question_icon.png'
+    Opcjonalne dane:
+  .section
+    %ul 
+      %li.last
+        =f.label :avatar, "Twoje zdjęcie: "
+        =f.file_field :avatar
+    
+
+  %h2
+    %span.icon=image_tag 'lock_icon.png'
+    Zmiana hasła:
+  .section
+    %ul
+      %li
+        =label_tag :old_password, "Stare hasło: "
+        =password_field_tag :old_password, {}, {:size => "30"}
+      %li
+        =f.label :password, "Nowe hasło: "
+        =f.password_field :password
+      %li
+        =f.label :password_confirmation, "Powtórz hasło: "
+        =f.password_field :password_confirmation
+  
+  .section
+    =f.submit "Zapisz zmiany"

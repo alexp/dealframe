@@ -1,20 +1,26 @@
-=render :partial => 'dashboard', :locales => { :user => @user }
+=render :partial => 'dashboard'
 
 #content.followed
-  -@user.following.each do |venue|
-    
-    =image_tag venue.logo_url, {:width => "120px" }
-    .followed-company-content
-      %h3=venue.full_name
-      %p=venue.description
-      %p 
-        Telefon:
-        %strong=venue.phone_number
-      %p=link_to venue.email, :mailto => venue.email
-      %p
-        =venue.zip_code + " " + venue.city
-        %br
-        =venue.address
-      =link_to "Zobacz oferty z tego miejsca",  venue, :class => "venue"
-    %br
+  -if !@user.following.blank? 
+    -@user.following.each do |venue|
+      =image_tag venue.logo_url, {:width => "120px" }
+      .followed-company-content
+        %h3=venue.full_name
+        %p=venue.description
+        %p 
+          Telefon:
+          %strong=venue.phone_number
+        %p=link_to venue.email, :mailto => venue.email
+        %p
+          =venue.zip_code + " " + venue.city
+          %br
+          =venue.address
+        =link_to "Zobacz oferty z tego miejsca",  venue, :class => "venue"
+      %br
+      %hr
+  -else
+    %h1.empty
+      Nic do pokazania
     %hr
+    =image_tag 'follow_image.png', :width => "660px"
+    .clear

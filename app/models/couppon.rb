@@ -11,4 +11,5 @@ class Couppon < ActiveRecord::Base
   def generate_security_code(length)
     return ActiveSupport::SecureRandom.hex(length)
   end
+
 end
