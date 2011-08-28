@@ -26,7 +26,7 @@ Dealframe::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/verifying', :to => 'couppons#verifying'
-  match '/users/:id', :to => 'users#show'
+  match '/users/:id', :to => 'users#show', :as => :user
   match '/users/:id/account', :to => 'users#account'
   match '/users/:id/couppons', :to => 'users#couppons'
   match '/users/:id/following', :to => 'users#following' 

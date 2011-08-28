@@ -1,4 +1,5 @@
 #signin, #register {
+  font-family: 'Droid Sans', Arial, sans-serif;
   margin: 40px auto 0 auto;
   width: 450px;
   padding: 14px 18px;
@@ -29,7 +30,7 @@ h3 {
 
 form {
   margin: auto;
-  width: 400px; }
+  width: 420px; }
 
 .submit {
   background: transparent url("/images/buy_now_btn_all.png") center top;
@@ -57,7 +58,7 @@ form {
   #login label {
     margin-top: 6px; }
   #login input {
-    margin-left: 40px;
+    margin-left: 20px;
     margin-bottom: 10px;
     width: 250px;
     font-size: 14px;
@@ -72,5 +73,5 @@ form {
     font-size: 10px;
     margin-left: 20px;
     position: relative;
-    top: -26px;
+    top: -14px;
     left: -20px; }

@@ -3,9 +3,17 @@
 -#else
   =link_to(image_tag('cat_inactive.png'), '/offers')
 -@categories.each do |category|
-  -if current_page?(:id => category.id)
-    =link_to category, :class => "active" do
-      %span{:id => "cat-#{category.id}", :class => 'active'}= category.name
+  -if defined? company_category
+    -if(company_category.id == category.id)
+      =link_to category, :class => "active" do
+        %span{:id => "cat-#{category.id}", :class => 'active'}= category.name
+    -else
+      =link_to category do 
+        %span{:id => "cat-#{category.id}"}= category.name
   -else
-    =link_to category do 
-      %span{:id => "cat-#{category.id}"}= category.name
+    -if current_page?(:id => category.id)
+      =link_to category, :class => "active" do
+        %span{:id => "cat-#{category.id}", :class => 'active'}= category.name
+    -else
+      =link_to category do 
+        %span{:id => "cat-#{category.id}"}= category.name

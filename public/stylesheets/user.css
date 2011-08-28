@@ -1,3 +1,6 @@
+.user h1.empty {
+  margin: 20px auto;
+  text-align: center; }
 .user span.deal {
   color: #009CD5; }
 .user span.frame {

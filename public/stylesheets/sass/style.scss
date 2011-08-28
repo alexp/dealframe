@@ -645,11 +645,30 @@ span.liloader img {
 
 }
 
+#footer {
+  background: transparent url(/images/footer_bg.png);
+  height: 50px;
+  width: 100%;
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  p {
+    line-height: 15px;
+    font-size: 13px;
+    margin-top: 18px;
+  }
+  ul {
+    position: absolute;
+    right: 0;
+    list-style-type: none;
+    margin: 0;
+  }
+  ul li {
+  }
+}
 
-.footer {
-  background-color: #e7ebee;
-  height: 150px;
-  margin-top: 30px;
-  margin: 0;
-  padding: 0;
+#footer-content {
+  margin: 0 auto;
+  width: 980px;
 }

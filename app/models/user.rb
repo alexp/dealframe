@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :surname, :email, :password, :password_confirmation
   has_many :couppons
   has_many :relationships, :foreign_key => "follower_id",
                            :dependent => :destroy
@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
                         :confirmation => true,
                         :length => { :within => 6..40 }
 
+  validates :name, :presence => true
+  validates :surname, :presence => true
+  
   before_save :encrypt_password
 
   def has_password?(submitted_password)

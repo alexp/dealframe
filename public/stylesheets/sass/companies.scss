@@ -1,9 +1,24 @@
 #company-profile {
-  width: 880px;
+  width: 920px;
   background-color: #fff;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
+
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.31, rgb(240,243,245)),
+    color-stop(0.71, rgb(255,255,255))
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(240,243,245) 31%,
+    rgb(255,255,255) 71%
+  );
+
   height: 440px;
   border: 1px solid #cccccc;
   float: left;
@@ -11,11 +26,11 @@
   font-size: 11px;
 
   .left {
-    width: 680px;
+    float: left;
   }
 
   .right {
-    width: 200px;  
+    float: right;
   }
 }
 
@@ -36,6 +51,7 @@
 
 #follow_form {
   margin-top: 4px;
+  margin-right: 20px;
 }
 
 .actions.follow input, .actions.follow a {
@@ -59,17 +75,18 @@
     width: 590px;
   }
   .right {
-    width: 165px;  
+    width: 310px;  
   }
 }
 
 #col-1 {
   float: left;
   width: 136px;
-  background-color: #f7f8f9;
   padding: 4px;
   margin-right: 20px;
-
+  font-family: 'Droid Sans', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
   img {
     margin: 4px 0;
   }
@@ -81,13 +98,23 @@
   margin-right: 20px;
 }
 
+.subcol {
+  float: left;
+  width: 200px;
+  margin-top: 20px;
+
+  img {
+    width: 160px;
+    margin-right: 10px;
+  }
+}
+
 #col-3 {
   margin-left: 20px;
 }
 #address, #contact {
   float: left;
   margin-right: 20px;
-  width: 115px;
 }
 
 #bottom-content {
@@ -109,8 +136,27 @@
   -webkit-border-top-right-radius: 6px;
 }
 
+h3 {
+  font-family: 'Droid Sans', Arial, sans-serif;
+  color: #fcfcfc;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px 0px 0px 25px;
+}
+
 #company-offers-nav-bottom {
   background: url('/images/company_offers_nav_bottom.png');
   width: 607px;
   height: 11px;
+}
+
+.wrapper #offers {
+  margin: 0;
+}
+
+.wrapper #offers .deals {
+  width: 608px;
+  &:hover {
+    cursor: auto;
+  }
 }

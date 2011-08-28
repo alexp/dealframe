@@ -8,6 +8,8 @@
     = stylesheet_link_tag 'reset', 'style', 'text' 
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js"
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=true"
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body
     #top-info Witamy w Dealframe - Wersja alpha 0.1 
 
@@ -28,3 +30,11 @@
           -#=image_tag 'partners.png'
           %br
       .clear
+
+      #footer
+        #footer-content
+          %p
+            %strong &copy;2011 dealframe.pl - 
+            =link_to "Polityka prywatności", "http://www.dealframe.pl/polityka-prywatnosci.html"
+            &dash;
+            =link_to "Regulamin serwisu", "http://www.dealframe.pl/regulamin.html"

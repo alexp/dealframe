@@ -2,28 +2,30 @@
 
   <div id="login" class="details">
     
-    <%= f.label :email, :class => "left" %>
+    <%= f.label :email, "Email:", :class => "left" %>
     <%= f.text_field :email %>
   
     <div class="clear"></div>
     
-    <%= f.label :name, "Imię", :class => "left" %>
+    <%= f.label :name, "Imię:", :class => "left" %>
     <%= f.text_field :name %>
   
     <div class="clear"></div>
     
-    <%= f.label :surname, "Nazwisko", :class => "left" %>
+    <%= f.label :surname, "Nazwisko:", :class => "left" %>
     <%= f.text_field :surname %>
   
     <div class="clear"></div>
     
     <div class="field">
-      <%= f.label :password, "Hasło", :class => "left" %>
+      <%= f.label :password, "Hasło:", :class => "left" %>
       <%= f.password_field :password %>
     </div> 
     
+    <div class="clear"></div>
+
     <div class="field">
-      <%= f.label :password_confirmation, "Hasło", :class => "left" %>
+      <%= f.label :password_confirmation, "Hasło:", :class => "left" %>
 
       <%= f.password_field :password_confirmation %>
     </div>

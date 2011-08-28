@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827112508) do
+ActiveRecord::Schema.define(:version => 20110828014322) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20110827112508) do
     t.string   "phone_number"
     t.string   "email"
     t.string   "logo_url"
+    t.integer  "category_id"
+    t.string   "website_url"
+    t.string   "opening_hrs"
+    t.string   "first_photo_url"
+    t.string   "second_photo_url"
+    t.float    "lat"
+    t.float    "long"
   end
 
   create_table "company_profiles", :force => true do |t|

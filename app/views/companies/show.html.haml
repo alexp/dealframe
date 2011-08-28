@@ -1,7 +1,8 @@
 -content_for :company_profile do
   =stylesheet_link_tag "companies"
+  
   #categories
-    =render "shared/categories"
+    =render :partial => "shared/categories", :locals => {:company_category => @company.category}
   #company-profile
     #company-header
       .left
@@ -10,18 +11,45 @@
         %h1
           =@company.full_name
       .right
-        
         =render 'follow_form'
-
       .clear
     #company-profile-body
       .left
         #col-1
           %p Poleć wystawcę:
-          =image_tag "company_email.png"
-          =image_tag "company_facebook.png"
-          =image_tag "company_twitter.png"
-        #col-2= @company.description
+          =mail_to nil, image_tag("company_email.png"), :subject => "#{@company.short_name} - polecam oferty", :body => "http://94.75.125.226#{company_path(@company)}"
+          
+          :javascript
+            function fbs_click() {
+            u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}
+
+          =link_to(image_tag("company_facebook.png"), "http://www.facebook.com/share.php?u=http://dealframe.pl/#{company_path(@company)}", {:onclick => "return fbs_click();", :target => "_blank"})
+          =link_to(image_tag("company_twitter.png"), "http://twitter.com/home?status=Currentlyreading http://dealframe.pl/#{company_path(@company)}", {:target => "_blank"})
+        #col-2
+          =@company.description
+          #gallery
+            .subcol
+              =image_tag @company.first_photo_url
+            .subcol
+              =image_tag @company.second_photo_url
+          .subcol
+            %p 
+              %strong Kategoria:
+              %br
+              =@company.category.name
+            %p 
+              %strong Strona www:
+              %br
+              =link_to @company.website_url, @company.website_url
+          .subcol
+            %p 
+              %strong Miasto:
+              %br
+              =@company.city
+            %p 
+              %strong Godziny otwarcia:
+              %br
+              =@company.opening_hrs
       .right
         #col-3
           #contact-details
@@ -39,16 +67,31 @@
                 =@company.phone_number
                 %br
                 =mail_to @company.email
+            #map-canvas{:style => "width: 260px; height: 200px;"}
+            :javascript 
+              var latlng = new google.maps.LatLng(#{@company.lat},#{@company.long});
+              var myOptions = {
+                zoom: 10,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+              var map = new google.maps.Map(document.getElementById("map-canvas"),
+                myOptions);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                title: "#{@company.short_name}"
+              });
+                
+              marker.setMap(map); 
             .clear
-          #map
       .clear
   .clear
 #bottom-content
-  #company-offers-nav Aktywne oferty zniżkowe:
-  #company-offers-nav-bottom
+  #company-offers-nav 
+    %h3 Aktywne oferty zniżkowe:
   #offers
 
-    -@company.offers.each do |offer|
+    -@company.active_offers.each do |offer|
       .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
         .photo
           =link_to(image_tag(offer.photo_url), offer)
@@ -57,7 +100,6 @@
           %p.description= offer.description
           %span.clock= image_tag 'clock.png'
           =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-          
           %div{:id => "offer-#{offer.id}", :class => "timer"}
           %hr
           %span.quo &rsaquo;
