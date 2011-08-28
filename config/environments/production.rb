@@ -46,4 +46,20 @@ Dealframe::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'dealframe.pl',
+    :user_name            => 'alex.pszczolkowski@gmail.com',
+    :password             => 'chuj123?><',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  
+  }
+
+  Paperclip.options[:command_path] = "/usr/bin/"
 end
