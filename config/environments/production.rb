@@ -60,7 +60,7 @@ Dealframe::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true  
   }
-  config.action_mailer.asset_host = "http://beta.dealframe.pl/"
-
+  config.action_mailer.asset_host = "beta.dealframe.pl"
+  config.action_mailer.default_url_options = { :host => 'beta.dealframe.pl' }
   Paperclip.options[:command_path] = "/usr/bin/"
 end
