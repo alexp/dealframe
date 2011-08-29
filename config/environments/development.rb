@@ -26,6 +26,8 @@ Dealframe::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true  
   }
+  config.action_mailer.asset_host = "94.75.125.226:3000"
+  config.action_mailer.default_url_options = { :host => '94.75.125.226:3000' }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

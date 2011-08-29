@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = "http://94.75.125.226:3000/signin"
+    @url = user_url(@user)
 
     mail(:to => user.email, 
          :subject=> "#{user.name}, witaj w Dealframe.pl")
