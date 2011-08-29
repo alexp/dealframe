@@ -33,7 +33,7 @@ form {
   width: 420px; }
 
 .submit {
-  background: transparent url("/images/buy_now_btn_all.png") center top;
+  background: transparent url("/images/login_btn.png") center top;
   text-indent: -1000em;
   border: 0;
   margin: 0;
@@ -44,7 +44,12 @@ form {
   cursor: pointer;
   margin: auto; }
   .submit:hover {
-    background: transparent url("/images/buy_now_btn_all.png") center 40px; }
+    background: transparent url("/images/login_btn.png") center 42px; }
+
+.register .submit {
+  background: transparent url("/images/register_btn.png") center top; }
+  .register .submit:hover {
+    background: transparent url("/images/register_btn.png") center 42px; }
 
 .details-divider {
   clear: both;
