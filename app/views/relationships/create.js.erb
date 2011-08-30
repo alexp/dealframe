@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('companies/unfollow')) %>")
+$("#follow_form").html("<%= escape_javascript(render(:partial => 'companies/unfollow', :locals => { :company => @company  })) %>")
 

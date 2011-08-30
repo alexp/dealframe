@@ -3,9 +3,9 @@
 
 $(function() {
   $.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script; 
-  $('.data').ajaxStart(function(){
+  /** $('.data').ajaxStart(function(){
     $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
-  });
+  });*/
 
   $('#follow_form').ajaxStart(function(){
     $("span.liloader").css("display", "inline");

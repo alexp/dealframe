@@ -55,7 +55,7 @@
 }
 
 .actions.follow input, .actions.follow a {
-  background: transparent url('/images/follow_venue_all.png') center top;
+  background: transparent url('/images/follow_all.png') center top;
   display:block;
   margin: 0;
   padding: 0;
@@ -64,7 +64,22 @@
   height: 40px;
   text-indent: -1000em;
   &:hover {
-    background: transparent url('/images/follow_venue_all.png') center 41px;
+    background: transparent url('/images/follow_all.png') center -42px;
+    cursor: pointer;
+  }
+}
+
+.actions.unfollow input, .actions.unfollow a {
+  background: transparent url('/images/follow_all.png') center -84px;
+  display:block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 179px;
+  height: 40px;
+  text-indent: -1000em;
+  &:hover {
+    background: transparent url('/images/follow_all.png') center -127px;
     cursor: pointer;
   }
 }

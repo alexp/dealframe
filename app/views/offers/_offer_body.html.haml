@@ -20,8 +20,35 @@
   %br 
   %strong Ten kupon znizkowy oferuje:
   %br
-  %p= link_to @offer.company.full_name, @offer.company
-  %p= @offer.company.address
-  %p= @offer.company.zip_code + " " + @offer.company.city
-  %p= raw @offer.map_iframe
-  %br
+  #company-info
+    #company-logo
+      =link_to(image_tag(@offer.company.logo_url), @offer.company)
+    #company-address
+      %p
+        %strong= link_to @offer.company.short_name, @offer.company
+      %p= @offer.company.address
+      %p= @offer.company.zip_code + " " + @offer.company.city
+  #map-canvas{:style => "width: 249px; height: 160px;"}
+  :javascript 
+    var latlng = new google.maps.LatLng(#{@offer.company.lat},#{@offer.company.long});
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+      myOptions);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      title: "#{@offer.company.short_name}"
+    });
+      
+    marker.setMap(map); 
+  #follow_form
+    -if signed_in?
+      -if current_user.following?(@offer.company)
+        =render :partial => "companies/unfollow", :locals => { :company => @offer.company  }
+      -else
+        =render :partial => "companies/follow", :locals => { :company => @offer.company }
+    -else
+      .actions.follow= link_to("Obserwuj oferty", :controller => 'sessions', :action => 'new')

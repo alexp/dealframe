@@ -1,8 +1,8 @@
 #follow_form 
   -if signed_in?
     -if current_user.following?(@company)
-      =render 'unfollow'
+      =render :partial => 'unfollow', :locals => { :company => @company  }
     -else
-      =render 'follow'
+      =render :partial => 'follow', :locals => { :company => @company  }
   -else 
     .actions.follow= link_to("Obserwuj oferty", :controller => 'sessions', :action => 'new')

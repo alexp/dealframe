@@ -9,6 +9,9 @@ a {
   a:hover {
     text-decoration: underline; }
 
+.page {
+  padding-bottom: 100px; }
+
 h1.empty {
   margin: 50px auto;
   width: 320px; }
@@ -74,7 +77,34 @@ span.liloader img {
 #panel-container {
   position: relative;
   position: absolute;
-  width: 940px; }
+  width: 940px;
+  padding-bottom: 400px; }
+
+.actions.follow input, .actions.follow a {
+  background: transparent url("/images/follow_company.png") center top;
+  display: block;
+  margin: 4px auto;
+  padding: 0;
+  border: 0;
+  width: 165px;
+  height: 26px;
+  text-indent: -1000em; }
+  .actions.follow input:hover, .actions.follow a:hover {
+    background: transparent url("/images/follow_company.png") center -27px;
+    cursor: pointer; }
+
+.actions.unfollow input, .actions.unfollow a {
+  background: transparent url("/images/follow_company.png") center -54px;
+  display: block;
+  margin: 4px auto;
+  padding: 0;
+  border: 0;
+  width: 165px;
+  height: 26px;
+  text-indent: -1000em; }
+  .actions.unfollow input:hover, .actions.unfollow a:hover {
+    background: transparent url("/images/follow_company.png") center -81px;
+    cursor: pointer; }
 
 .init-price {
   font-size: 18px;
@@ -115,7 +145,7 @@ span.liloader img {
     /*background-color: #f0fcf2;*/
     background-color: #fff;
     border: 1px solid #1EFB05;
-    width: 300px;
+    width: 309px;
     min-height: 540px;
     margin-top: 0px;
     position: relative;
@@ -127,15 +157,26 @@ span.liloader img {
       float: left;
       margin-right: 5px;
       padding-top: 1px; }
+  #panel-frame #map-canvas {
+    margin: 20px 0; }
   #panel-frame .data {
-    width: 240px;
-    padding-left: 35px;
+    width: 249px;
+    padding-left: 30px;
     font-size: 11px; }
     #panel-frame .data li {
-      margin-left: 15px; }
+      margin-left: 22px; }
     #panel-frame .data .offer-pic {
-      width: 240px;
-      margin-bottom: 10px; }
+      width: 249px;
+      margin: 0 5px 10px; }
+
+#company-info {
+  margin-top: 10px; }
+  #company-info #company-logo {
+    float: left; }
+    #company-info #company-logo img {
+      width: 120px;
+      margin-right: 8px;
+      margin-bottom: 20px; }
 
 .offer-body-timer {
   margin-top: 10px; }
@@ -259,7 +300,7 @@ span.liloader img {
 .wrapper {
   width: 990px;
   margin: 0 auto;
-  padding: 4px 20px; }
+  padding: 4px 20px 100px 20px; }
   .wrapper #left-col {
     margin-bottom: 43px;
     margin-right: 0px;

@@ -47,6 +47,7 @@ h3 {
     border-left: 1px solid #ccc;
   }
   
+
   #content {
     padding-bottom: 80px; 
 
@@ -86,7 +87,7 @@ h3 {
       text-align: right;
       margin: 7px 10px 0 0;
     }
-    input {
+    input[type="password"], input[type="text"] {
      padding: 5px 4px;
      background: white;
      border: 1px solid #D2D2D2;
@@ -105,6 +106,7 @@ h3 {
     
     padding: 0px 26px;
     margin: auto;
+  
   }
   
   #left-col {
