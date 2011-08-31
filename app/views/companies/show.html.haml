@@ -29,9 +29,9 @@
           =@company.description
           #gallery
             .subcol
-              =image_tag @company.first_photo_url
+              =image_tag @company.first_photo_url unless @company.first_photo_url.blank?
             .subcol
-              =image_tag @company.second_photo_url
+              =image_tag @company.second_photo_url unless @company.second_photo_url.blank?
           .subcol
             %p 
               %strong Kategoria:
