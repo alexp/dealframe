@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
                                    :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower 
 
+  has_attached_file :logo, :styles => { :normal => "100x55", :square => "100x100", :big => "120x80"  }
 
   def active_offers 
     self.offers.where("end_date >= :now", {:now => Time.now}) 
