@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901203057) do
+ActiveRecord::Schema.define(:version => 20110911104549) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20110901203057) do
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "used"
   end
 
   create_table "offers", :force => true do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110901203057) do
     t.text     "details"
     t.string   "invoice_description"
     t.string   "map_iframe"
+    t.string   "status"
   end
 
   add_index "offers", ["category_id"], :name => "index_offers_on_category_id"

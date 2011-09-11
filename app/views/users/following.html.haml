@@ -3,21 +3,52 @@
 #content.followed
   -if !@user.following.blank? 
     -@user.following.each do |venue|
-      =image_tag venue.logo_url, {:width => "120px" }
+      %h2=venue.full_name
       .followed-company-content
-        %h3=venue.full_name
-        %p=venue.description
-        %p 
-          Telefon:
-          %strong=venue.phone_number
-        %p=link_to venue.email, :mailto => venue.email
-        %p
-          =venue.zip_code + " " + venue.city
-          %br
-          =venue.address
-        =link_to "Zobacz oferty z tego miejsca",  venue, :class => "venue"
-      %br
-      %hr
+        .company
+          .new_offers
+            -if venue.fresh_offers.blank?
+              %h4 Nic do pokazania
+            -else 
+              #offers
+                -#=render :partial => "shared/deallist", :locals => { :offers => venue.fresh_offers }
+                -venue.fresh_offers.each do |offer|
+                  .deals{:class => (offer == venue.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+                    .photo
+                      =link_to(image_tag(offer.photo_url), offer)
+                    .content
+                      %h1= link_to offer.title, offer
+                      %p.description= offer.description
+                      %span.clock= image_tag 'clock.png'
+                      =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+                      %div{:id => "offer-#{offer.id}", :class => "timer"}
+                      %hr
+                      %span.quo &rsaquo;
+                      =link_to "Zobacz szczegóły", offer
+                    .details
+                      %h3 Kupon zniżkowy:
+                      .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+                      .price-tag
+                        .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+                        .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+          .contact-details
+            .logo
+              -if venue.logo.exists?
+                =link_to((image_tag venue.logo(:normal), {:width => "80px" }), venue)
+              -else 
+                =link_to((image_tag "#{venue.logo_url}", {:width => "80px" }), venue)
+            .info
+              %p 
+                -unless venue.phone_number.blank?
+                  telefon:
+                  %strong=venue.phone_number 
+              %p=link_to venue.email, :mailto => venue.email unless venue.email.blank?
+              %p
+                =venue.zip_code + " " + venue.city
+                %br
+                =venue.address
+              =link_to raw("Wszystkie oferty <span class='quo'>&rsaquo;</span>"),  venue, :class => "venue"
+          .clear
   -else
     %h1.empty
       Nic do pokazania

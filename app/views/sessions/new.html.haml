@@ -2,7 +2,7 @@
   
   %h1 Zaloguj się:
 
-  =form_for(:session, :url => sessions_path) do |f|
+  =form_for(:session, :url => sessions_path, :html => {:name => "login_form"}) do |f|
     #login.details
       =f.label :email, "Email:", :class => "left"
       =f.email_field :email 
@@ -11,14 +11,23 @@
 
       =f.label :password, "Hasło:", :class => "left"
       =f.password_field :password 
-      
       .clear  
     %br
+    :javascript 
+      function forgot() {
+        $("#login_action").val("forgot");
+        document.login_form.submit(); 
+      }
+    =hidden_field_tag 'login_action', 'regular'
+    %a{:href => "#", :onclick => "forgot();"}
+      forgot
     
     .actions
-      =f.submit "Zaloguj się", :class => "submit"
+      =f.submit "Zaloguj się", 
+        :name => "login_action",
+        :value => "regular",
+        :class => "submit"
     %br
 #register
   Nie masz konta?
   =link_to "Zarejestruj się!", signup_path
-

@@ -10,12 +10,37 @@ h3 {
   margin-bottom: 0;
   font-size: 14px; 
 }
+
+.used {
+  padding-left: 26px;
+  table {
+    width: 100%;
+  }
+  table td {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 8px;
+  }
+  table tr {
+    border-bottom: 1px solid #cccccc;
+  }
+  table td a {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
 .user {
   #offers {
     margin-top: -20px; 
     width: 608px;
     .deals {
       width: 608px;
+    }
+    .pending {
+      &:hover {
+        cursor: auto;
+      }
     }
   }
   h1.empty {
@@ -26,6 +51,21 @@ h3 {
   span.deal {color: #009CD5;}
   span.frame {color: #323A45;}
   span.red {color: #E95D42;}
+  span.exp {
+    font-size: 12px; 
+    margin-left: 4px;
+  }
+  span.code {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Droid sans', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+  }
   hr.db {
     height: 4px;
     background: url('/images/hr.png') repeat-x;
@@ -222,29 +262,40 @@ h3 {
 
   .followed {
     padding-bottom: 80px;
-    img {
-      float: left;
-    }
     
-    .followed-company-content {
-      margin-left: 150px;  
+    .followed-company-content { 
+      .company {
+        margin-bottom: 40px;
+      }
+      .new_offers {
+        float: left; 
+        margin: auto;
+        width: 608px;
+        h4 { 
+          width: 120px;
+          margin: 80px auto;
+          color: #cccccc;
+          font-size: 14px;
+        }
+      }
+      .contact-details {
+        float: right;  
+        width: 184px;
+        font-size: 12px;
+      }
     }
 
     span { 
-      font-size: 1.4em; 
+      font-size: 12px; 
       font-weight: bold; 
     }
 
     p { 
-      margin: 10px 0;
+      margin: 4px 0;
     }
 
     a.venue {
-      font-weight: bold;
-      font-size: 1.6em;
-    }
-    hr {
-      margin: 24px 12px 24px 12px;
+      font-size: 12px;
     }
   }
 

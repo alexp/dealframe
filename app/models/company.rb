@@ -14,5 +14,8 @@ class Company < ActiveRecord::Base
   def active_offers 
     self.offers.where("end_date >= :now", {:now => Time.now}) 
   end
-
+  
+  def fresh_offers
+    self.offers.where("created_at >= :last_day", {:last_day => Time.now - (60*60*48) })
+  end
 end

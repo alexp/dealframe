@@ -7,17 +7,17 @@
 =render :partial => 'dashboard'
 
 #content
-  -if @user.couppons.payed.blank? && @user.couppons.payment_pending.blank?
+  -if @user.couppons.paid.blank? && @user.couppons.payment_pending.blank?
     %h1.empty
       Nic do pokazania
   
-  -unless @user.couppons.payed.blank?
+  -unless @user.couppons.paid.blank?
     %h2
       %span= image_tag 'promotion.png'
       Wykorzystaj poniższe kupony:
 
     #offers
-      -@user.couppons.payed.each do |couppon|
+      -@user.couppons.paid.each do |couppon|
         -offer = couppon.offer
         .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
           .photo
@@ -25,10 +25,14 @@
           .content
             %h1= link_to offer.title, offer
             %p.description= offer.description
-            %span.clock= image_tag 'clock.png'
-            =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-            %div{:id => "offer-#{offer.id}", :class => "timer"}
+            %span.code.green
+              \#Kod kuponu:
+              =couppon.couppon_code
             %hr
+            %span.exp
+              Ważny do:
+              %strong
+                =couppon.expiration_date.strftime("%d-%m-%Y")
             %span.quo &rsaquo;
             =link_to "Zobacz szczegóły", offer
           .details
@@ -41,31 +45,59 @@
         .actions
           -#=link_to "PDF", {:controller => 'couppons', :action => 'print', :id => couppon.id, :format => 'pdf' }, :class => 'pdf'
           =link_to("PDF", {:controller => 'couppons', :action => 'print', :id => couppon.id, :format => 'pdf' }, :class => 'pdf')
+          %br
+          %br
+  .clear
+  -unless @user.couppons.payment_pending.blank?
 
-      -if !@user.couppons.payment_pending.blank?
-        %h1 Kupony oczekujące na weryfikację płatności:
-        .payment_pending
+    %h2
+      %span= image_tag 'promotion.png'
+      Kupony oczekujące na weryfikację płatności
 
-          -@user.couppons.payment_pending.each do |couppon|
-            -offer = couppon.offer
-            .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
-              .photo
-                =link_to(image_tag(offer.photo_url), offer)
-              .content
-                %h1= link_to offer.title, offer
-                %p.description= offer.description
-                %span.clock= image_tag 'clock.png'
-                =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-                
-                %div{:id => "offer-#{offer.id}", :class => "timer"}
-                %hr
-                %span.quo &rsaquo;
-                =link_to "Zobacz szczegóły", offer
-              .details
-                %h2 Kupon zniżkowy:
-                .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-                .price-tag
-                  .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-                  .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
-            %br
+    %h1 
+    .payment_pending
+      #offers
+        -@user.couppons.payment_pending.each do |couppon|
+          -offer = couppon.offer
+          .deals.pending{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+            .photo
+              =link_to(image_tag(offer.photo_url), offer)
+            .content
+              %h1= link_to offer.title, offer
+              %p.description= offer.description
+              %span.code.red
+                Oczekuję...
+              %hr
+              %span.exp
+                Ważny do:
+                %strong
+                  =couppon.expiration_date.strftime("%d-%m-%Y")
+              %span.quo &rsaquo;
+              =link_to "Zobacz szczegóły", offer
+            .details
+              %h3 Kupon zniżkowy:
+              .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+              .price-tag
+                .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+                .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+          %br
+  .clear
+  -unless @user.couppons.payment_pending.blank?
+
+    %h2
+      %span= image_tag 'promotion.png'
+      Wykorzystane:
+
+    .used
+      %table
+        -@user.couppons.used.each do |couppon|
+          %tr
+            %td
+              =couppon.offer.title
+            %td
+              =link_to couppon.offer.company.short_name, couppon.offer.company
+            %td
+              =couppon.updated_at.strftime("%d-%m-%Y")
+            %td
+              %span.red wykorzystany.
     .clear

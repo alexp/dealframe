@@ -18,7 +18,7 @@ class CoupponsController < ApplicationController
           format.pdf do
             render :pdf => "test.pdf",
                    :template => 'couppons/show.pdf.haml',
-                   :orientation => 'Landscape',
+                   :orientation => 'Portrait',
                    :encoding => 'utf-8'
           end
         end
@@ -74,7 +74,7 @@ class CoupponsController < ApplicationController
           @couppon.company = @offer.company
           @couppon.offer = @offer
           @couppon.status = 0
-          @couppon.couppon_code = @couppon.id.to_i + @couppon.offer.id.to_i
+          @couppon.couppon_code = @couppon.generate_security_code(5)
           @couppon.security_code = @couppon.generate_security_code(6)
           @couppon.expiration_date = @offer.expiration_date
 

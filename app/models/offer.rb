@@ -4,6 +4,10 @@ class Offer < ActiveRecord::Base
   
   acts_as_taggable
 
+  def is_active?
+    (self.end_date >= Time.now) and (self.status == "active")
+  end
+  
   def price
     value - ((value * discount) / 100)
   end

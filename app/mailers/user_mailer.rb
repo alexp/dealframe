@@ -8,4 +8,12 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, 
          :subject=> "#{user.name}, witaj w Dealframe.pl")
   end
+
+  def new_password(user, password)
+    @user = user
+    @password = password
+
+    mail(:to => user.email,
+         :subject=> "#{user.name}, nowe hasło dla Ciebie")
+  end
 end

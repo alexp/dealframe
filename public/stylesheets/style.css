@@ -138,7 +138,7 @@ span.liloader img {
   position: relative; }
   #panel-frame .panel {
     /**
-     * background-image: url('/images/offer_stripes_bg.png');
+     * background-image: url(btn_dodaj_swoja_oferteoffer_stripes_bg.png');
      * background-position: 0px 60%;
      * background-repeat: no-repeat;
      **/
@@ -462,9 +462,22 @@ span.liloader img {
         top: -8px; }
     .wrapper #offers .right-column {
       text-align: right; }
+  .wrapper #add-offer {
+    margin: 0;
+    position: relative;
+    top: 10px;
+    right: 0px; }
+    .wrapper #add-offer a {
+      display: block;
+      width: 198px;
+      height: 42px;
+      background: transparent url("/images/btn_dodaj_swoja_oferte.png");
+      text-indent: -9999px; }
+      .wrapper #add-offer a:hover {
+        background-position: 0 -42px; }
   .wrapper .top-menu {
     font-size: 11px;
-    margin: 20px 0px 0px 0px;
+    margin: 20px 30px 0px 0px;
     display: inline-block; }
     .wrapper .top-menu ul {
       list-style-type: none;
