@@ -32,7 +32,12 @@ class OffersController < ApplicationController
   end
 
   def new
-    @offer = Offer.new
+    if signed_in? 
+      @offer = Offer.new
+      render :layout => 'purchase'
+    else
+      redirect_to signin_path
+    end
   end
 
   def edit

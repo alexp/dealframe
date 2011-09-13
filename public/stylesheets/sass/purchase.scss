@@ -1,3 +1,53 @@
+input[type="password"], input[type="text"], textarea {
+  padding: 5px 4px;
+  background: white;
+  border: 1px solid #D2D2D2;
+  color: #393C3D;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  height: 40px;
+}
+
+.currency {
+  width: 50px;
+}
+
+
+.field {
+  margin: 16px 0;
+  
+
+  label {
+    float: left;
+    width: 180px;
+  }
+  
+  span {
+    font-size: 12px;
+    display: block; 
+    width: 220px;
+    margin: 6px 0px 10px 184px;
+    color: #a0a0a0;
+  }
+}
+
+span.currency {
+  display: inline; 
+  width: auto;
+  margin: 0;
+}
+
+.indent {
+  margin-left: 10px;
+}
 .static  {
   text-align: left;
   font-weight: normal;
@@ -41,6 +91,18 @@ hr { margin: 40px 0; }
   margin-top: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
+
+  .heading {
+    h2 {
+      margin-bottom: 8px;
+    }
+    p { margin-bottom: 0px; width: 350px; color: #707070; font-size: 12px;}
+    hr {
+     margin: 8px -10px; 
+     border-color: #cccccc;
+
+    }
+  }
 }
 
 #offer-summary{

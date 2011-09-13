@@ -1,0 +1,120 @@
+= form_for(@offer) do |f|
+  -if @offer.errors.any?
+    #error_explanation
+      %h2
+        =pluralize(@offer.errors.count, "error")
+        prohibited this offer from being saved:
+
+      %ul
+        =@offer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .details
+    .heading
+      %h2 Twoja Firma
+      %p Na początek, dodaj swoje logo i podaj nam kilka podstawowych informacji o swojej firmie.
+      %hr
+    =label_tag :logo, "Twoje logo lub ładne zdjęcie Twojej siedziby:"
+    =file_field :company, :logo
+    %br
+    %br
+    %br
+    %h3 Teraz powiedz nam więcej o swojej Firmie:
+    
+    =label_tag :comany_name, "Jak nazywa się Twoja firma/lokal?"
+    =text_field :company, :name
+
+
+    .field
+      =f.label :category_id, "Do jakiej kategorii zaliczysz swoją Firmę?"
+      =f.collection_select(:category_id, Category.all, :id, :name, { :prompt => true})
+  
+    %br
+    %br
+    %p 
+      %strong Gdzie znajduje się Twoja Firma?
+
+    .field.indent
+      =label_tag :company_street, "Ulica:"
+      =text_field :company, :address
+      %span Wpisz tu nazwę ulicy i numer budynku. Numer mieszkania jest opcjonalny.
+      =label_tag :company_zipcode, "Kod pocztowy:"
+      =text_field :company, :zipcode
+      %br
+      =label_tag :company_city, "Miasto:"
+      =text_field :company, :city
+      
+
+    %br
+    %br
+    %p 
+      %strong Jak klienci mogą się z Tobą skontaktować?
+      
+    .field.indent
+      =label_tag :company_website_url, "Adres strony internetowej:"
+      =text_field :company, :website_url
+      %br
+      =label_tag :company_email, "Adres poczty email:"
+      =text_field :company, :email
+      %br
+      =label_tag :company_phone_number, "Telefon kontaktowy:"
+      =text_field :company, :phone_number
+      %span
+        %strong UWAGA: 
+        w ciągu najbliższych kilku dni, pracownik dealframe.pl spróbuje skontaktować się z Tobą celem weryfikacji powyższych danych.
+
+
+  .details
+    .heading
+      %h2 Oferta
+      %p Nareszcie, teraz możesz skonfigurować swoją ofertę 
+      %hr
+    #offer-config
+      .field.prices
+        =f.label :value, "Cena wyjściowa (przed zniżką):" 
+        =f.text_field :value, :class => "currency"
+        %span.currency PLN
+      .field.prices
+        =f.label :discount, "Wartość zniżki:"
+        =f.text_field :discount, :class => "currency"
+        %span.currency %
+        
+
+      .field
+        =f.label :title, "Tytuł:" 
+        =f.text_field :title
+
+
+      .field
+        =f.label :description, "Opis:"
+        =f.text_area :description
+
+
+
+      .field
+        =f.label :expiration_date, "Data wygaśnięcia kuponu:"
+        %br
+        =f.datetime_select :expiration_date
+        %span
+          Data, kiedy kupon przestaje być ważny. Sugerujemy 3 - 6 miesięcy od dnia dzisiejszego.
+
+
+      .field
+        =f.label :start_date, "Termin uruchomienia kampanii:"
+        %br
+        =f.datetime_select :start_date
+        %span 
+          Wtedy Twój kupon zacznie się wyświetlać.
+      .field
+        =f.label :end_date, "Termin zakończenia kampanii:"
+        %br
+        =f.datetime_select :end_date
+        %span
+          Wtedy Twój kupon przestanie się wyświetlać.
+
+      .field
+        =f.label :additional_info, "Dodatkowe informacje:"
+        =f.text_area :additional_info
+    -# tagi - do dorobienia (zamknięta lista)
+    -#=f.text_field :tag_list
+
