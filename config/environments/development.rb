@@ -36,9 +36,4 @@ Dealframe::Application.configure do
 
   Paperclip.options[:command_path] = "/usr/bin/"
 
-  config.after_initialize do
-      WICKED_PDF[:exe_path] = "/usr/local/bin/wkhtmltopdf"
-  end
 end
-end
-

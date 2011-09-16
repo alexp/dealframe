@@ -1,9 +1,10 @@
 #header
   .left
     #logo= link_to(image_tag('dealframe.png'), '/offers')
-    -if params[:controller] == 'offers' && params[:action] == 'index'
+    -if params[:controller] == 'offers' && params[:action] == "index"
       #doodles
-    .clear
+      #add-offer
+        =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
   .right
     .top-menu
       %ul
@@ -26,8 +27,6 @@
         -else
           %span.quo &rsaquo;
           %li= link_to "Zaloguj się", signin_path
-    #add-offer
-      =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
   .clear
 
 
