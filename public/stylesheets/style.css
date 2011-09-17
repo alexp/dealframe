@@ -54,7 +54,7 @@ span.liloader img {
   /*width: 330px;*/ }
 
 .close {
-  margin-left: 250px; }
+  margin-left: 261px; }
 
 .flash {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #fff1cf), color-stop(0.56, #fff9eb));
@@ -79,6 +79,9 @@ span.liloader img {
   position: absolute;
   width: 940px;
   padding-bottom: 400px; }
+
+.actions {
+  margin-bottom: 10px; }
 
 .actions.follow input, .actions.follow a {
   background: transparent url("/images/follow_company.png") center top;
@@ -172,32 +175,41 @@ span.liloader img {
 #company-info {
   margin-top: 10px; }
   #company-info #company-logo {
-    float: left; }
+    float: left;
+    margin-top: 8px; }
     #company-info #company-logo img {
       width: 120px;
       margin-right: 8px;
       margin-bottom: 20px; }
+  #company-info #company-address {
+    margin-top: 8px; }
 
 .offer-body-timer {
-  margin-top: 10px; }
+  /**margin-top: 10px;**/ }
 
 .offer-body-details {
-  margin-top: 20px; }
+  margin-top: 8px; }
   .offer-body-details .buynow {
     background: transparent url("/images/buy_now_btn_all.png") center top;
     text-indent: -1000em;
     border: 0;
-    margin: 0;
+    margin: 0px 0px 8px 0px;
     padding: 0;
     width: 255px;
     height: 41px;
     display: block; }
     .offer-body-details .buynow:hover {
       background: transparent url("/images/buy_now_btn_all.png") center 40px; }
-  .offer-body-details span.before {
+  .offer-body-details .obd-wrapper {
+    background: transparent url("/images/offer_stripes_bg.png") 8px 0 no-repeat;
+    margin: 0 -29px;
+    padding: 17px 26px; }
+  .offer-body-details span.before, .offer-body-details span.after {
     font-size: 1.4em;
     font-weight: bold;
     padding: 4px 0; }
+  .offer-body-details span.after {
+    margin-left: 8px; }
   .offer-body-details .init-price {
     display: inline; }
   .offer-body-details .price-tag {
