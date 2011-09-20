@@ -24,6 +24,18 @@ span.liloader img {
   width: 19px;
   height: 19px; }
 
+span.close-btn {
+  text-indent: -9999px;
+  display: block;
+  background: transparent url("/images/close_btn.png");
+  width: 14px;
+  height: 15px;
+  margin-left: 300px;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  cursor: pointer; }
+
 .clear {
   clear: both;
   display: block;
@@ -243,7 +255,7 @@ span.liloader img {
 
 #header {
   /*height: 94px;*/
-  /*margin-bottom: 20px;*/ }
+  margin-bottom: 20px; }
 
 #logo {
   float: left;
@@ -317,6 +329,7 @@ span.liloader img {
   .wrapper #left-col {
     margin-bottom: 43px;
     margin-right: 0px;
+    margin-top: -20px;
     float: left;
     width: 650px;
     position: relative; }

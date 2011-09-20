@@ -202,3 +202,20 @@ function show_offer_register() {
 function show_offers_loader() {
   $("#deallist").html("<div style='width: 220px; margin: auto; padding-top: 50px;'><img src='/images/big_loader.gif' border='0' align='center' style='width: 220px; height: 19px;' /></div>");
 }
+
+var HideButton = {
+  hideme: function() {
+                $.cookie('dealframe_cookie', 'hide', { expires: 90, path: '/'});
+              },
+  init: function() {
+          $("#top-info .close-btn ").click(function() {
+                $(this).parent().slideUp();
+                HideButton.hideme();
+              });
+        }
+
+}
+
+$(document).ready(function() {
+      HideButton.init();
+    });
