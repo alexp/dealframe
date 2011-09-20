@@ -10,7 +10,8 @@
   border: 1px solid #cccccc;
   float: left;
   padding: 10px 0px;
-  font-size: 11px; }
+  font-size: 11px;
+  margin-bottom: 30px; }
   #company-profile .left {
     float: left; }
   #company-profile .right {
