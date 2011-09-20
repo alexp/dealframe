@@ -80,3 +80,9 @@ form {
     position: relative;
     top: -14px;
     left: -20px; }
+
+#forgot_pass {
+  display: block;
+  position: relative;
+  top: -22px;
+  left: 314px; }

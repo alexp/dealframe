@@ -19,8 +19,9 @@
         document.login_form.submit(); 
       }
     =hidden_field_tag 'login_action', 'regular'
-    %a{:href => "#", :onclick => "forgot();"}
-      forgot
+    %a{:href => "#", :onclick => "forgot();", :id => "forgot_pass"}
+      %span.quo &rsaquo;
+      Nie pamiętasz hasła?
     
     .actions
       =f.submit "Zaloguj się", 
