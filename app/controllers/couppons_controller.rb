@@ -82,6 +82,8 @@ class CoupponsController < ApplicationController
             redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"
             
             flash[:success] = "Kupiłeś kupon:#{@offer.invoice_description}"
+          else
+            flash[:error] = "Cos nie dziala"
           end
         end 
 
