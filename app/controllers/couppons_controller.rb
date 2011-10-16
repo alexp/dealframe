@@ -77,6 +77,7 @@ class CoupponsController < ApplicationController
           @couppon.couppon_code = @couppon.generate_security_code(5)
           @couppon.security_code = @couppon.generate_security_code(6)
           @couppon.expiration_date = @offer.expiration_date
+          @couppon.used = false
 
           if @couppon.save
             redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"
