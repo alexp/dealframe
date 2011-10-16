@@ -329,7 +329,7 @@ span.close-btn {
 } 
 
 #header {
-  /*height: 94px;*/
+  height: 104px;
   margin-bottom: 20px;
 }
 
@@ -415,11 +415,15 @@ span.close-btn {
 
 #deallist {
   height: 600px;
-  width: 608px;
+  width: 600px;
   border: 1px solid #cccccc;
   border-position: inside;
   margin-top: -4px;
   background-color: #fff;
+}
+
+#deallist.nonempty {
+  border: none;
 }
 
 .wrapper {
@@ -556,7 +560,7 @@ span.close-btn {
         height: 133px;
         margin-bottom: -9px;
         padding: 2px 0px 0px 2px;
-        width: 606px; 
+        width: 608px; 
           
         
         a.company_profile {

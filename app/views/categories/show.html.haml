@@ -10,6 +10,5 @@
         .head
           %a{:href =>"#", :class => "close"} zamknij
         .data
-    #deallist.left
-      =render :partial => "shared/deallist", :locals => {:offers =>  @category.active_offers }
+    =render :partial => "shared/deallist", :locals => {:offers =>  @category.active_offers }
 .clear

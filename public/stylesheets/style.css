@@ -254,7 +254,7 @@ span.close-btn {
   background: url("/images/start.png") no-repeat right 11px; }
 
 #header {
-  /*height: 94px;*/
+  height: 104px;
   margin-bottom: 20px; }
 
 #logo {
@@ -316,11 +316,14 @@ span.close-btn {
 
 #deallist {
   height: 600px;
-  width: 608px;
+  width: 600px;
   border: 1px solid #cccccc;
   border-position: inside;
   margin-top: -4px;
   background-color: #fff; }
+
+#deallist.nonempty {
+  border: none; }
 
 .wrapper {
   width: 990px;
@@ -405,7 +408,7 @@ span.close-btn {
       height: 133px;
       margin-bottom: -9px;
       padding: 2px 0px 0px 2px;
-      width: 606px; }
+      width: 608px; }
       .wrapper #offers .deals a.company_profile {
         background: url("/images/company_profile.png") center top;
         border: 0;

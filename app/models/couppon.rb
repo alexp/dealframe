@@ -3,12 +3,22 @@ class Couppon < ActiveRecord::Base
   belongs_to :user
   belongs_to :offer
   
+  STATUSES = ['niezweryfikowany', 'nowy', 'wykonany', 'odmowa', 'anulowana']
+  validates_inclusion_of :status, :in => STATUSES,
+              :message => "{{value}} must be in #{STATUSES.join ','}"
+
   named_scope :paid, 
-    :conditions => { :status => '1', :used => false }
+    :conditions => { :status => 'wykonany', :used => false }
   named_scope :payment_pending,
-    :conditions => { :status => '0'  }
+    :conditions => [ "status ='niezweryfikowany' or status = 'nowy'"  ]
+  named_scope :cancelled,
+    :conditions => { :status => 'odmowa' }
   named_scope :used,
     :conditions => { :used => true }
+
+  def status_name
+    STATUSES[status]
+  end
 
   def generate_security_code(length)
     return ActiveSupport::SecureRandom.hex(length)

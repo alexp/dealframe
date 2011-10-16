@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require "digest/md5"
+
 class CoupponsController < ApplicationController
 
   def new
@@ -73,7 +75,7 @@ class CoupponsController < ApplicationController
           @couppon.user = @user
           @couppon.company = @offer.company
           @couppon.offer = @offer
-          @couppon.status = 0
+          @couppon.status = "niezweryfikowany"
           @couppon.couppon_code = @couppon.generate_security_code(5)
           @couppon.security_code = @couppon.generate_security_code(6)
           @couppon.expiration_date = @offer.expiration_date
@@ -98,16 +100,27 @@ class CoupponsController < ApplicationController
   end
 
   def verifying
+    #pin = "1111111111111111"
+    #checkstring = pin+":"+"47118"+":"+params[:control]+"::"+params[:amount]+"::::::"+params[:t_status]
+    #md5string = Digest::MD5.hexdigest(checkstring) 
+    #if md5string != params[:md5] 
+    #  render :text => "FAIL #{checkstring} #{md5string}"
+    #  return
+    #end
+
     if request.remote_ip == "195.150.9.37"
       @couppon = Couppon.find(params[:control])
-      
-      if params[:t_status] == '2' and !@couppon.nil?
+       
+      if params[:t_status] == '1'
+        @couppon.status = "nowy"
+      elsif params[:t_status] == '2' and !@couppon.nil?
+        @couppon.status = "wykonany"
+      elsif params[:t_status] == '3' and !@couppon.nil?
+        @couppon.status = "odmowa"
+      end
 
-        @couppon.status = 1
-
-        if @couppon.save
-          render :text => "OK"
-        end
+      if @couppon.save
+        render :text => "OK"
       end
     else
       render :status => :forbidden, :text => "Unauthorized access"
