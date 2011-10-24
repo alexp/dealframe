@@ -122,7 +122,7 @@
         %span=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
       .clear 
     %br
-    =image_submit_tag "paypal_logo.jpg", :name => "payment_method", :value => "paypal", :class => "left"    
+
     =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay", :class => "left"
     .clear
 

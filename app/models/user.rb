@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
                         :length => { :within => 6..40 },
                         :on => :create
 
-  validates :name, :presence => true
-  validates :surname, :presence => true
+  #validates :name, :presence => true
+  #validates :surname, :presence => true
   
   before_save :encrypt_password
 
