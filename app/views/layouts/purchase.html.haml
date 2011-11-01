@@ -9,14 +9,14 @@
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js", "jquery.countdown-pl.js"
   %body
-    #top-info Witamy w Dealframe - Wersja alpha 0.1 
-
+    -if !cookies[:dealframe_cookie]
+      #top-info 
+        Witamy w Dealframe - Wersja alpha 0.1
+        %span.close-btn zamknij
     .wrapper
       =render :partial => "shared/header"
       
-      %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
-        
+      %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}        
         =yield
         .clear
-
       =render 'shared/footer'

@@ -1,33 +1,31 @@
-= form_for(@offer) do |f|
-  -if @offer.errors.any?
-    #error_explanation
-      %h2
-        =pluralize(@offer.errors.count, "error")
-        prohibited this offer from being saved:
-
-      %ul
-        =@offer.errors.full_messages.each do |msg|
-          %li= msg
-
+=form_for(@offer, @company, :html => { :multipart => true }) do |f|
+  =error_messages_for :company, 
+    :header_message => "Oops znaleźliśmy klika błędów w Twojej ofercie:",
+    :message => "Popraw poniższe pola:",
+    :header_tag => :h3
+  =error_messages_for :offer
   .details
+    -if !signed_in?
+      %h2 
+        =link_to "Mam już konto, chcę się zalogować!", :signin
     .heading
       %h2 Twoja Firma
       %p Na początek, dodaj swoje logo i podaj nam kilka podstawowych informacji o swojej firmie.
       %hr
-    =label_tag :logo, "Twoje logo lub ładne zdjęcie Twojej siedziby:"
+    =label_tag :company_logo, "Twoje logo lub ładne zdjęcie Twojej siedziby:"
     =file_field :company, :logo
     %br
     %br
     %br
     %h3 Teraz powiedz nam więcej o swojej Firmie:
     
-    =label_tag :comany_name, "Jak nazywa się Twoja firma/lokal?"
-    =text_field :company, :name
+    =label_tag :company_full_name, "Jak nazywa się Twoja firma/lokal?"
+    =text_field :company, :full_name
 
 
     .field
-      =f.label :category_id, "Do jakiej kategorii zaliczysz swoją Firmę?"
-      =f.collection_select(:category_id, Category.all, :id, :name, { :prompt => true})
+      =label_tag :company_category_id, "Do jakiej kategorii zaliczysz swoją Firmę?"
+      =collection_select(:company, :category_id, Category.all, :id, :name, { :prompt => "wybierz" })
   
     %br
     %br
@@ -35,11 +33,11 @@
       %strong Gdzie znajduje się Twoja Firma?
 
     .field.indent
-      =label_tag :company_street, "Ulica:"
+      =label_tag :comapny_street, "Ulica:"
       =text_field :company, :address
       %span Wpisz tu nazwę ulicy i numer budynku. Numer mieszkania jest opcjonalny.
-      =label_tag :company_zipcode, "Kod pocztowy:"
-      =text_field :company, :zipcode
+      =label_tag :company_zip_code, "Kod pocztowy:"
+      =text_field :company, :zip_code
       %br
       =label_tag :company_city, "Miasto:"
       =text_field :company, :city
@@ -79,6 +77,9 @@
         =f.text_field :discount, :class => "currency"
         %span.currency %
         
+      .field
+        =f.label :photo, "Zdjęcie do oefrty:" 
+        =f.file_field :photo
 
       .field
         =f.label :title, "Tytuł:" 
@@ -117,4 +118,4 @@
         =f.text_area :additional_info
     -# tagi - do dorobienia (zamknięta lista)
     -#=f.text_field :tag_list
-
+    =f.submit

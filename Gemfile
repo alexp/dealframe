@@ -12,8 +12,10 @@ gem 'jquery-rails', '>=1.0.3'
 gem 'haml'
 gem 'sass'
 gem 'acts-as-taggable-on'
-gem 'paperclip', '~> 2.3'
+#gem 'paperclip', '~> 2.3'
+gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
 #gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
+gem 'activeadmin'
 
 group :development do
   gem 'rspec-rails', '2.5.0'

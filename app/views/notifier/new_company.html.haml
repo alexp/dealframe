@@ -1,0 +1,33 @@
+!!! XML
+!!!
+%html
+  %head
+    %meta{:content => 'text/html', :charset => 'UTF-8', 'http-equiv' => 'Content-Type'}
+  %body
+    %div{:style => "background: #D8F0F9; margin:0; padding: 0;",:bgcolor => "#D8F0F9"}
+      %table{:width => "100%", :style => "width: 100%; margin: 0; padding: 0;"}
+        %td{:style => "background:#D8F0F9; padding: 10px 10px 40px;",:bgcolor => "#D8F0F9;"}
+          %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
+            %tr
+              %td{:align => "left", :style => "padding: 10px 0;"}
+                =image_tag("http://beta.dealframe.pl/images/dealframe.png", :style => "width: 150px;")
+              %td{:align => "right", :style => "padding: 14px 4px;" }
+          %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
+            %tr
+              %td{:width => "542px", :height => "15px"}=image_tag 'http://beta.dealframe.pl/images/mail_top.png'
+            %tr 
+              %td{:width => "540px", :style => "border-left: 1px solid #D5D3FF; border-right: 1px solid #D5D3FF; background-color: #fff;", :bgcolor => "#fff"}
+                %table{:style => "margin:0 auto; width: 520px; font-size: 11px; color: #424242; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif", :align => "center", :width => "520px", :cellspacing => "0", :cellpadding => "0"  }
+                  %tr
+                    %td
+                      %div{:style => "padding: 0 10px; font-size: 11px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #50646d;"}
+                        %p 
+                          Hej, w serwisie pojawiła się nowa firma do akecptacji:
+                          %a{:href => @url}= @url
+                        %p
+                          Dzięki!
+                          %br
+                          Automat Dealframe
+            %tr
+              %td{:width => "542px", :height => "15px"}
+                =image_tag 'http://beta.dealframe.pl/images/mail_bottom.png'

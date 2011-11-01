@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016170436) do
+ActiveRecord::Schema.define(:version => 20111101175603) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20111016170436) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.boolean  "verified"
   end
 
   create_table "company_profiles", :force => true do |t|
@@ -95,6 +96,10 @@ ActiveRecord::Schema.define(:version => 20111016170436) do
     t.string   "invoice_description"
     t.string   "map_iframe"
     t.string   "status"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "offers", ["category_id"], :name => "index_offers_on_category_id"
@@ -142,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20111016170436) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

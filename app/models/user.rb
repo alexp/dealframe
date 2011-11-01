@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :photo, :surname, :email, :password, :password_confirmation
   
+  scope :merchant, :conditions => {:role => 'merchant'}
+
+
   has_attached_file :photo, :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"
   
   has_many :couppons

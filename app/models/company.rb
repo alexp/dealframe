@@ -11,11 +11,30 @@ class Company < ActiveRecord::Base
 
   has_attached_file :logo, :styles => { :normal => "100x55", :square => "100x100", :big => "120x80"  }
 
-  def active_offers 
-    self.offers.where("end_date >= :now", {:now => Time.now}) 
+  validates_attachment_presence :logo
+  validates :full_name, :presence => true, :length => { :maximum => 100 }
+  validates :category_id, :presence => true
+  validates :address, :presence => true
+  validates :city, :presence => true
+  validates :zip_code, :presence => true
+  validates :email, :presence => true
+  
+  after_save :notify
+
+  def active_offers
+    self.offers.where("end_date >= :now", {:now => Time.now}) if self.verified?
   end
   
+  def verified?
+    return false unless self.verified == true
+  end
+
   def fresh_offers
     self.offers.where("created_at >= :last_day", {:last_day => Time.now - (60*60*48) })
+  end
+  
+  private
+  def notify
+    Notifier.new_company(self).deliver 
   end
 end

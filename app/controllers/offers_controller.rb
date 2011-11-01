@@ -6,7 +6,7 @@ class OffersController < ApplicationController
         "end_date >= :now", 
         {:now => Time.now}).tagged_with(params[:tag])
     else
-      @offers = Offer.where("end_date >= :now", {:now => Time.now}).all
+      @offers = Offer.active
     end
 
     @categories = Category.all
@@ -32,6 +32,7 @@ class OffersController < ApplicationController
   end
 
   def new
+    @company = Company.new
     @offer = Offer.new
     render :layout => 'purchase'
   end
@@ -41,16 +42,34 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.new(params[:offer])
+=begin
+    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+      if instance.error_message.kind_of?(Array)
+        %(#{html_tag}<span class="validation-error">&nbsp;
+          #{instance.error_message.join(',')}</span>).html_safe
+      else
+        %(#{html_tag}<span class="validation-error">&nbsp;
+          #{instance.error_message}</span>).html_safe
+      end
+    end
+=end
+    @company = Company.new(params[:company])
+    @company.verified = false 
+
+    @offer = @company.offers.build(params[:offer])
     @offer.tag_list = params[:offer][:tag_list]
 
     respond_to do |format|
-      if @offer.save
-        format.html { redirect_to(@offer, :notice => 'Offer was successfully created.') }
-        format.xml  { render :xml => @offer, :status => :created, :location => @offer }
+      if @company.save
+        if @offer.save
+          format.html { redirect_to(@offer, :notice => 'Offer was successfully created.') }
+        else
+          flash[:error] = "oferta nie zostala zapisana" 
+          format.html { render :action => "new", :layout => "purchase"}
+        end
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @offer.errors, :status => :unprocessable_entity }
+        flash[:error] = "firma i oferta nie zostaly zapisane" 
+        format.html { render :action => "new", :layout => "purchase"}
       end
     end
   end

@@ -10,7 +10,7 @@
       %h3 Oferent:
       -if @offer.company.logo.exists?
         =image_tag @offer.company.logo(:normal), :class => "left"
-      -else
+      -elsif !@offer.company.logo_url.nil?
         =image_tag @offer.company.logo_url, :class => "left"
       #contact-details.left
         =link_to @offer.company.short_name, {}, :class => 'company-name'
@@ -21,7 +21,7 @@
     
     #offer-summary  
       %h3 Co dostajesz?
-      =image_tag @offer.photo_url, :width => "200px";
+      =image_tag @offer.photo(:normal);
       %br
       %br
       =@offer.description

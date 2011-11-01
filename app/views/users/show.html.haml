@@ -4,11 +4,8 @@
   -else
     Coś poszło nie tak..sprawdzamy
 
-
 %h1 Twoje kupione kupony:
-
 #offers
-
   -@user.couppons.each do |couppon|
     -offer = couppon.offer
     .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}

@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    
     if params[:login_action] == "forgot"
       render "forgot_password"
     else 
@@ -19,8 +18,14 @@ class SessionsController < ApplicationController
         render 'new'
       else
         sign_in user
-        redirect_to user
-     end
+        if !request.referer.empty?
+          render :text => request.referer
+          return
+          redirect_to request.referer
+        elsif
+          redirect_to user
+        end
+      end
     end
   end
 

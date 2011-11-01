@@ -1,6 +1,9 @@
 -content_for :company_profile do
   =stylesheet_link_tag "companies"
-  
+  -if !@company.verified?
+    .flash.error 
+      Ta firma czeka na zatwierdzenie przez administratora 
+      %strong dealframe
   #categories
     =render :partial => "shared/categories", :locals => {:company_category => @company.category}
   #company-profile
@@ -90,27 +93,27 @@
             .clear
       .clear
   .clear
-#bottom-content
-  #company-offers-nav 
-    %h3 Aktywne oferty zniżkowe:
-  #offers
-
-    -@company.active_offers.each do |offer|
-      .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
-        .photo
-          =link_to(image_tag(offer.photo_url), offer)
-        .content
-          %h1= link_to offer.title, offer
-          %p.description= offer.description
-          %span.clock= image_tag 'clock.png'
-          =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-          %div{:id => "offer-#{offer.id}", :class => "timer"}
-          %hr
-          %span.quo &rsaquo;
-          =link_to "Zobacz szczegóły", offer
-        .details
-          %h2 Kupon zniżkowy:
-          .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-          .price-tag
-            .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-            .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+  #bottom-content
+    #company-offers-nav 
+      %h3 Aktywne oferty zniżkowe:
+    #offers
+      -if !@company.active_offers.blank?
+        -@company.active_offers.each do |offer|
+          .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+            .photo
+              =link_to(image_tag(offer.photo_url), offer)
+            .content
+              %h1= link_to offer.title, offer
+              %p.description= offer.description
+              %span.clock= image_tag 'clock.png'
+              =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+              %div{:id => "offer-#{offer.id}", :class => "timer"}
+              %hr
+              %span.quo &rsaquo;
+              =link_to "Zobacz szczegóły", offer
+            .details
+              %h2 Kupon zniżkowy:
+              .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+              .price-tag
+                .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+                .discount= number_to_percentage("-#{offer.discount}", :precision => 0)

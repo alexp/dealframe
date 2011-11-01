@@ -16,11 +16,8 @@
       #top-info 
         Witamy w Dealframe - Wersja alpha 0.1
         %span.close-btn zamknij
-
     .wrapper
-
       =render :partial => 'shared/header'  
-
       =yield(:company_profile) if @content_for_company_profile
 
       #left-col
