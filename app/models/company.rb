@@ -32,6 +32,10 @@ class Company < ActiveRecord::Base
   def fresh_offers
     self.offers.where("created_at >= :last_day", {:last_day => Time.now - (60*60*48) })
   end
+
+  def self.not_verified
+    where("verified = 0")
+  end
   
   private
   def notify

@@ -31,6 +31,12 @@ Dealframe::Application.routes.draw do
   match '/users/:id/couppons', :to => 'users#couppons'
   match '/users/:id/following', :to => 'users#following' 
   match '/sessions/forgot_password', :to => 'sessions#forgot_password'  
+  match '/admin', :to => 'admin#index'
+  match '/admin/companies', :to => 'admin#companies'
+  match '/admin/offers/', :to => 'admin#offers'
+  match '/admin/users/', :to => 'admin#users'
+  
+  match '/admin/companies/:id/verify', :to => 'admin#verify'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
