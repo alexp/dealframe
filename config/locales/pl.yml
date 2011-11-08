@@ -1,0 +1,9 @@
+pl:
+  errors:
+    format: "{{attribute}} {{message}}"
+    messages: 
+      blank: "wypełnij pole TEJ!"
+  activerecord:
+    attributes:
+      user:
+        email: "Adres E-mail"

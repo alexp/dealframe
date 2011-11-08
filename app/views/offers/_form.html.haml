@@ -1,9 +1,4 @@
 =form_for(@offer, @company, :html => { :multipart => true }) do |f|
-  =error_messages_for :company, 
-    :header_message => "Oops znaleźliśmy klika błędów w Twojej ofercie:",
-    :message => "Popraw poniższe pola:",
-    :header_tag => :h3
-  =error_messages_for :offer
   .details
     -if !signed_in?
       %h2 
@@ -25,7 +20,7 @@
 
     .field
       =label_tag :company_category_id, "Do jakiej kategorii zaliczysz swoją Firmę?"
-      =collection_select(:company, :category_id, Category.all, :id, :name, { :prompt => "wybierz" })
+      =collection_select(:company, :category_id, Category.all, :id, :name, { :prompt => "wybierz jedną" })
   
     %br
     %br
@@ -37,11 +32,13 @@
       =text_field :company, :address
       %span Wpisz tu nazwę ulicy i numer budynku. Numer mieszkania jest opcjonalny.
       =label_tag :company_zip_code, "Kod pocztowy:"
-      =text_field :company, :zip_code
+      =text_field_tag 'zip_code_left', nil, :size => "2", :maxlength => "2"
+      &dash;
+      =text_field_tag 'zip_code_right', nil, :size => "3", :maxlength => "3"
+
       %br
       =label_tag :company_city, "Miasto:"
-      =text_field :company, :city
-      
+      =text_field :company, :city 
 
     %br
     %br
