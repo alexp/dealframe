@@ -1,0 +1,11 @@
+admin#offers
+
+-@offers.each do |offer|
+  %p
+    =offer.id
+    =time_ago_in_words(offer.start_date)
+    =time_ago_in_words offer.end_date
+    =time_ago_in_words offer.expiration_date
+    =offer.description
+    =link_to "zobacz", offer
+
