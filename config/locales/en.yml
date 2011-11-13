@@ -2,11 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  errors:
-    format: "{{attribute}} {{message}}"
-    messages: 
-      blank: "wypełnij pole TEJ!"
   activerecord:
+    models:
+      company: Firma
     attributes:
-      user:
-        email: "Adres E-mail"
+      company:
+        full_name: "Pełna nazwa"
