@@ -6,6 +6,18 @@ class Offer < ActiveRecord::Base
   has_attached_file :photo, :styles => { :normal => "140x90" }
 
   validates_attachment_presence :photo
+  validates_acceptance_of :terms 
+  validates_presence_of :value, 
+    :discount, 
+    :additional_info, 
+    :category, 
+    :fine_print, 
+    :details, 
+    :title,
+    :description,
+    :start_date,
+    :expiration_date,
+    :end_date
 
   after_save :notify
 

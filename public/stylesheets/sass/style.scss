@@ -771,6 +771,14 @@ span.close-btn {
 }
 
 
-.field_with_errors {
-  border: 1px solid red;
+.field_error {
+  border: 1px solid red!important;
+}
+
+#errorExplanation {
+  margin-bottom: 10px;
+  border-color: 1px solid #d0d0d0;
+  li {
+    color: red;
+  }
 }

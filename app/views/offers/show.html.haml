@@ -2,7 +2,6 @@
   #timer-desc do końca pozostało:
   %div{:id => "offer-#{@offer.id}", :class => "timer large"}
   =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
-
   
   %h1=@offer.title
   #order-sumary.details
@@ -28,7 +27,6 @@
       =raw @offer.additional_info
 
       #fine-print
-
         =raw @offer.fine_print
     .clear 
   

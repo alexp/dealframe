@@ -42,15 +42,6 @@ class OffersController < ApplicationController
   end
 
   def create
-    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
-      if instance.error_message.kind_of?(Array)
-        %(#{html_tag}<span class="validation-error">&nbsp;
-          #{instance.error_message.join(',')}</span>).html_safe
-      else
-        %(#{html_tag}<span class="validation-error">&nbsp;
-          #{instance.error_message}</span>).html_safe
-      end
-    end
     @company = Company.new(params[:company])
     @company.zip_code = params[:zip_code_left] + "-" + params[:zip_code_right]
     @company.verified = false 
@@ -58,18 +49,15 @@ class OffersController < ApplicationController
     @offer = @company.offers.build(params[:offer])
     @offer.tag_list = params[:offer][:tag_list]
 
-    respond_to do |format|
-      if @company.save
-        if @offer.save
-          format.html { redirect_to(@offer, :notice => 'Offer was successfully created.') }
-        else
-          flash[:error] = "oferta nie zostala zapisana" 
-          format.html { render :action => "new", :layout => "purchase"}
-        end
+    if @company.save
+      if @offer.save
+        #redirect_to(signup_path)
+        render :controller => "sessions", :action => "create"
       else
-        flash[:error] = "firma i oferta nie zostaly zapisane z powodu błędów" 
-        format.html { render :action => "new", :layout => "purchase"}
+        render :action => "new", :layout => "purchase"
       end
+    else
+      render :action => "new", :layout => "purchase"
     end
   end
 
