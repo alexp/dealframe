@@ -49,10 +49,19 @@ class OffersController < ApplicationController
     @offer = @company.offers.build(params[:offer])
     @offer.tag_list = params[:offer][:tag_list]
 
+    if signed_in?
+      @company.user = current_user
+    end
+
+
     if @company.save
       if @offer.save
-        #redirect_to(signup_path)
-        render :controller => "sessions", :action => "create"
+        # redirect_to(signup_path)
+        if signed_in?
+          render current_user_path
+        else 
+          redirect_to signin_path
+        end
       else
         render :action => "new", :layout => "purchase"
       end
