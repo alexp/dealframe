@@ -30,6 +30,7 @@ Dealframe::Application.routes.draw do
   match '/users/:id/account', :to => 'users#account'
   match '/users/:id/couppons', :to => 'users#couppons'
   match '/users/:id/following', :to => 'users#following' 
+  match '/users/:id/companies', :to => 'users#companies' 
   match '/sessions/forgot_password', :to => 'sessions#forgot_password'  
   match '/admin', :to => 'admin#index'
   match '/admin/companies', :to => 'admin#companies'

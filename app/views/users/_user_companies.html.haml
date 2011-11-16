@@ -1,0 +1,4 @@
+%div{:style => "padding: 20px"}
+  %ul
+    -@user.companies.each do |c|
+      %li=c.full_name

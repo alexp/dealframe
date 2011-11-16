@@ -58,7 +58,7 @@ class OffersController < ApplicationController
       if @offer.save
         # redirect_to(signup_path)
         if signed_in?
-          render current_user_path
+          redirect_to current_user
         else 
           redirect_to signin_path
         end

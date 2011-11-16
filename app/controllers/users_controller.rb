@@ -1,6 +1,13 @@
 # coding: utf-8
 class UsersController < ApplicationController
 
+  def companies
+    redirect_to 'signin' if !signed_in?
+    @user = User.find(params[:id])
+    @page_name = "Twoje firmy"
+    render :layout => 'user'
+  end
+  
   def show
     if signed_in?
       @user = User.find(params[:id])
@@ -91,4 +98,5 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end
