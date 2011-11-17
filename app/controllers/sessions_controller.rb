@@ -18,13 +18,7 @@ class SessionsController < ApplicationController
         render 'new'
       else
         sign_in user
-        if !request.referer.empty?
-          render :text => request.referer
-          return
-          redirect_to request.referer
-        elsif
-          redirect_to user
-        end
+        redirect_to user 
       end
     end
   end

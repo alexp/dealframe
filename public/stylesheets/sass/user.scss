@@ -91,7 +91,7 @@ h3 {
   #content {
     padding-bottom: 80px; 
 
-    h2 {
+    h2, th {
       padding: 12px 0 10px 26px;
       border-bottom: 1px solid #cccccc;
       border-top: 1px solid #cccccc;
@@ -296,6 +296,17 @@ h3 {
 
     a.venue {
       font-size: 12px;
+    }
+  }
+
+  th, td {
+    padding: 20px;
+  }
+  
+  ul.companies {
+    li {
+      padding: 0!important;
+      margin: 0!important;
     }
   }
 

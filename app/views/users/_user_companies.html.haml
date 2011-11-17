@@ -1,4 +1,12 @@
-%div{:style => "padding: 20px"}
-  %ul
-    -@user.companies.each do |c|
-      %li=c.full_name
+%ul.companies
+  -@user.companies.each do |c|
+    %li
+      %table{:style=>"width: 100%"}
+        %tr
+          %th status
+          %th logo
+          %th nazwa 
+        %tr 
+          %td=c.verified  
+          %td=image_tag c.logo(:big)
+          %td=link_to c.full_name, c 

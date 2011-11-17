@@ -66,18 +66,18 @@ h3 {
   border-left: 1px solid #ccc; }
 .user #content {
   padding-bottom: 80px; }
-  .user #content h2 {
+  .user #content h2, .user #content th {
     padding: 12px 0 10px 26px;
     border-bottom: 1px solid #cccccc;
     border-top: 1px solid #cccccc;
     line-height: 20px;
     text-shadow: 0 1px 0 white;
     background-color: #FAFAFA; }
-    .user #content h2 span {
+    .user #content h2 span, .user #content th span {
       display: block;
       float: left;
       margin: -3px 10px 0 0; }
-      .user #content h2 span img {
+      .user #content h2 span img, .user #content th span img {
         width: 20px; }
   .user #content ul {
     list-style: none; }
@@ -205,3 +205,8 @@ h3 {
     margin: 4px 0; }
   .user .followed a.venue {
     font-size: 12px; }
+.user th, .user td {
+  padding: 20px; }
+.user ul.companies li {
+  padding: 0!important;
+  margin: 0!important; }
