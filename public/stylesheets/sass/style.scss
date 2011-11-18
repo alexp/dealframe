@@ -419,6 +419,7 @@ span.close-btn {
   border-position: inside;
   margin-top: -4px;
   background-color: #fff;
+  min-height: 500px;
 }
 
 #deallist.nonempty {
@@ -467,7 +468,7 @@ span.close-btn {
         height: 35px;
         width: 150px;
         background-color: #fff;
-        font-size: 1.2em;
+        font-size: 12px;
         border: 0;
         color: #959ba2;
       }

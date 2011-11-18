@@ -14,6 +14,13 @@ class CompaniesController < ApplicationController
   # GET /companies/1.xml
   def show
     @company = Company.find(params[:id])
+
+    if @company.lat.nil? && @company.long.nil?
+      @company.lat = 0
+      @company.long = 0
+    end
+      
+
     @categories = Category.all
     @content_for_company_profile = true
     @user = current_user

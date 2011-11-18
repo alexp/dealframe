@@ -5,7 +5,7 @@ class Offer < ActiveRecord::Base
   acts_as_taggable
   has_attached_file :photo, :styles => { :normal => "140x90" }
 
-  validates_attachment_presence :photo
+  validates_attachment_presence :photo, :message => "musi być wypełnione"
   validates_acceptance_of :terms 
   validates_presence_of :value, 
     :discount, 
@@ -19,6 +19,7 @@ class Offer < ActiveRecord::Base
     :expiration_date,
     :end_date
 
+  validates :price, :numericality => { :less_than_or_equal_to => 1000, :greater_than_or_equal_to => 2}
   after_save :notify
 
 

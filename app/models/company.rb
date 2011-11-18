@@ -12,13 +12,18 @@ class Company < ActiveRecord::Base
 
   has_attached_file :logo, :styles => { :normal => "100x55", :square => "100x100", :big => "120x80"  }
 
-  validates_attachment_presence :logo, :message => "Dodaj swoje logo lub zdjęcie"
+  validates_attachment_presence :logo, :message => "musi być wypełnione"
   validates :full_name, :presence => true, :length => { :maximum => 100 }
   validates :category_id, :presence => true
   validates :address, :presence => true
   validates :city, :presence => true
   validates :zip_code, :presence => true
   validates :email, :presence => true
+
+   validates_format_of :phone_number,
+    :message => "musi być poprawnym, polskim numerem telefonu",
+    :with => /^[\(\)0-9\- \+\.]{10,20}$/  
+
   after_create :notify
 
   def active_offers

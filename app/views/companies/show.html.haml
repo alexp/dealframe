@@ -75,21 +75,21 @@
                 %br
                 =mail_to @company.email
             #map-canvas{:style => "width: 260px; height: 200px;"}
-            :javascript 
-              var latlng = new google.maps.LatLng(#{@company.lat},#{@company.long});
-              var myOptions = {
-                zoom: 10,
-                center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
-              var map = new google.maps.Map(document.getElementById("map-canvas"),
-                myOptions);
-              var marker = new google.maps.Marker({
-                position: latlng,
-                title: "#{@company.short_name}"
-              });
-                
-              marker.setMap(map); 
+              :javascript 
+                var latlng = new google.maps.LatLng(#{@company.lat},#{@company.long});
+                var myOptions = {
+                  zoom: 10,
+                  center: latlng,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("map-canvas"),
+                  myOptions);
+                var marker = new google.maps.Marker({
+                  position: latlng,
+                  title: '#{@company.short_name}'
+                });
+                  
+                marker.setMap(map); 
             .clear
       .clear
   .clear

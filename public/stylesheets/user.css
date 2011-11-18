@@ -109,7 +109,8 @@ h3 {
   padding: 0px 26px;
   margin: auto; }
 .user #left-col {
-  width: 119px; }
+  width: 119px;
+  margin-top: 2px; }
   .user #left-col ul {
     margin-top: 55px; }
   .user #left-col ul li {

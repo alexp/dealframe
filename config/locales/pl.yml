@@ -252,5 +252,15 @@ pl:
         address: "adres"
         city: "miasto"
         email: "email"
+        category_id: "kategoria" # hack
+        phone_number: "nr. telefonu"
       offer:
+        title: "tytuł"
+        details: "szczegółowy opis oferty"
         terms: "regulamin serwisu"
+        description: "opis"
+        price: "cena"
+        photo_file_name: "zdjęcie"
+        additional_info: "kluczowe informacje o ofercie"
+        category_id: "kategoria" # hack
+        category: "kategoria"
