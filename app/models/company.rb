@@ -21,7 +21,7 @@ class Company < ActiveRecord::Base
   validates :zip_code, :presence => true
   validates :email, :presence => true
 
-   validates_format_of :phone_number,
+  validates_format_of :phone_number,
     :message => "musi być poprawnym, polskim numerem telefonu",
     :with => /^[\(\)0-9\- \+\.]{10,20}$/  
 
