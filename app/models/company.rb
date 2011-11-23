@@ -20,9 +20,6 @@ class Company < ActiveRecord::Base
   validates :city, :presence => true
   validates :zip_code, :presence => true
   validates :email, :presence => true
-  validates_format_of :phone_number,
-    :message => "musi być poprawnym, polskim numerem telefonu",
-    :with => /^[\(\)0-9\- \+\.]{10,20}$/  
 
   after_create :notify
 
