@@ -8,7 +8,8 @@ class Offer < ActiveRecord::Base
 
   validates_attachment_presence :photo, :message => "musi być wypełnione"
   validates_acceptance_of :terms 
-  validates_presence_of :value, 
+  validates_presence_of 
+    :value, 
     :discount, 
     :additional_info, 
     :category, 
