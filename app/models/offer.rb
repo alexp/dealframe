@@ -49,7 +49,7 @@ class Offer < ActiveRecord::Base
   end
 
   def self.active 
-    self.joins(:company).where("end_date >= :now and companies.verified = 1", {:now => Time.now})
+    self.joins(:company).where("end_date >= :now and companies.verified = true", {:now => Time.now})
   end
 
   private
