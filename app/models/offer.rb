@@ -1,3 +1,4 @@
+# coding: utf-8
 class Offer < ActiveRecord::Base
   belongs_to :category
   belongs_to :company
