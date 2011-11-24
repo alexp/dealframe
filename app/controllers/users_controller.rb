@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       #flash[:error] = "Nie udało się dokonać rejestracji. Wszystkie pola muszą być wypełnione. Hasło musi mieć co najmniej 6 znaków."
-      flash[:error] = @user.errors
+      #flash[:error] = @user.errors
       render 'new', :layout => "sessions"
     end
   end

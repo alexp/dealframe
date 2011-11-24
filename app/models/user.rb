@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
                         :length => { :within => 6..40 },
                         :on => :create
 
+  validates_presence_of :password_confirmation
+
   #validates :name, :presence => true
   #validates :surname, :presence => true
   

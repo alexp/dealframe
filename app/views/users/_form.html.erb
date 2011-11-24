@@ -1,5 +1,7 @@
 <%= form_for(@user, :html => {:multipart => true}) do |f| %>
 
+  <%=error_messages_for :user, :header_message => "Popraw następujące błędy:"%>
+
   <div id="login" class="details">
     
     <%= f.label :email, "Email:", :class => "left" %>
