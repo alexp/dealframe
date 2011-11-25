@@ -11,6 +11,7 @@ class Offer < ActiveRecord::Base
   validates_presence_of :fine_print, :value, :discount, :additional_info, :category, :details, :title,:description,:start_date,:expiration_date,:end_date
 
   validates :value, :numericality => { :less_than_or_equal_to => 1000, :greater_than_or_equal_to => 2}
+  validates :discount, :numericality => { :less_than_or_equal_to => 100, :greater_than_or_equal_to => 2}
   after_save :notify
 
 
