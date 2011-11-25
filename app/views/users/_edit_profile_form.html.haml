@@ -29,22 +29,7 @@
       %li.last
         =f.label "Twoje zdjęcie: "
         =f.file_field :photo
-    
-
-  %h2
-    %span.icon=image_tag 'lock_icon.png'
-    Zmiana hasła:
-  .section
-    %ul
-      %li
-        =label_tag :old_password, "Stare hasło: "
-        =password_field_tag :old_password, {}, {:size => "30"}
-      %li
-        =f.label :password, "Nowe hasło: "
-        =f.password_field :password
-      %li.last
-        =f.label :password_confirmation, "Powtórz hasło: "
-        =f.password_field :password_confirmation
   
+  =link_to 'zmiana hasła', :action => 'change_password'
   .section
     =f.submit "Zapisz zmiany"
