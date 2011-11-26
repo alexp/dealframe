@@ -1,11 +1,12 @@
 # coding: utf-8
 class UsersController < ApplicationController
 
+  layout "user"
+
   def companies
     redirect_to 'signin' if !signed_in?
     @user = User.find(params[:id])
     @page_name = "Twoje firmy"
-    render :layout => 'user'
   end
   
   def show
@@ -21,7 +22,6 @@ class UsersController < ApplicationController
     if signed_in?
       @user = User.find(params[:id])
       @page_name = "Twoje kupony"
-      render :layout => 'user'
     else
       redirect_to '/signin'
     end
@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     if signed_in?
       @user = User.find(params[:id])
       @page_name = "Obserwowane miejsca"
-      render :layout => 'user'
     else 
       redirect_to '/signin'
     end
@@ -71,7 +70,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
@@ -84,6 +82,21 @@ class UsersController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def change_password
+    if request.post?
+      puts "!!!!!!!!!!!!!!!!!!idzie post"
+      puts params
+      return
+    end
+    if signed_in?
+      @user = User.find(params[:id])
+      @page_name = "Zmiana hasła"
+      render :layout => 'user'
+    else
+      redirect_to '/signin'
     end
   end
 

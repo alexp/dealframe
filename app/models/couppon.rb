@@ -7,13 +7,13 @@ class Couppon < ActiveRecord::Base
   validates_inclusion_of :status, :in => STATUSES,
               :message => "{{value}} must be in #{STATUSES.join ','}"
 
-  named_scope :paid, 
+  scope :paid, 
     :conditions => { :status => 'wykonany', :used => false }
-  named_scope :payment_pending,
+  scope :payment_pending,
     :conditions => [ "status ='niezweryfikowany' or status = 'nowy'"  ]
-  named_scope :cancelled,
+  scope :cancelled,
     :conditions => { :status => 'odmowa' }
-  named_scope :used,
+  scope :used,
     :conditions => { :used => true }
 
   def status_name

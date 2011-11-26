@@ -244,6 +244,7 @@ pl:
       company: "firma"
       offer: "oferta"
       category: "kategoria"
+      user: "użytkownik"
     attributes:
       company:
         full_name: "pełna nazwa"
@@ -265,3 +266,5 @@ pl:
         additional_info: "kluczowe informacje o ofercie"
         category_id: "kategoria" # hack
         category: "kategoria"
+      user:
+        password_confirmation: "potwierdzenie hasła"

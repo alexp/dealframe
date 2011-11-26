@@ -1,12 +1,8 @@
 =form_for @user, :html => { :multipart => true } do |f|
-  -if @user.errors.any?
-    #error_explenation
-      =pluralize(@user.errors.count, "error")
-
-      %ul
-        -@user.errors.full_messages.each do |msg|
-          %li= msg
-  
+  -if !@user.errors.empty?
+    .error
+      =error_messages_for :user,
+        :header_message => "Oops, wystąpiły błędy przy zapisie zmian"
   %h2 
     %span.icon=image_tag 'info_icon.png'
     Podstawowe dane:
@@ -18,9 +14,12 @@
       %li
         =f.label :surname, "Nazwisko: "
         =f.text_field :surname
-      %li.last
+      %li
         =f.label :email, "Email: "
         =f.text_field :email
+      %li.last
+        =f.label "Zmiana hasła: "
+        =link_to 'zmiana hasła', :action => 'change_password'
   %h2 
     %span.icon=image_tag 'question_icon.png'
     Opcjonalne dane:
@@ -30,6 +29,5 @@
         =f.label "Twoje zdjęcie: "
         =f.file_field :photo
   
-  =link_to 'zmiana hasła', :action => 'change_password'
   .section
     =f.submit "Zapisz zmiany"

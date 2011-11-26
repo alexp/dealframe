@@ -66,6 +66,24 @@ h3 {
   border-left: 1px solid #ccc; }
 .user #content {
   padding-bottom: 80px; }
+  .user #content .error {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #fcc; }
+    .user #content .error h2 {
+      border: 0;
+      font-family: 'Helvetica Neue', 'Arial', sans-serif;
+      background-color: #fcc;
+      margin: 0 0 20px 0;
+      padding: 0; }
+    .user #content .error ul {
+      list-style: disc; }
+    .user #content .error ul li {
+      border: 0;
+      margin: 0 0 0 30px;
+      padding: 0;
+      display: list-item; }
   .user #content h2, .user #content th {
     padding: 12px 0 10px 26px;
     border-bottom: 1px solid #cccccc;

@@ -88,6 +88,29 @@ h3 {
   
 
   #content {
+    .error {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid red;
+      background-color: #fcc;
+      h2 {
+        border: 0;
+        font-family: 'Helvetica Neue', 'Arial', sans-serif;
+        background-color: #fcc;
+        margin:0 0 20px 0;
+        padding: 0;
+      }
+      ul {
+        list-style: disc;
+      }
+      ul li {
+        border: 0;
+        margin: 0 0 0 30px;
+        padding: 0;
+        display: list-item;
+
+      }
+    }
     padding-bottom: 80px; 
 
     h2, th {
@@ -309,5 +332,4 @@ h3 {
       margin: 0!important;
     }
   }
-
 }
