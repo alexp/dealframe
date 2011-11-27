@@ -21,20 +21,21 @@ class User < ActiveRecord::Base
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
   
-  validates :password,  :presence => true,
+  validates :password,  :presence => {:if => :password_required?},
                         :confirmation => true,
-                        :length => { :within => 6..40 },
-                        :on => :create
+                        :length => { :within => 6..40, :if => :password_required?}
 
-  validates_presence_of :password_confirmation
+  #validates_presence_of :password_confirmation
 
   #validates :name, :presence => true
   #validates :surname, :presence => true
   
-  before_save :encrypt_password
-
-  def change_password=(submitted_password)
-    self.password = submitted_password 
+  before_save :encrypt_password, :if => :password_required?
+  
+  def change_password(submitted_password)
+    puts "changing passSS"
+    update_attribute(:password, submitted_password)
+    save(:validate => true)
   end
 
   def has_password?(submitted_password)
@@ -62,6 +63,11 @@ class User < ActiveRecord::Base
 
   def unfollow!(followed)
     relationships.find_by_followed_id(followed).destroy
+  end
+  
+  protected
+  def password_required?
+    self.new_record? 
   end
 
   private

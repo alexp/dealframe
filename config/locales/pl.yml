@@ -268,3 +268,4 @@ pl:
         category: "kategoria"
       user:
         password_confirmation: "potwierdzenie hasła"
+        password: "hasło"

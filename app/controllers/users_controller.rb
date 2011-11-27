@@ -71,11 +71,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      # very bad solution - just to get this wotking
+      update_hash = {:name => params[:user][:name], 
+                      :surname => params[:user][:surname],
+                      :email => params[:user][:email]}
+
+      if params[:user].has_key?(:photo) 
+        update_hash[:photo] = params[:user][:photo]  
+      end
+
+      if @user.update_attributes(update_hash)
         #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.html { 
-          flash[:success] = "OK"
-          redirect_to @user 
+          flash[:success] = "Zmiany zostały zapisane"
+          redirect_to :action => "edit" 
         }
         format.xml  { head :ok }
       else
@@ -86,17 +95,25 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    if request.post?
-      puts "!!!!!!!!!!!!!!!!!!idzie post"
-      puts params
-      return
-    end
     if signed_in?
       @user = User.find(params[:id])
       @page_name = "Zmiana hasła"
       render :layout => 'user'
     else
       redirect_to '/signin'
+    end
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if signed_in?
+      if @user.change_password(params[:user][:password])
+        flash[:success] = "Hasło zmienione"
+        render :action => "change_password"
+      else 
+        flash[:error] = @user.errors
+        render :action => "change_password"
+      end
     end
   end
 
