@@ -1,9 +1,14 @@
 require 'digest'
 
 class User < ActiveRecord::Base
+
+  include ActiveModel::Dirty
+
+  define_attribute_methods [:password]
+
   attr_accessor :password
   attr_accessible :name, :photo, :surname, :email, :password, :password_confirmation
-  
+
   scope :merchant, :conditions => {:role => 'merchant'}
 
 
@@ -32,8 +37,8 @@ class User < ActiveRecord::Base
   
   before_save :encrypt_password, :if => :password_required?
   
-  def change_password(submitted_password)
-    puts "changing passSS"
+  def password=(submitted_password)
+    password_will_change!
     update_attribute(:password, submitted_password)
     save(:validate => true)
   end
@@ -67,7 +72,7 @@ class User < ActiveRecord::Base
   
   protected
   def password_required?
-    self.new_record? 
+    self.new_record? || self.password_changed?
   end
 
   private

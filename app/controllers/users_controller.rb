@@ -77,7 +77,7 @@ class UsersController < ApplicationController
                       :email => params[:user][:email]}
 
       if params[:user].has_key?(:photo) 
-        update_hash[:photo] = params[:user][:photo]  
+        update_hash[:photo] = params[:user][:photo]
       end
 
       if @user.update_attributes(update_hash)
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   def update_password
     @user = User.find(params[:id])
     if signed_in?
-      if @user.change_password(params[:user][:password])
+      if @user.password = params[:user][:password]
         flash[:success] = "Hasło zmienione"
         render :action => "change_password"
       else 
