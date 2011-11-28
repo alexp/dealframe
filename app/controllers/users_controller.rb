@@ -105,9 +105,12 @@ class UsersController < ApplicationController
   end
 
   def update_password
+    
+    logger.info "update password begin"
+
     @user = User.find(params[:id])
     if signed_in?
-      if @user.password = params[:user][:password]
+      if @user.change_password(params[:old_password], params[:user][:password])
         flash[:success] = "Hasło zmienione"
         render :action => "change_password"
       else 

@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
   include ActiveModel::Dirty
 
-  define_attribute_methods [:password]
-
   attr_accessor :password
+  define_attribute_methods = [:encrypted_password]
+
   attr_accessible :name, :photo, :surname, :email, :password, :password_confirmation
 
   scope :merchant, :conditions => {:role => 'merchant'}
@@ -37,10 +37,12 @@ class User < ActiveRecord::Base
   
   before_save :encrypt_password, :if => :password_required?
   
-  def password=(submitted_password)
-    password_will_change!
-    update_attribute(:password, submitted_password)
-    save(:validate => true)
+  def change_password(old_password, new_password)
+    if has_password?("#{old_password}")
+      self.encrypted_password_will_change! 
+      self.password = new_password 
+      save
+    end
   end
 
   def has_password?(submitted_password)
@@ -72,7 +74,7 @@ class User < ActiveRecord::Base
   
   protected
   def password_required?
-    self.new_record? || self.password_changed?
+    self.new_record? || self.encrypted_password_changed?
   end
 
   private
