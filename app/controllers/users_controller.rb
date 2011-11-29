@@ -110,16 +110,22 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
     if signed_in?
-      if @user.has_password?(params[:old_password])
-        @user.encrypted_password_will_change!
-        if @user.update_attribute(:password, params[:user][:password])
-          flash[:success] = "Hasło zmienione"
-          render :action => "change_password"
+      if @user.has_password?(params[:user][:old_password])
+        if params[:user][:password] == params[:user][:password_confirmation]
+          @user.encrypted_password_will_change!
+          if @user.update_attribute(:password, params[:user][:password])
+            flash[:success] = "Hasło zmienione"
+          else
+            flash[:error] = "nieudany zapis"
+          end
+        else 
+          @user.errors.add :password, "nie odpowiada potwierdzeniu"
+          @user.errors.add :password_confirmation, "nie odpowiada hasłu"
         end
       else 
-        flash[:error] = @user.errors
-        render :action => "change_password"
+        @user.errors.add :old_password, "jest niepoprawne"
       end
+      render :action => "change_password"
     end
   end
 

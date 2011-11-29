@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   include ActiveModel::Dirty
 
   attr_accessor :password
+  attr_accessor :old_password
   define_attribute_methods = [:encrypted_password]
 
   attr_accessible :name, :photo, :surname, :email, :password, :password_confirmation
