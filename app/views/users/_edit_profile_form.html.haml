@@ -26,6 +26,7 @@
   .section
     %ul 
       %li.last
+        =image_tag @user.photo.url(:thumb)
         =f.label "Twoje zdjęcie: "
         =f.file_field :photo
   

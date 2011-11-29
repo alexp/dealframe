@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   
   validates :password,  :presence => {:if => :password_required?},
-                        :confirmation => true,
-                        :length => { :within => 6..40, :if => :password_required?}
+                        :confirmation => { :if => :password_required? },
+                        :length => { :within => 6..40 , :if => :password_required?}
 
   #validates_presence_of :password_confirmation
 
@@ -38,11 +38,24 @@ class User < ActiveRecord::Base
   before_save :encrypt_password, :if => :password_required?
   
   def change_password(old_password, new_password)
-    if has_password?("#{old_password}")
-      self.encrypted_password_will_change! 
-      self.password = new_password 
-      save
+    logger.info("jestem w change_pass")
+    logger.info("has pass: #{has_password?(old_password)}")
+
+    logger.info(self.attributes)  
+    
+    self.password = "#{new_password}"
+    save(:validate => true)
+
+    /if has_password?(old_password) 
+      self.encrypted_password_will_change!
+      logger.info("activemodel has been informed!")
+      self.password = "chuj123"
+      logger.info("pass set to chuj123")
+      save(:validate => true)
+    else
+      return false
     end
+    /
   end
 
   def has_password?(submitted_password)

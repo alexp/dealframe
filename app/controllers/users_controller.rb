@@ -110,9 +110,12 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
     if signed_in?
-      if @user.change_password(params[:old_password], params[:user][:password])
-        flash[:success] = "Hasło zmienione"
-        render :action => "change_password"
+      if @user.has_password?(params[:old_password])
+        @user.encrypted_password_will_change!
+        if @user.update_attribute(:password, params[:user][:password])
+          flash[:success] = "Hasło zmienione"
+          render :action => "change_password"
+        end
       else 
         flash[:error] = @user.errors
         render :action => "change_password"
