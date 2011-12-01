@@ -13,7 +13,11 @@ gem 'haml'
 gem 'sass'
 gem 'acts-as-taggable-on'
 #gem 'paperclip', '~> 2.3'
-gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
+#gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
+gem 'paperclip'
+#gem 'right_aws'
+#gem 'aws-s3'
+gem 'paperclip-aws'
 #gem 'prawn', :git => "git://github.com/sandal/prawn.git", :submodules => true
 
 group :development do

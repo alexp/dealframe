@@ -12,13 +12,17 @@ class Offer < ActiveRecord::Base
 
   validates :value, :numericality => { :less_than_or_equal_to => 1000, :greater_than_or_equal_to => 2}
   validates :discount, :numericality => { :less_than_or_equal_to => 100, :greater_than_or_equal_to => 2}
-  after_save :notify
+  after_create :notify
 
 
   def is_active?
     (self.end_date >= Time.now) and (self.status == "active") and (self.company.verified == true)
   end
   
+  def expired?
+    (self.end_date <= Time.now) and (self.status == "active") and (self.company.verified == true)
+  end
+
   def price
     value - ((value * discount) / 100)
   end

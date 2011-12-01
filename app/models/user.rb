@@ -1,7 +1,6 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-
   include ActiveModel::Dirty
 
   attr_accessor :password
@@ -13,7 +12,12 @@ class User < ActiveRecord::Base
   scope :merchant, :conditions => {:role => 'merchant'}
 
 
-  has_attached_file :photo, :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"
+  has_attached_file :photo, 
+    :storage => :aws,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :path => ":attachment/:id/:style/:basename.:extension",
+    :bucket => "dealframedevel",
+    :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"
   
   has_many :couppons
   has_many :relationships, :foreign_key => "follower_id",
@@ -37,7 +41,9 @@ class User < ActiveRecord::Base
   #validates :surname, :presence => true
   
   before_save :encrypt_password, :if => :password_required?
-  
+  def self.s3_config
+    @@s3_config ||= YAML.load(ERB.new(File.read("#{Rails.root}/config/s3.yml")).result)[Rails.env]    
+  end
   def change_password(old_password, new_password)
     logger.info("jestem w change_pass")
     logger.info("has pass: #{has_password?(old_password)}")
