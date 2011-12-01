@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
 
   has_attached_file :photo, 
-    :storage => :aws,
+    :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :path => ":attachment/:id/:style/:basename.:extension",
     :bucket => "dealframedevel",
