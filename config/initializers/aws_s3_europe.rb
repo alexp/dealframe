@@ -19,3 +19,7 @@ module AWS
 end
 
 AWS::S3::Base.region = :europe
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => ENV['S3_KEY'] || 'AKIAIXNSHBVXTESY2WAQ',
+  :secret_access_key => ENV['S3_SECRET'] || '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'
+)
