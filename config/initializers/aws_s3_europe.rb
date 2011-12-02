@@ -19,4 +19,3 @@ module AWS
 end
 
 AWS::S3::Base.region = :europe
-
