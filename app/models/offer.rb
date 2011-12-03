@@ -11,7 +11,7 @@ class Offer < ActiveRecord::Base
       :secret_access_key => ENV['S3_SECRET']
     },
     :path => "offers/:id/:style/:basename.:extension",
-    :bucket => ENV['S3_BUCKET'] # "dealframedevel",
+    :bucket => ENV['S3_BUCKET'], # "dealframedevel",
     :s3_protocol => "https",
     :url => ":s3_eu_url",
     :styles => { :normal => "140x90" , :large => "249x160"}

@@ -1,0 +1,56 @@
+.details
+  .heading
+    %h2 Twoja Firma
+    %p Im dokładniejsze dane podasz na tym etapie, tym trafniej dotrzesz do swojej grupy docelowej 
+    %hr
+  %h3 Dodaj logo firmy:
+  =label_tag :company_logo, "Twoje logo lub ładne zdjęcie Twojej siedziby. Logo powinno mieć szerokość 120px."
+  %br
+  %br
+  =file_field :company, :logo
+  %hr.sep
+  %h3 Teraz powiedz nam więcej o swojej firmie:
+  
+  =label_tag :company_full_name, "Jak nazywa się Twoja firma/lokal?"
+  %br
+  =text_field :company, :full_name
+
+  .field
+    =label_tag :company_category_id, "Do jakiej kategorii zaliczysz swoją firmę?"
+    %br
+    %br
+    =collection_select(:company, :category_id, Category.all, :id, :name, { :prompt => "wybierz jedną" })
+
+  %br
+  %br
+  %p 
+    %strong Gdzie znajduje się Twoja firma?
+
+  .field.indent
+    =label_tag :comapny_street, "Ulica:"
+    =text_field :company, :address
+    %span Wpisz tu nazwę ulicy i numer budynku. Numer mieszkania jest opcjonalny.
+    =label_tag :company_zip_code, "Kod pocztowy:"
+    =text_field_tag 'zip_code_left', nil, :size => "2", :maxlength => "2"
+    &dash;
+    =text_field_tag 'zip_code_right', nil, :size => "3", :maxlength => "3"
+
+    %br
+    =label_tag :company_city, "Miasto:"
+    =text_field :company, :city 
+
+  %br
+  %p 
+    %strong Jak klienci mogą się z Tobą skontaktować?
+    
+  .field.indent
+    =label_tag :company_website_url, "Adres strony internetowej:"
+    =text_field :company, :website_url
+    %br
+    =label_tag :company_email, "Adres poczty email:"
+    =text_field :company, :email
+    %br
+    =label_tag :company_phone_number, "Telefon kontaktowy:"
+    =text_field :company, :phone_number
+    %span
+      %strong UWAGA: w ciągu najbliższych kilku dni, pracownik dealframe.pl spróbuje skontaktować się z Tobą celem weryfikacji powyższych danych.

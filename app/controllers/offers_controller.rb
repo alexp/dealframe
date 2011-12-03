@@ -42,28 +42,39 @@ class OffersController < ApplicationController
   end
 
   def create
-    @company = Company.new(params[:company])
-    @company.zip_code = params[:zip_code_left] + "-" + params[:zip_code_right]
-    @company.verified = false 
 
-    @offer = @company.offers.build(params[:offer])
+    #@offer = @company.offers.build(params[:offer])
+    
+    @offer = Offer.new(params[:offer])
     @offer.tag_list = params[:offer][:tag_list]
 
     if signed_in?
-      @company.user = current_user
+      if !params[:user][:company_id].empty?
+        @company = Company.find(params[:user][:company_id])
+        company_selected = true
+      end
+    end
+    
+    if @company.nil?
+      @company = Company.new(params[:company])
+      @company.zip_code = params[:zip_code_left] + "-" + params[:zip_code_right]
+      @company.verified = false 
+      @company.user = current_user if signed_in?
     end
 
+    @offer.company = @company
 
-    if @company.save
-      if @offer.save
-        # redirect_to(signup_path)
-        if signed_in?
-          redirect_to current_user
-        else 
-          redirect_to signin_path
+    if @offer.save
+      if !company_selected
+        if !@company.save
+          render :action => "new", :layout => "purchase"
         end
-      else
-        render :action => "new", :layout => "purchase"
+      end
+
+      if signed_in?
+        redirect_to current_user
+      else 
+        redirect_to signin_path
       end
     else
       render :action => "new", :layout => "purchase"

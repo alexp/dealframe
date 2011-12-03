@@ -6,6 +6,14 @@ $(function() {
   //$('.data').ajaxStart(function(){
   //  $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
   //});
+  $('#user_company_id').change(function() {
+    $(".add_company").fadeOut();
+  });
+  
+  $('a.new_company').click(function() {
+    $("#user_company_id").val("")
+    $(".add_company").fadeIn();
+  });
 
   $('#follow_form').ajaxStart(function(){
     $("span.liloader").css("display", "inline");
@@ -196,7 +204,7 @@ function show_offer_register() {
       panel.animate({left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth() : 0});
       panel.fadeOut();
       return false;
-    });
+    }); 
 }
 
 function show_offers_loader() {
