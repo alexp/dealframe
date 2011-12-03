@@ -315,7 +315,7 @@ span.close-btn {
     background-position: -28px -331px; }
 
 #deallist {
-  width: 600px;
+  width: 608px;
   border: 1px solid #cccccc;
   border-position: inside;
   margin-top: -4px;
@@ -326,7 +326,9 @@ span.close-btn {
     margin-top: 8px!important; }
 
 #deallist.nonempty {
-  border: none; }
+  border: none; 
+  width: 600px;
+}
 
 .wrapper {
   width: 990px;
