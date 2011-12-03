@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
       :secret_access_key => ENV['S3_SECRET']
     },
     :path => ":attachment/:id/:style/:basename.:extension",
-    :bucket => "dealframedevel",
+    :bucket => ENV['S3_BUCKET'] # "dealframedevel",
     :s3_protocol => "https",
     :url => ":s3_eu_url",
     :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"

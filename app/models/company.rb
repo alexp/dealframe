@@ -28,7 +28,7 @@ class Company < ActiveRecord::Base
   end
   
   def verified?
-    return false unless self.verified == true
+    verified
   end
 
   def fresh_offers

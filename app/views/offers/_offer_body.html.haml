@@ -1,5 +1,5 @@
 %h1= @offer.title
-=image_tag @offer.photo_url, :class => "offer-pic"
+=image_tag @offer.photo(:large), :class => "offer-pic"
 =raw(@offer.additional_info)
 %hr
 
