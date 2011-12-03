@@ -25,8 +25,6 @@
     #company-logo
       -if @offer.company.logo.exists?
         =link_to(image_tag(@offer.company.logo(:normal)), @offer.company)
-      -else
-        =link_to(image_tag(@offer.company.logo_url), @offer.company)
     #company-address
       %p
         %strong= link_to @offer.company.short_name, @offer.company

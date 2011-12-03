@@ -12,9 +12,6 @@
         #company-logo
           -if @company.logo.exists?
             =image_tag @company.logo(:normal)
-          - else 
-            -# legacy fallback:
-            =image_tag @company.logo_url, :width => "100px"
         %h1
           =@company.full_name
       .right

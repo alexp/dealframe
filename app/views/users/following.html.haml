@@ -15,7 +15,7 @@
                 -venue.fresh_offers.each do |offer|
                   .deals{:class => (offer == venue.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
                     .photo
-                      =link_to(image_tag(offer.photo_url), offer)
+                      =link_to(image_tag(offer.photo(:normal)), offer)
                     .content
                       %h1= link_to offer.title, offer
                       %p.description= offer.description
@@ -35,8 +35,6 @@
             .logo
               -if venue.logo.exists?
                 =link_to((image_tag venue.logo(:normal), {:width => "80px" }), venue)
-              -else 
-                =link_to((image_tag "#{venue.logo_url}", {:width => "80px" }), venue)
             .info
               %p 
                 -unless venue.phone_number.blank?

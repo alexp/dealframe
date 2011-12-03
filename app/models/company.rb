@@ -11,7 +11,17 @@ class Company < ActiveRecord::Base
                                    :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower 
 
-  has_attached_file :logo, :styles => { :normal => "100x55", :square => "100x100", :big => "120x80"  }
+  has_attached_file :logo, 
+    :storage => :s3,
+    :s3_credentials => {
+      :access_key_id => ENV['S3_KEY'],
+      :secret_access_key => ENV['S3_SECRET']
+    },
+    :path => "companies/:attachment/:id/:style/:basename.:extension",
+    :bucket => ENV['S3_BUCKET'], # "dealframedevel",
+    :s3_protocol => "https",
+    :url => ":s3_eu_url",
+    :styles => { :normal => "100x55", :square => "100x100", :big => "120x80"  }
 
   validates_attachment_presence :logo
   validates :full_name, :presence => true, :length => { :maximum => 100 }
