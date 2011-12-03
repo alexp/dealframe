@@ -14,9 +14,14 @@ class User < ActiveRecord::Base
 
   has_attached_file :photo, 
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_credentials => {
+      :access_key_id => ENV['S3_KEY'],
+      :secret_access_key => ENV['S3_SECRET']
+    },
     :path => ":attachment/:id/:style/:basename.:extension",
     :bucket => "dealframedevel",
+    :s3_protocol => "https",
+    :url => ":s3_eu_url",
     :styles => {:medium => "225x225", :thumb => "85x86"}, :default_url => "/images/missing.jpg"
   
   has_many :couppons
