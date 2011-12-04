@@ -14,13 +14,21 @@
         .heading
           %h2 Wybierz firmę
           %p na liście poniżej, wyświetliliśmy wszystkie Twoje firmy, jakie posiadasz w systemie. Wybierz tą, w której chcesz uruchomić promocję.
-          =collection_select(:user, :company_id, current_user.companies, :id, :full_name, { :disabled => lambda{|company| !company.verified? }, :prompt => "wybierz jedną" })
+          -if params[:company].nil?
+            =collection_select(:company, :id, current_user.companies, :id, :full_name, { :disabled => lambda{|company| !company.verified? }, :prompt => "wybierz jedną"} )
+          -else
+            =collection_select(:company, :id, current_user.companies, :id, :full_name, {:selected => params[:company][:id], :disabled => lambda{|company| !company.verified? }, :prompt => "wybierz jedną"} )
+
           lub 
-          =link_to "dodaj nową firmę", "#", {:class => "new_company"}
+          =link_to "dodaj nową firmę", "#add-company-form", {:class => "new_company"}
           %span{:style => "margin-left: 4px; color: #a0a0a0; font-size: 10px; display:block; width: 200px;"} 
             *szare firmy, których nie można wybrać, to firmy jeszcze przez nas niezweryfikowane
-          %div.add_company{:style => "display: none;"}
-            =render :partial => 'company_details', :locals => {:f => f}
+          -if params[:add_company_clicked]
+            %div.add_company
+              =render :partial => 'company_details', :locals => {:f => f}
+          -else
+            %div.add_company{:style => "display: none;"}
+              =render :partial => 'company_details', :locals => {:f => f}
           
     -else
       =render :partial => 'company_details', :locals => {:f => f}

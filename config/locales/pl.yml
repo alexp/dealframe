@@ -223,6 +223,7 @@ pl:
       less_than_or_equal_to: "musi być mniejsze lub równe %{count}"
       odd: "musi być nieparzyste"
       even: "musi być parzyste"
+      custom_company_id: "wybierz firmę z listy lub dodaj nową"
 
   activerecord:
     errors:
@@ -247,6 +248,7 @@ pl:
       user: "użytkownik"
     attributes:
       company:
+        id: "firma"
         full_name: "pełna nazwa"
         offers: "oferty"
         logo_file_name: "logo"

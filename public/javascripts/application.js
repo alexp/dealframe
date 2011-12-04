@@ -6,13 +6,16 @@ $(function() {
   //$('.data').ajaxStart(function(){
   //  $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
   //});
-  $('#user_company_id').change(function() {
+  $('#company_id').change(function() {
     $(".add_company").fadeOut();
+    //$("#add_company_clicked").val("false");
+    $("#add_company_clicked").remove();
   });
   
   $('a.new_company').click(function() {
-    $("#user_company_id").val("")
+    $("#company_id").val("")
     $(".add_company").fadeIn();
+    $("#add-company-form").append("<input type='hidden' id='add_company_clicked' name='add_company_clicked' value='true' />");
   });
 
   $('#follow_form').ajaxStart(function(){
