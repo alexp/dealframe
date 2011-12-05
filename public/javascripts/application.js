@@ -7,7 +7,6 @@ $(function() {
   //  $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
   //});
 
-  $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'}); 
   $('a#promoted').tipsy({fade: true, gravity: 'n'});
   $('a#for_kids').tipsy({fade: true, gravity: 'n'});
   $('a#for_women').tipsy({fade: true, gravity: 'n'});
@@ -30,6 +29,7 @@ $(function() {
   $('a.new_company').click(function() {
     $("#company_id").val("")
     $(".add_company").fadeIn();
+    $("#add-company-form").css("background-color", "#fff");
     $("#add-company-form").append("<input type='hidden' id='add_company_clicked' name='add_company_clicked' value='true' />");
   });
 

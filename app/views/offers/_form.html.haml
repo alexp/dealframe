@@ -1,15 +1,23 @@
 #new-offer
-  =form_for(@offer, @company, :html => { :multipart => true }) do |f|
+  =form_for(@offer, @company, @user, :html => { :multipart => true }) do |f|
     -if !@company.errors.empty?
       .details.error
         =error_messages_for :company,
           :header_message => "Oops, wystąpiły błędy przy dodawaniu oferty:",
           :message => "W sekcji \"Twoja firma\":"
+    -if !@offer.errors.empty?
+      .details.error
         =error_messages_for :offer, 
           :header_message => "", 
           :message => "W sekcji \"Oferta\":"
 
-    -if signed_in? and !current_user.companies.nil?
+    -if !@user.errors.empty?
+      .details.error
+        =error_messages_for :user,
+          :header_message => "Oops, wystąpiły błędy przy dodawaniu oferty:",
+          :message => "W sekcji \"Twój email i hasło\":"
+
+    -if signed_in? and !current_user.companies.blank?
       .details
         .heading
           %h2 Wybierz firmę
@@ -32,6 +40,20 @@
           
     -else
       =render :partial => 'company_details', :locals => {:f => f}
+
     =render :partial => 'offer_details', :locals => {:f => f}
 
+    -if !signed_in?
+      .details{:style => "background-color: #FCC2D1"}
+        .heading
+          %h2 KONIEC! Podaj swojego maila i wybierz hasło... 
+          %hr
+          =label_tag :user, :email
+          =text_field :user, :email
+          %br
+          =label_tag :user, :password
+          =password_field :user, :password
+          %br
+          =label_tag :user, :password_confirmation
+          =password_field :user, :password_confirmation
     = f.submit "Dodaj ofertę"

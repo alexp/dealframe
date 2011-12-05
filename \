@@ -36,7 +36,7 @@ class OffersController < ApplicationController
     @company = Company.new
     @offer = Offer.new
     
-    if !signed_in?
+    if !signed_in 
       @user = User.new
     else
       @user = current_user

@@ -1,4 +1,4 @@
-#add-company-form.details{:style => "background-color: #fff;"}
+#add-company-form.details
   .heading
     %h2 Twoja Firma
     %p Im dokładniejsze dane podasz na tym etapie, tym trafniej dotrzesz do swojej grupy docelowej 
@@ -10,7 +10,7 @@
   =file_field :company, :logo
   %hr.sep
   %h3 Teraz powiedz nam więcej o swojej firmie:
-  
+
   =label_tag :company_full_name, "Jak nazywa się Twoja firma/lokal?"
   %br
   =text_field :company, :full_name
