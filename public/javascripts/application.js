@@ -6,6 +6,21 @@ $(function() {
   //$('.data').ajaxStart(function(){
   //  $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
   //});
+
+  $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'}); 
+  $('a#promoted').tipsy({fade: true, gravity: 'n'});
+  $('a#for_kids').tipsy({fade: true, gravity: 'n'});
+  $('a#for_women').tipsy({fade: true, gravity: 'n'});
+  $('a#for_men').tipsy({fade: true, gravity: 'n'});
+
+  $('#cat-1').tipsy({fade: true, gravity: 'e'});
+  $('#cat-2').tipsy({fade: true, gravity: 'e'});
+  $('#cat-3').tipsy({fade: true, gravity: 'e'});
+  $('#cat-4').tipsy({fade: true, gravity: 'e'});
+  $('#cat-5').tipsy({fade: true, gravity: 'e'});
+  $('#cat-6').tipsy({fade: true, gravity: 'e'});
+  $('#cat-7').tipsy({fade: true, gravity: 'e'});
+
   $('#company_id').change(function() {
     $(".add_company").fadeOut();
     //$("#add_company_clicked").val("false");

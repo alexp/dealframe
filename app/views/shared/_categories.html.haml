@@ -6,14 +6,14 @@
   -if defined? company_category
     -if(company_category.id == category.id)
       =link_to category, :class => "active" do
-        %span{:id => "cat-#{category.id}", :class => 'active'}= category.name
+        %span{:id => "cat-#{category.id}", :title => "#{category.name}", :class => 'active'}= category.name
     -else
       =link_to category do 
-        %span{:id => "cat-#{category.id}"}= category.name
+        %span{:id => "cat-#{category.id}", :title => "#{category.name}" }= category.name
   -else
     -if current_page?(:id => category.id)
       =link_to category, :class => "active" do
-        %span{:id => "cat-#{category.id}", :class => 'active'}= category.name
+        %span{:id => "cat-#{category.id}", :class => 'active', :title => "#{category.name}"}= category.name
     -else
       =link_to category do 
-        %span{:id => "cat-#{category.id}"}= category.name
+        %span{:id => "cat-#{category.id}", :title => "#{category.name}"}= category.name
