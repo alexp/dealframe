@@ -43,21 +43,32 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
-    @company = Company.find(params[:id])
+    if signed_in?
+      @company = Company.find(params[:id])
+      if current_user.companies.include?(@company)
+        render :action => "edit", :layout => "user"
+      else
+        redirect_to @company
+      end
+    end
   end
 
   # POST /companies
   # POST /companies.xml
   def create
-    @company = Company.new(params[:company])
+    if signed_in?
+      @company = Company.new(params[:company])
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
-        format.xml  { render :xml => @company, :status => :created, :location => @company }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
+      if current_user.companies.include?(@company)
+        respond_to do |format|
+          if @company.save
+            format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
+            format.xml  { render :xml => @company, :status => :created, :location => @company }
+          else
+            format.html { render :action => "new" }
+            format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
+          end
+        end
       end
     end
   end
