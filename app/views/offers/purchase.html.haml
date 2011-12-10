@@ -88,7 +88,7 @@
     -if !signed_in? 
       %br 
       %h1 3. Twoje dane
-      
+      =link_to 'Zaloguj się jesli masz konto', signin_path if !signed_in? 
       #new-user.details
         =label_tag :email, "Email:", :class => "left"
         =email_field :user, :email

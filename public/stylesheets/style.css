@@ -5,6 +5,7 @@ body {
 a {
   font-size: 11px;
   text-decoration: none;
+  outline: 0,
   color: #009cd5; }
   a:hover {
     text-decoration: underline; }
@@ -322,7 +323,7 @@ span.close-btn {
   background-color: #fff;
   min-height: 500px; }
   #deallist h1 {
-    font-size: 16px;
+    font-size: 12px;
     margin-top: 8px!important; }
 
 #deallist.nonempty {

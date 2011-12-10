@@ -32,13 +32,17 @@ class SessionsController < ApplicationController
   def forgot_password
     if !params[:session][:email].blank?
       @user = User.find_by_email(params[:session][:email])
-      new_pass = ActiveSupport::SecureRandom.hex(5)
-      @user.change_password=(new_pass)
-      
-      if @user.save
-        UserMailer.new_password(@user, new_pass).deliver
-        flash[:success] = "Na podany przez Ciebie adres email, wysłaliśmy nowe hasło"
-        redirect_to signin_path
+      if @user
+        new_pass = ActiveSupport::SecureRandom.hex(5)
+        
+        @user.encrypted_password_will_change!
+        if @user.update_attribute(:password, new_pass)
+          UserMailer.new_password(@user, new_pass).deliver
+          flash[:success] = "Na podany przez Ciebie adres email, wysłaliśmy nowe hasło"
+          redirect_to signin_path
+        end
+      else
+        flash[:info] = "Nie znaleziono uzytkownika o tym emailu"
       end
     else 
         flash[:info] = "Wprowadź poprawny email"

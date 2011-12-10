@@ -31,10 +31,7 @@
     =text_field :company, :address
     %span Wpisz tu nazwę ulicy i numer budynku. Numer mieszkania jest opcjonalny.
     =label_tag :company_zip_code, "Kod pocztowy:"
-    =text_field_tag 'zip_code_left', nil, :size => "2", :maxlength => "2"
-    &dash;
-    =text_field_tag 'zip_code_right', nil, :size => "3", :maxlength => "3"
-
+    =text_field :company, :zip_code, :size => "2", :maxlength => "6"
     %br
     =label_tag :company_city, "Miasto:"
     =text_field :company, :city 

@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     /
   end
 
+  def change_password=(new_password)
+    password = ew_password
+  end
+
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end

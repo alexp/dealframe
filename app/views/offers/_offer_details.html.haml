@@ -33,6 +33,11 @@
       %span np.: "Tylko teraz, znizka na ferie zimowe dla grupy do 12os."
 
     .field
+      =f.label :invoice_description, "Opis na rachunku:"
+      =f.text_area :description
+      %span Bardziej oficjalny, na przykład: "Dwudniowa Zniżka na pobyt 12 osób w bazie hotelowej"
+
+    .field
       =f.label :start_date, "Termin uruchomienia kampanii:"
       %br
       %br
@@ -68,7 +73,7 @@
       =f.text_area :fine_print, :value => "np.: 'oferta ważna codziennie, w godz. 10:00 - 16:00; jeden kupon najedną osobę"
 
     .field
-      =f.label :terms, "Akceptuję" 
+      =f.label :terms, raw('Akceptuję <a href="http://www.dealframe.pl/regulamin.html">Regulamin serwisu</a>') 
       =f.check_box :terms
   -# tagi - do dorobienia (zamknięta lista)
   -#=f.text_field :tag_list

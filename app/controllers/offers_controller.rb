@@ -53,6 +53,7 @@ class OffersController < ApplicationController
     if signed_in?
       @company = Company.new
       @offer = Offer.new
+      @user = current_user
 
       if !params[:company][:id].blank?
         company_selected = true
