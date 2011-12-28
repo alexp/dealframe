@@ -1,9 +1,19 @@
 #filter
   #filter-wrap
     #dropdowns.left
-      =image_tag("offers_in.png")
-      =select("cities", "id", {"Warszawa" => "1"})
-      =collection_select(:category, :id, Category.all, :id, :name, :prompt => "wszystkie")
+      -#=image_tag("offers_in.png")
+      -#=select("cities", "id", {"Warszawa" => "1"})
+      -#=collection_select(:category, :id, Category.all, :id, :name, :prompt => "wszystkie")
+      %span#desc Oferty w kategorii:
+      -if params[:controller] == 'offers'
+        =link_to_function "Wszystkie oferty", "catDropDown()", :class => "current-cat"
+      -else
+        =link_to_function "#{@category.name}", "catDropDown()", :class => "current-cat"
+      #category-dropdown{:style=>'display: none;'}
+        -Category.all.each do |cat|
+          =link_to "#{cat.name}", cat
+        .lastcategory
+          =link_to "Wszystkie oferty", root_path, :class => "last"
 
     #buttons.right
       %ul

@@ -1,11 +1,9 @@
 #header
-  .left
+  #header_left
     #logo= link_to(image_tag('dealframe.png'), '/offers')
-    -if params[:controller] == 'offers' && params[:action] == "index"
+    -if params[:controller] == 'offers' || params[:controller] == 'categories'
       #doodles
-      #add-offer
-        =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
-  .right
+  #header_right
     .top-menu
       %ul
         -if !signed_in?
@@ -18,17 +16,18 @@
         -if signed_in?
           %li
             ="Witaj #{current_user.name}!"
-          %li 
-            %span.quo &rsaquo; 
+          %li
+            %span.quo &rsaquo;
             =link_to "Twój profil", current_user
           %li
-            %span.quo &rsaquo; 
+            %span.quo &rsaquo;
             =link_to "Wyloguj", signout_path, :method => :delete
         -else
           %span.quo &rsaquo;
           %li= link_to "Zaloguj się", signin_path
+    -if params[:controller] == 'offers' || params[:controller] == 'categories'
+      #add-offer
+        =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
   .clear
-
-
 -flash.each do |key, value|
   .flash{:class => "#{key}"}= value

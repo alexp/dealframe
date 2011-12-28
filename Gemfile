@@ -5,7 +5,7 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2','< 0.3'
+gem 'mysql2', '< 0.3'
 gem 'paypal_adaptive'
 gem 'json'
 gem 'jquery-rails', '>=1.0.3'
@@ -39,7 +39,7 @@ end
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
+# gem 'nokogiri', '=1.5.0'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'aws-s3', :require => 'aws/s3'
 

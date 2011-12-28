@@ -1,24 +1,36 @@
--unless @category.offers.blank?
-  -@category.active_offers.each do |offer|
-    .deals{:class => (offer == @category.active_offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
-      .photo
-        =image_tag(offer.photo_url)
-      .content
-        %h1= offer.title
-        %p.description= offer.description
-        %span.clock= image_tag 'clock.png'
-        =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-        
-        %div{:id => "offer-#{offer.id}", :class => "timer"}
-        %hr
-        %span.quo &rsaquo;
-        =link_to "Profil firmy", offer.company
-      .details
-        %h2 Kupon zniżkowy:
-        .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-        .price-tag
-          .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-          .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
-      .check{:style => "display: none;", :class => "deal-#{offer.id}"}
+-if !@category.offers.blank?
+  #deallist.left.nonempty
+    -@category.active_offers.each do |offer|
+      .deals{:class => (offer == @category.active_offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+        .photo
+          =image_tag(offer.photo_url) if !offer.photo_url.blank?
+        .content
+          %h1= offer.title
+          %p.description= offer.description
+          %span.clock= image_tag 'clock.png'
+          =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+
+          %div{:id => "offer-#{offer.id}", :class => "timer"}
+          %hr
+          %span.quo &rsaquo;
+          =link_to "Profil firmy", offer.company
+        .details
+          %h2 Kupon zniżkowy:
+          .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+          .price-tag
+            .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+            .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+        .check{:style => "display: none;", :class => "deal-#{offer.id}"}
 -else
-  %h1.empty Aktualnie, brak ofert w tej kategorii
+  #deallist.left.empty
+    .blank-state
+      %h1 Aktualnie, brak ofert w tej kategorii
+      %p
+        Dopiero wystartowaliśmy! Staramy się zapełnić wszystkie kategorie najlepszymi ofertami znizkowymi. W międzyczasie,
+        =link_to "zobacz wszystkie oferty.", :controller => 'offers', :action => 'index'
+      %p
+        Jeśli masz firmę i szukasz nowych form promocji
+        =link_to "kliknij tutaj", "http://biznes.dealframe.pl/"
+        aby zobaczyć jak możemy pomóc Ci promować swoją markę i koniecznie
+        =link_to "załóż konto.", :controller => 'sessions', :action => 'new'
+.clear
