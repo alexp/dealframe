@@ -240,7 +240,7 @@ pl:
 
       full_messages:
         format: "%{attribute} %{message}"
-    
+
     models:
       company: "firma"
       offer: "oferta"

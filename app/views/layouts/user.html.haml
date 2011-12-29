@@ -5,38 +5,40 @@
     %title= @title
     %meta{:name => "robots", :content => "noindex"}
     = csrf_meta_tag
-    = stylesheet_link_tag 'reset', 'style', 'text', 'user' 
+    = stylesheet_link_tag 'reset', 'style', 'text', 'user'
     = javascript_include_tag :defaults
     = javascript_include_tag "jquery.countdown.js"
     = javascript_include_tag "jquery.tipsy.js"
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body.user
     -if !cookies[:dealframe_cookie]
-      #top-info 
+      #top-info
         Witamy w Dealframe - Wersja alpha 0.1
         %span.close-btn zamknij
     .wrapper
 
-      =render :partial => 'shared/header' 
+      =render :partial => 'shared/header'
 
-      #left-col
-        %ul 
-          %li{:class => params[:action]=="edit"?"active":""} 
-            =link_to 'Twoje konto', :controller => 'users', :action => 'edit'
-          %li{:class => params[:action]=="couppons"?"active":""} 
-            =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons' 
-          %li{:class => params[:action]=="following"?"active":""} 
-            =link_to 'Obserwowane', :controller => 'users', :action => 'following' 
-          %li{:class => params[:action]=="companies"?"active":""} 
-            =link_to 'Twoje firmy!', :controller => 'users', :action => 'companies' 
-      #right-col
-        #top-nav
-          %h1
-            Panel użytkownika -
-            %span 
-              =@page_name
-        %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}
-          =yield
-          .clear
-      .clear
+      #content-wrapper
+        #left-col
+          %ul
+            %li{:class => (params[:action]=="edit" || params[:action]=="change_password")?"active":""}
+              =link_to 'Twoje konto', :controller => 'users', :action => 'edit'
+            %li{:class => params[:action]=="couppons"?"active":""}
+              =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons'
+            %li{:class => params[:action]=="following"?"active":""}
+              =link_to 'Obserwowane', :controller => 'users', :action => 'following'
+            -if !@user.companies.blank?
+              %li{:class => params[:action]=="companies"?"active":""}
+                =link_to 'Twoje firmy!', :controller => 'users', :action => 'companies'
+        #right-col
+          #top-nav
+            %h1
+              Panel użytkownika -
+              %span
+                =@page_name
+          %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}
+            =yield
+            .clear
+        .clear
       =render 'shared/footer'

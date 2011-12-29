@@ -8,9 +8,12 @@
 
 #content
   -if @user.couppons.paid.blank? && @user.couppons.payment_pending.blank?
-    %h1.empty
-      Nic do pokazania
-  
+    .blank-state
+      %h1 Nie masz jeszcze kuponów na swoim koncie.
+      %p Tutaj wyświetli się Twoja historia transakcji - wszystkie zakupione i wykorzystane kupony.
+      %h2= link_to "Przejdź na stronę główną i kup pierwszy kupon :)", root_path
+      %p
+        Wybierz interesującą Cię ofertę i dokonaj transakcji. Szczegóły dotyczące realizacji poszczególnych kuponów znajdują się w opisie oferty i na samym kuponie.
   -unless @user.couppons.paid.blank?
     %h2
       %span= image_tag 'promotion.png'
@@ -19,11 +22,11 @@
     #offers
       -@user.couppons.paid.each do |couppon|
         -offer = couppon.offer
-        .deals{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+        .deals{:class => cycle("odd", "even"), :id => "deal-#{offer.id}"}
           .photo
-            =link_to(image_tag(offer.photo_url), offer)
+            =image_tag(offer.photo(:normal))
           .content
-            %h1= link_to offer.title, offer
+            %h1= offer.title
             %p.description= offer.description
             %span.code.green
               \#Kod kuponu:
@@ -33,8 +36,6 @@
               Ważny do:
               %strong
                 =couppon.expiration_date.strftime("%d-%m-%Y")
-            %span.quo &rsaquo;
-            =link_to "Zobacz szczegóły", offer
           .details
             %h3 Kupon zniżkowy:
             .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
@@ -54,16 +55,16 @@
       %span= image_tag 'promotion.png'
       Kupony oczekujące na weryfikację płatności
 
-    %h1 
+    %h1
     .payment_pending
       #offers
         -@user.couppons.payment_pending.each do |couppon|
           -offer = couppon.offer
-          .deals.pending{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+          .deals.pending{:class => cycle("odd", "even"), :id => "deal-#{offer.id}"}
             .photo
-              =link_to(image_tag(offer.photo_url), offer)
+              =image_tag(offer.photo(:normal)) if !offer.photo(:normal).blank?
             .content
-              %h1= link_to offer.title, offer
+              %h1= offer.title
               %p.description= offer.description
               %span.code.red
                 =couppon.status
@@ -72,8 +73,6 @@
                 Ważny do:
                 %strong
                   =couppon.expiration_date.strftime("%d-%m-%Y")
-              %span.quo &rsaquo;
-              =link_to "Zobacz szczegóły", offer
             .details
               %h3 Kupon zniżkowy:
               .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
@@ -87,7 +86,7 @@
     %h2
       %span= image_tag 'promotion.png'
       Odmowa:
-    %h1 
+    %h1
     .payment_pending
       #offers
         -@user.couppons.cancelled.each do |couppon|

@@ -107,7 +107,7 @@ span.close-btn {
   color: #393C3D;
   font-weight: bold;
   line-height: 18px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #panel-container {
@@ -493,7 +493,7 @@ span.close-btn {
           font-size: 16px;
           color: #f4f4f4;
           margin: 12px;
-          border: 1px solid #ccc;
+          border: 1px solid #09F;
           padding: 9px 10px;
           background-color: white;
           border-radius: 4px;
@@ -748,11 +748,11 @@ span.close-btn {
   a {
     display: block;
     width: 259px;
-    height: 45px;
-    background: transparent url('/images/add_offer.png') no-repeat;
+    height: 40px;
+    background: transparent url('/images/new_add_offer.png') no-repeat;
     text-indent: -9999px;
-    /**&:hover {
-      background-position: 0 -42px;}*/
+    &:hover {
+      background-position: 0 -41px;}
   }
 }
 
