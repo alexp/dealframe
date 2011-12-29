@@ -625,3 +625,13 @@ span.close-btn {
   margin: 0 -10px; }
   .lastcategory a.last {
     margin: 16px 0 6px 16px !important; }
+
+.save {
+  background: transparent url("/images/save.png") no-repeat;
+  width: 89px;
+  border: 0;
+  padding: 0;
+  text-indent: -9999px;
+  height: 26px; }
+  .save:hover {
+    background-position: 0 -26px; }
