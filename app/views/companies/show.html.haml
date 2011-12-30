@@ -1,8 +1,8 @@
 -content_for :company_profile do
   =stylesheet_link_tag "companies"
   -if !@company.verified?
-    .flash.error 
-      Ta firma czeka na zatwierdzenie przez administratora 
+    .flash.error
+      Ta firma czeka na zatwierdzenie przez administratora
       %strong dealframe
   #categories
     =render :partial => "shared/categories", :locals => {:company_category => @company.category}
@@ -22,7 +22,7 @@
         #col-1
           %p Poleć wystawcę:
           =mail_to nil, image_tag("company_email.png"), :subject => "#{@company.short_name} - polecam oferty", :body => "http://94.75.125.226#{company_path(@company)}"
-          
+
           :javascript
             function fbs_click() {
             u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}
@@ -37,24 +37,24 @@
             .subcol
               =image_tag @company.second_photo_url unless @company.second_photo_url.blank?
           .subcol
-            %p 
+            %p
               %strong Kategoria:
               %br
               =@company.category.name
-            %p 
+            %p
               %strong Strona www:
               %br
               =link_to truncate(@company.website_url, :lengh => 30), @company.website_url
           .subcol
-            %p 
+            %p
               %strong Miasto:
               %br
               =@company.city
-            %p 
+            %p
               %strong Godziny otwarcia:
               %br
               =@company.opening_hrs
-      .right
+      #col-3-wrap
         #col-3
           #contact-details
             #address
@@ -72,7 +72,7 @@
                 %br
                 =mail_to @company.email
             #map-canvas{:style => "width: 260px; height: 200px;"}
-              :javascript 
+              :javascript
                 var latlng = new google.maps.LatLng(#{@company.lat},#{@company.long});
                 var myOptions = {
                   zoom: 10,
@@ -85,16 +85,16 @@
                   position: latlng,
                   title: '#{@company.short_name}'
                 });
-                  
-                marker.setMap(map); 
+
+                marker.setMap(map);
             .clear
       .clear
   .clear
   #bottom-content
-    #company-offers-nav 
-      %h3 Aktywne oferty zniżkowe:
-    #offers
-      -if !@company.active_offers.blank?
+    -if !@company.active_offers.blank?
+      #company-offers-nav
+        %h3 Aktywne oferty zniżkowe:
+      #offers
         -@company.active_offers.each do |offer|
           .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
             .photo

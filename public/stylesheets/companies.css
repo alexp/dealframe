@@ -90,6 +90,10 @@
     width: 140px;
     margin-right: 10px; }
 
+#col-3-wrap {
+  width: 260px;
+  float: left; }
+
 #col-3 {
   margin-left: 20px; }
 

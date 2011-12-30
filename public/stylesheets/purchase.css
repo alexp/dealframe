@@ -144,7 +144,8 @@ hr.sep {
   width: 180px; }
 
 #contact-details p {
-  margin: 0 0 0 20px; }
+  margin: 0 0 0 20px;
+  font-size: 11px; }
 
 .company-name {
   font-size: 16px;

@@ -551,6 +551,8 @@ span.close-btn {
       margin-top: 34px;
       padding-left: 30px;
       text-align: left; }
+      .wrapper #right-col #sidebar a {
+        font-size: 14px; }
 
 #footer {
   margin-top: 150px;
