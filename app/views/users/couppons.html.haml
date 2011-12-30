@@ -133,3 +133,24 @@
             %td
               %span.red wykorzystany.
     .clear
+  -unless @user.couppons.expired.blank?
+
+    %h2
+      %span= image_tag 'promotion.png'
+      Wygasły:
+
+    .used
+      %table
+        -@user.couppons.expired.each do |couppon|
+          %tr
+            %td
+              =couppon.couppon_code
+            %td
+              =couppon.offer.title
+            %td
+              =link_to couppon.offer.company.short_name, couppon.offer.company
+            %td
+              =couppon.updated_at.strftime("%d-%m-%Y")
+            %td
+              %span.red wykorzystany.
+    .clear

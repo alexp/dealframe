@@ -34,6 +34,13 @@ class CoupponsController < ApplicationController
   def payment
 
     @offer = Offer.find(params[:offer_id])
+
+    if @offer.expired?
+      flash[:error] = "Promocja wygasła 'obserwuj' tę firmę, aby być na bieżąco z nadchodzącymi ofertami!"
+      redirect_to @offer
+      return
+    end
+
     quantity = @offer.price * params[:quantity][:value].to_i
 
     if !signed_in?
