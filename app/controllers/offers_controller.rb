@@ -1,47 +1,47 @@
 # coding: utf-8
 class OffersController < ApplicationController
   def index
-    
+
     if !params[:tag].blank?
       @offers = Offer.where(
-        "end_date >= :now", 
+        "end_date >= :now",
         {:now => Time.now}).tagged_with(params[:tag])
     else
       @offers = Offer.active
     end
 
     @categories = Category.all
-    
+
     respond_to do |format|
       format.html
       format.xml  { render :xml => @offers }
       format.js { render :partial => 'shared/deallist', :locals => {:offers => @offers} }
     end
   end
-  
+
   def show
     #redirect_to :action => 'purchase'
 
     @offer = Offer.find(params[:id])
 
     respond_to do |format|
-      format.html { render :layout => 'purchase'}
+      format.html { redirect_to :purchase  }
       format.xml  { render :xml => @offer }
-      format.js { render :partial => 'offer_body' } 
-    end 
+      format.js { render :partial => 'offer_body' }
+    end
 
   end
 
   def new
     @company = Company.new
     @offer = Offer.new
-    
+
     if !signed_in?
       @user = User.new
     else
       @user = current_user
     end
-    
+
     render :layout => 'purchase'
   end
 
@@ -92,11 +92,11 @@ class OffersController < ApplicationController
       if @user.save
         sign_in @user
         if @company.save
-          redirect_to root_path 
+          redirect_to root_path
         else
           render :action => "new", :layout => "purchase"
         end
-      else 
+      else
         render :action => "new", :layout => "purchase"
       end
     end

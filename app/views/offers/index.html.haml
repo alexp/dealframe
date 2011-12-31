@@ -5,10 +5,11 @@
   =render :partial => "shared/filter"
   #panel-container
     .right
-    #panel-frame 
+    #panel-frame
       .panel
         .head
           %a{:href =>"#", :class => "close"} zamknij
-        .data 
-    =render :partial => "shared/deallist", :locals => {:offers => @offers}
-    .clear
+        .data
+    #deallist-container
+      =render :partial => "shared/deallist", :locals => {:offers => @offers}
+  .clear

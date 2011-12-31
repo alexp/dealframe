@@ -14,24 +14,27 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body
     -if !cookies[:dealframe_cookie]
-      #top-info 
+      #top-info
         Witamy w Dealframe - Wersja alpha 0.1
         %span.close-btn zamknij
     .wrapper
-      =render :partial => 'shared/header'  
+      =render :partial => 'shared/header'
       =yield(:company_profile) if @content_for_company_profile
-
-      #left-col
-        %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"} 
-          =yield
-          .clear
-      #right-col 
-        #sidebar
-          =image_tag 'how_it_works.png'
-          =image_tag 'separator.png'
-          -#=image_tag 'partners.png'
-          %br
+      #content-wrapper
+        #left-col
+          %div{:class => "page", :id => "page-#{params[:controller]}-#{params[:action]}"}
+            =yield
+            .clear
+        #right-col
+          #sidebar
+            =image_tag 'how_it_works.png'
+            =image_tag 'separator.png'
+            -#=image_tag 'partners.png'
+            %h5 Promowane firmy
+            =link_to "Hermanowa Wola", :controller => "companies", :action => "show", :id => "1"
+            %br
+            =link_to "Vedia", :controller => "companies", :action => "show", :id => "12"
+            %br
+        .clear
       .clear
-
       =render 'shared/footer'
-      

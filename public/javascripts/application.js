@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function() {
-  $.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script; 
+  $.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script;
   //$('.data').ajaxStart(function(){
   //  $(this).html("<p><img src='/images/loader.gif' border='0' align='center' style='width: 16px; height: 16px;' /></p>");
   //});
@@ -25,7 +25,7 @@ $(function() {
     //$("#add_company_clicked").val("false");
     $("#add_company_clicked").remove();
   });
-  
+
   $('a.new_company').click(function() {
     $("#company_id").val("")
     $(".add_company").fadeIn();
@@ -36,8 +36,8 @@ $(function() {
   $('#follow_form').ajaxStart(function(){
     $("span.liloader").css("display", "inline");
   });
-  
-  show_offer_register(); 
+
+  show_offer_register();
 
   $('#promoted').click(function() {
     if(!$(this).hasClass("active")) {
@@ -46,8 +46,8 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#promoted").addClass("active");
           show_offer_register();
         },
@@ -59,8 +59,8 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#promoted").removeClass("active");
           show_offer_register();
         },
@@ -77,8 +77,8 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_kids").addClass("active");
           show_offer_register();
         },
@@ -90,16 +90,16 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_kids").removeClass("active");
-          show_offer_register(); 
+          show_offer_register();
         },
         dataType: "html"
       });
     }
   });
-  
+
   $('#for_women').click(function() {
     if(!$(this).hasClass("active")) {
       $.ajax({
@@ -107,10 +107,10 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_women").addClass("active");
-          show_offer_register(); 
+          show_offer_register();
         },
         dataType: "html"
       });
@@ -120,16 +120,16 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_women").removeClass("active");
-          show_offer_register(); 
+          show_offer_register();
         },
         dataType: "html"
       });
     }
   });
-  
+
   $('#for_men').click(function() {
     if(!$(this).hasClass("active")) {
       $.ajax({
@@ -137,10 +137,10 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_men").addClass("active");
-          show_offer_register(); 
+          show_offer_register();
         },
         dataType: "html"
       });
@@ -150,10 +150,10 @@ $(function() {
         type: "get",
         beforeSend: show_offers_loader(),
         success: function(data) {
-          $("#deallist").empty();
-          $("#deallist").html(data);
+          $("#deallist-container").empty();
+          $("#deallist-container").html(data);
           $("#for_men").removeClass("active");
-          show_offer_register(); 
+          show_offer_register();
         },
         dataType: "html"
       });
@@ -165,15 +165,16 @@ $(function() {
     $.ajax({
       url: "/categories/"+category_id,
       type: "get",
+      cache: false,
       beforeSend: show_offers_loader(),
       success: function(data) {
-        $("#deallist").empty();
-        $("#deallist").html(data);
+        $("#deallist-container").empty();
+        $("#deallist-container").html(data);
         $("#categories a").removeClass("active");
         $("#categories a").find("span").removeClass("active");
         $("#categories a[href$='/categories/"+category_id+"']").addClass("active");
         $("#categories a[href$='/categories/"+category_id+"']").find("span").addClass("active");
-          show_offer_register(); 
+          show_offer_register();
       },
       dataType: "html"
     });
@@ -182,13 +183,13 @@ $(function() {
 
 function show_offer_register() {
     $('.deals').click(function() {
-      
+
       var panel = $('.panel');
       panel.fadeIn();
       $('#panel-frame').css("display", "block");
 
-      $('.data').empty(); 
-      
+      $('.data').empty();
+
       if(panel.css('left') == "601px") {
       } else {
         panel.animate({
@@ -208,7 +209,7 @@ function show_offer_register() {
         dataType: "html"
       });
     });
-    
+
     $('.deals').mouseenter(function() {
       $('.check.'+this.id).show();
     });
@@ -222,7 +223,7 @@ function show_offer_register() {
       panel.animate({left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth() : 0});
       panel.fadeOut();
       return false;
-    }); 
+    });
 }
 
 function show_offers_loader() {
@@ -242,6 +243,21 @@ var HideButton = {
 
 }
 
+var mouse_is_inside = false;
+
 $(document).ready(function() {
       HideButton.init();
-    });
+      $('#category-dropdown').hover(function(){
+         mouse_is_inside=true;
+      }, function(){
+         mouse_is_inside=false;
+      });
+
+      $("body").mouseup(function(){
+         if(! mouse_is_inside) $('#category-dropdown').hide();
+      });
+});
+
+function catDropDown() {
+   $("#category-dropdown").show();
+}

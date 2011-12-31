@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @page_name = "Twoje firmy"
   end
-  
+
   def show
     if signed_in?
       @user = User.find(params[:id])
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if signed_in?
       @user = User.find(params[:id])
       @page_name = "Obserwowane miejsca"
-    else 
+    else
       redirect_to '/signin'
     end
   end
@@ -55,9 +55,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      
+
       UserMailer.welcome_email(@user).deliver
-      
+
       sign_in @user
       flash[:success] = "Witaj w Dealframe"
       redirect_to root_path
@@ -69,28 +69,22 @@ class UsersController < ApplicationController
   end
 
   def update
+    @page_name = "Twoje konto"
     @user = User.find(params[:id])
-    respond_to do |format|
-      # very bad solution - just to get this wotking
-      update_hash = {:name => params[:user][:name], 
-                      :surname => params[:user][:surname],
-                      :email => params[:user][:email]}
+    # very bad solution - just to get this wotking
+    update_hash = {:name => params[:user][:name],
+                    :surname => params[:user][:surname],
+                    :email => params[:user][:email]}
 
-      if params[:user].has_key?(:photo) 
-        update_hash[:photo] = params[:user][:photo]
-      end
+    if params[:user].has_key?(:photo)
+      update_hash[:photo] = params[:user][:photo]
+    end
 
-      if @user.update_attributes(update_hash)
-        #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.html { 
-          flash[:success] = "Zmiany zostały zapisane"
-          redirect_to :action => "edit" 
-        }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.update_attributes(update_hash)
+        flash[:success] = "Zmiany zostały zapisane"
+        redirect_to :action => "edit"
+    else
+      render :action => "edit"
     end
   end
 
@@ -105,9 +99,10 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    
+
     logger.info "update password begin"
 
+    @page_name = "Zmiana hasła"
     @user = User.find(params[:id])
     if signed_in?
       if @user.has_password?(params[:user][:old_password])
@@ -118,11 +113,11 @@ class UsersController < ApplicationController
           else
             flash[:error] = "nieudany zapis"
           end
-        else 
+        else
           @user.errors.add :password, "nie odpowiada potwierdzeniu"
           @user.errors.add :password_confirmation, "nie odpowiada hasłu"
         end
-      else 
+      else
         @user.errors.add :old_password, "jest niepoprawne"
       end
       render :action => "change_password"

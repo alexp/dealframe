@@ -1,5 +1,6 @@
 #company-profile {
-  width: 920px;
+  width: 910px;
+  margin-top: 40px;
   background-color: #fff;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -91,7 +92,7 @@
     width: 590px;
   }
   .right {
-    width: 310px;  
+width: 260px;
   }
 }
 
@@ -124,6 +125,8 @@
     margin-right: 10px;
   }
 }
+
+#col-3-wrap { width: 260px; float: left; }
 
 #col-3 {
   margin-left: 20px;

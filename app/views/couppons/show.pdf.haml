@@ -5,7 +5,7 @@
     %title= @title
     %meta{:name => "robots", :content => "noindex", :charset => "utf-8"}
     = csrf_meta_tag
-    = stylesheet_link_tag 'reset', 'style', 'text', 'pdf' 
+    = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body
@@ -18,14 +18,14 @@
 
     #company-summary{:style => "float: left;"}
       #picture
-        =image_tag @offer.photo_url, :width => "200px", :style => "margin-top: 20px"
+        =image_tag @offer.photo(:normal), :width => "200px", :style => "margin-top: 20px"
       %h4 Tu zrealizujesz kupon:
       #contact-details.left{:style => "width: 230px; line-height: 24px;"}
         %strong=@offer.company.short_name
         %p
-          =@offer.company.address 
+          =@offer.company.address
           %br
-          =@offer.company.zip_code 
+          =@offer.company.zip_code
           %br
           =@offer.company.city
           %br
@@ -37,13 +37,13 @@
     #offer
       %h1=@offer.title
       %p{:style=>"margin-top: -10px;"}=@offer.invoice_description
-      %h2 
-        Wartość kuponu: 
+      %h2
+        Wartość kuponu:
         =number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
       %h3
         Kod kuponu:
         =@couppon.couppon_code
-      
+
       %p
         Zabezpieczenie:
         =@couppon.security_code

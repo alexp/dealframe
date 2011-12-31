@@ -16,46 +16,46 @@
 
 
   .order-page
+    -if !@offer.expired?
+      %h1 1. Jak to działa?
 
-    %h1 1. Jak to działa?
-    
-    .flash.static  
-      -if signed_in?
-        Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności. 
-        %br 
-        Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
-      -else
-        Podaj swój adres email i wybierz hasło dostępu. Następnie wybierz formę płatności. 
+      .flash.static
+        -if signed_in?
+          Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności.
+          %br
+          Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
+        -else
+          Podaj swój adres email i wybierz hasło dostępu. Następnie wybierz formę płatności.
+          %br
+          Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
         %br
-        Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
-      %br
-      %strong Firma, która wystawia kupon została przez nas zweryfikowana. Gwarantujemy bezpieczeństwo zakupów.
+        %strong Firma, która wystawia kupon została przez nas zweryfikowana. Gwarantujemy bezpieczeństwo zakupów.
 
-    %h1 2. Twoje zamówienie:
+      %h1 2. Twoje zamówienie:
 
-    #timer-desc do końca pozostało:
-    %div{:id => "offer-#{@offer.id}", :class => "timer large"}
-    =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
-    
-    #order-table.details
-      %table
-        %thead
-          %th.desc opis
-          %th.quantity ilość
-          %th.mult
-          %th.price cena
-          %th.total total
-        %tbody
-          %tr 
-            %td.desc=@offer.invoice_description
-            %td.quantity#quantity= select("quantity", "value", {"1" => "1", "2" => "2", "3" => "3", "4" => "4"}, 
-              {}, 
-              {:onchange => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"})
-            %td.mult x
-            %td.price=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-            %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
-      .clear
-
+      #timer-desc do końca pozostało:
+      %div{:id => "offer-#{@offer.id}", :class => "timer large"}
+      =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
+      #order-table.details
+        %table
+          %thead
+            %th.desc opis
+            %th.quantity ilość
+            %th.mult
+            %th.price cena
+            %th.total total
+          %tbody
+            %tr
+              %td.desc=@offer.invoice_description
+              %td.quantity#quantity= select("quantity", "value", {"1" => "1", "2" => "2", "3" => "3", "4" => "4"},
+                {},
+                {:onchange => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"})
+              %td.mult x
+              %td.price=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+              %td.total#cart-total=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .clear
+    -else
+      %h1{:style => 'background-color: #AEF2BB; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 10px; '} Promocja zakończona
     #order-sumary.details
       #company-summary
         %h3 Oferent:
@@ -69,8 +69,8 @@
           %p=@offer.company.zip_code + " " + @offer.company.city
           %p=@offer.company.phone_number
           %p=mail_to @offer.company.email
-      
-      #offer-summary  
+
+      #offer-summary
         %h3 Co dostajesz?
         =@offer.description
         =raw @offer.additional_info
@@ -78,51 +78,51 @@
         #fine-print
 
           =raw @offer.fine_print
-      .clear 
-    
+      .clear
+
     -unless @offer.details.blank?
       #offer-details.details
         %h3 Szczegółowy opis
         =raw @offer.details
-  
-    -if !signed_in? 
-      %br 
+
+    -if !signed_in?
+      %br
       %h1 3. Twoje dane
-      =link_to 'Zaloguj się jesli masz konto', signin_path if !signed_in? 
+      =link_to 'Zaloguj się jesli masz konto', signin_path if !signed_in?
       #new-user.details
         =label_tag :email, "Email:", :class => "left"
         =email_field :user, :email
 
         %hr.details-divider
-        
+
         =label_tag :password, "Hasło:", :class => "left"
         =password_field :user, :password
-        
+
         %hr.details-divider
-        
+
         =label_tag :password_confirmation, "Potwierdzenie hasła:", :class => "left"
         =password_field :user, :password_confirmation
-        
+
         .clear
-          
-    %br
 
-    %h1 4. Płatność
-    
-    #final-summary.details
-      %h3 Kupujesz:
-      #quantity-final.left
-        1
-        %span x
-      #invdesc.left
-        =@offer.invoice_description
-      %hr.details-divider
-      #total-final.right 
-        #inf Total: 
-        %span=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0) 
-      .clear 
     %br
+    -if !@offer.expired?
+      %h1 4. Płatność
 
-    =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay", :class => "left"
-    .clear
+      #final-summary.details
+        %h3 Kupujesz:
+        #quantity-final.left
+          1
+          %span x
+        #invdesc.left
+          =@offer.invoice_description
+        %hr.details-divider
+        #total-final.right
+          #inf Total:
+          %span=number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+        .clear
+      %br
+
+      =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay", :class => "left"
+      .clear
 

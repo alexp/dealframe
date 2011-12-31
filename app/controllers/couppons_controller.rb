@@ -24,18 +24,25 @@ class CoupponsController < ApplicationController
                    :encoding => 'utf-8'
           end
         end
-      else 
+      else
         flash[:error] = "Przepraszamy, nie masz uprawnień do oglądania tej strony"
         redirect_to root_path
       end
-    end  
+    end
   end
 
   def payment
-    
+
     @offer = Offer.find(params[:offer_id])
+
+    if @offer.expired?
+      flash[:error] = "Promocja wygasła 'obserwuj' tę firmę, aby być na bieżąco z nadchodzącymi ofertami!"
+      redirect_to @offer
+      return
+    end
+
     quantity = @offer.price * params[:quantity][:value].to_i
-    
+
     if !signed_in?
       if params[:user][:email].blank?
         flash[:error] = "Wprowadź swój email"
@@ -53,14 +60,14 @@ class CoupponsController < ApplicationController
     else
       @user = current_user
     end
-    
+
     case params[:payment_method]
       when "paypal"
-        if !flash[:error] 
+        if !flash[:error]
           paypal_payment(@offer, params[:quantity][:value])
         end
       when "dotpay"
-        
+
         if !flash[:error]
           safe_desc = CGI::escape(@offer.invoice_description)
           amount = params[:quantity][:value].to_i * @offer.price
@@ -71,7 +78,7 @@ class CoupponsController < ApplicationController
             user_email = params[:user][:email]
           end
 
-          @couppon = Couppon.new 
+          @couppon = Couppon.new
           @couppon.user = @user
           @couppon.company = @offer.company
           @couppon.offer = @offer
@@ -83,34 +90,34 @@ class CoupponsController < ApplicationController
 
           if @couppon.save
             redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"
-            
+
             flash[:success] = "Kupiłeś kupon:#{@offer.invoice_description}"
           else
             flash[:error] = "Cos nie dziala"
           end
-        end 
+        end
 
       when "cc"
         puts "karta"
       end
   end
-  
+
   def complete
-  
+
   end
 
   def verifying
     #pin = "1111111111111111"
     #checkstring = pin+":"+"47118"+":"+params[:control]+"::"+params[:amount]+"::::::"+params[:t_status]
-    #md5string = Digest::MD5.hexdigest(checkstring) 
-    #if md5string != params[:md5] 
+    #md5string = Digest::MD5.hexdigest(checkstring)
+    #if md5string != params[:md5]
     #  render :text => "FAIL #{checkstring} #{md5string}"
     #  return
     #end
 
     if request.remote_ip == "195.150.9.37"
       @couppon = Couppon.find(params[:control])
-       
+
       if params[:t_status] == '1'
         @couppon.status = "nowy"
       elsif params[:t_status] == '2' and !@couppon.nil?
@@ -128,21 +135,21 @@ class CoupponsController < ApplicationController
   end
 
   def ipn_notification
-    
+
   end
-  
+
   private
 
   def paypal_payment(offer, quantity)
-  
+
     price = offer.price * quantity.to_i
 
     pay_request = PaypalAdaptive::Request.new
-    
+
     data = {
-      "returnUrl" => "http://localhost:3000/couppons/complete", 
+      "returnUrl" => "http://localhost:3000/couppons/complete",
       "requestEnvelope" => {"errorLanguage" => "en_US"},
-      "currencyCode"=>"PLN",  
+      "currencyCode"=>"PLN",
       "receiverList"=>{"receiver"=>[{"email"=>"chuj_1305557281_biz@gmail.com", "amount"=>price}]},
       "cancelUrl"=>"http://localhost:3000/offers/#{offer.id}",
       "actionType"=>"PAY",

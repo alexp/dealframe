@@ -24,7 +24,7 @@ textarea {
 
 .field {
   margin: 16px 0;
-  
+
 
   label {
     float: left;
@@ -32,10 +32,10 @@ textarea {
     margin: 4px 0;
     padding: 0 4px;
   }
-  
+
   span {
     font-size: 12px;
-    display: block; 
+    display: block;
     width: 220px;
     margin: 6px 0px 10px 184px;
     color: #a0a0a0;
@@ -43,7 +43,7 @@ textarea {
 }
 
 span.currency {
-  display: inline; 
+  display: inline;
   width: auto;
   margin: 0;
 }
@@ -55,10 +55,11 @@ span.currency {
   text-align: left;
   font-weight: normal;
   font-size: 12px;
+  margin-bottom: 20px;
   padding: 14px 18px;
 }
 
-h1 { 
+h1 {
   font-size: 23px;
 }
 
@@ -102,21 +103,21 @@ hr { margin: 40px 0; }
       margin-bottom: 0px;
       font-size: 24px;
     }
-    p { 
-      margin-bottom: 10px; 
-      width: 350px; 
-      color: #707070; 
+    p {
+      margin-bottom: 10px;
+      width: 350px;
+      color: #707070;
       font-size: 12px;
     }
     hr {
-     margin: 8px -20px; 
+     margin: 8px -20px;
      border-color: #cccccc;
     }
   }
 }
 
 hr.sep {
-  margin: 20px -20px; 
+  margin: 20px -20px;
   border-color: #cccccc;
 }
 
@@ -124,7 +125,7 @@ hr.sep {
   background-color: #FCC;
 }
 
-.number { 
+.number {
   float: left;
   font-size: 48px;
   font-weight: bold;
@@ -141,7 +142,7 @@ hr.sep {
   width: 320px;
   font-size: 12px;
   ul li {
-    margin: 4px 0px 0px 20px;  
+    margin: 4px 0px 0px 20px;
   }
 }
 
@@ -190,6 +191,7 @@ hr.sep {
 
 #contact-details p {
   margin: 0 0 0 20px;
+  font-size: 11px;
 }
 
 .company-name {
@@ -199,16 +201,16 @@ hr.sep {
 }
 .order-page {
 
-  th { 
+  th {
     text-transform: uppercase;
-    color: #656565;  
+    color: #656565;
     font-size: 1.1em;
     border-bottom: 1px solid #D1D1C9;
     text-align: center;
   }
 
   th.desc {
-    text-align: left; 
+    text-align: left;
   }
 
   td.desc {
@@ -216,13 +218,13 @@ hr.sep {
     font-weight: bold;
     width: 380px;
   }
-  
+
   td.quantity, .mult, .price, .total {
     text-align: center;
     margin: 0;
     padding: 0;
   }
-  
+
   td.quantity {
     width: 60px;
     select {
@@ -232,7 +234,7 @@ hr.sep {
       padding: 1px;
     }
   }
-  
+
   td.mult {
     width: 50px;
   }
@@ -283,9 +285,9 @@ hr.sep {
   font-size: 18px;
   font-weight: bold;
   margin-right: 20px;
-  
-  span { 
-    font-size: 16px; 
+
+  span {
+    font-size: 16px;
   }
 }
 
@@ -347,7 +349,7 @@ hr.sep {
   text-align: center;
   border-radius: 5px;
   border: 1px solid #cccccc;
-  
+
   ul {
     margin: 0;
     padding: 10px 0;
@@ -367,7 +369,7 @@ hr.sep {
 }
 
 .total, .price, .quantity {
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .total {
@@ -394,6 +396,6 @@ h1.add_offer {
     margin-top: 20px;
   }
   .details {
-    padding: 20px;  
+    padding: 20px;
   }
 }

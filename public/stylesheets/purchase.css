@@ -44,6 +44,7 @@ span.currency {
   text-align: left;
   font-weight: normal;
   font-size: 12px;
+  margin-bottom: 20px;
   padding: 14px 18px; }
 
 h1 {
@@ -143,7 +144,8 @@ hr.sep {
   width: 180px; }
 
 #contact-details p {
-  margin: 0 0 0 20px; }
+  margin: 0 0 0 20px;
+  font-size: 11px; }
 
 .company-name {
   font-size: 16px;

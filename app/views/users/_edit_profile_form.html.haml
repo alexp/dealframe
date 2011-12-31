@@ -1,12 +1,13 @@
 =form_for @user, :html => { :multipart => true } do |f|
-  -if !@user.errors.empty?
-    .error
-      =error_messages_for :user,
-        :header_message => "Oops, wystąpiły błędy przy zapisie zmian"
-  %h2 
+  %h2
     %span.icon=image_tag 'info_icon.png'
     Podstawowe dane:
-  .section 
+    -if @user.errors.any?
+      %h2.error_head Ooops! Wystąpiły błędy przy aktualizacji Twoich danych.
+      %ul.error_list
+        -@user.errors.full_messages.each do |msg|
+          %li= msg
+  .section
     %ul
       %li
         =f.label :name, "Imię: "
@@ -17,18 +18,17 @@
       %li
         =f.label :email, "Email: "
         =f.text_field :email
-      %li.last
-        =f.label "Zmiana hasła: "
-        =link_to 'zmiana hasła', :action => 'change_password'
-  %h2 
+      %li.last.change_pass
+        =link_to raw('Zmień hasło &raquo;'), :action => 'change_password'
+  %h2
     %span.icon=image_tag 'question_icon.png'
     Opcjonalne dane:
   .section
-    %ul 
+    %ul
       %li.last
         =image_tag @user.photo.url(:thumb)
         =f.label "Twoje zdjęcie: "
         =f.file_field :photo
-  
+
   .section
-    =f.submit "Zapisz zmiany"
+    =f.submit "Zapisz zmiany", :class=>'save'

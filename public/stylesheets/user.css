@@ -10,7 +10,7 @@ h3 {
   font-size: 14px; }
 
 .used {
-  padding-left: 26px; }
+  padding: 0 26px; }
   .used table {
     width: 100%; }
   .used table td {
@@ -23,11 +23,23 @@ h3 {
     font-size: 14px;
     font-weight: bold; }
 
+.user #content-wrapper {
+  margin-top: 40px; }
 .user #offers {
-  margin-top: -20px;
-  width: 608px; }
+  padding: 40px 100px;
+  float: none;
+  margin: 0; }
+  .user #offers .odd {
+    background: url("/images/deal_bg.gif") no-repeat; }
+  .user #offers .even {
+    background: url("/images/deal_bg.gif") no-repeat 0 -140px; }
   .user #offers .deals {
-    width: 608px; }
+    width: 610px; }
+    .user #offers .deals:hover {
+      background: url("/images/deal_hover.gif") no-repeat;
+      cursor: auto; }
+    .user #offers .deals .content h1 {
+      font-size: 14px; }
   .user #offers .pending:hover {
     cursor: auto; }
 .user h1.empty {
@@ -40,10 +52,10 @@ h3 {
 .user span.red {
   color: #E95D42; }
 .user span.exp {
-  font-size: 12px;
+  font-size: 11px;
   margin-left: 4px; }
 .user span.code {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   font-family: 'Droid sans', 'Helvetica Neue', 'Helvetica', Arial, sans-serif; }
   .user span.code .green {
@@ -66,6 +78,19 @@ h3 {
   border-left: 1px solid #ccc; }
 .user #content {
   padding-bottom: 80px; }
+  .user #content h2.error_head {
+    background-color: #F2CED7;
+    border-top: 0;
+    margin-top: -20px; }
+  .user #content ul.error_list {
+    list-style: disc;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px; }
+    .user #content ul.error_list li {
+      border: 0;
+      margin: 0 0 0 75px;
+      padding: 0;
+      display: list-item; }
   .user #content .error {
     margin: 20px;
     padding: 10px;
@@ -97,6 +122,9 @@ h3 {
       margin: -3px 10px 0 0; }
       .user #content h2 span img, .user #content th span img {
         width: 20px; }
+  .user #content li.change_pass {
+    text-align: left;
+    padding-left: 30px; }
   .user #content ul {
     list-style: none; }
   .user #content ul li {
@@ -183,7 +211,10 @@ h3 {
 .user #dashboard {
   padding: 20px 20px 0 26px;
   background-color: #f1f1f1;
-  height: 100px; }
+  height: 100px;
+  -moz-box-shadow: 0px 3px 10px #ccc;
+  -webkit-box-shadow: 0px 3px 10px #ccc;
+  box-shadow: 0px 3px 10px #ccc; }
   .user #dashboard .left {
     width: 60%; }
   .user #dashboard .right {
