@@ -1,7 +1,6 @@
 body {
   background: url(/images/bg.png) repeat-x;
   color: #323a45;
-  height: auto;
 }
 
 a {
@@ -224,8 +223,18 @@ span.close-btn {
     padding-left: 30px;
     font-size: 11px;
 
+    h1 {
+      margin: 0 5px 10px;
+      line-height: 18px;
+      font-size: 16px;
+    }
+
     li {
       margin-left: 22px;
+    }
+
+    hr {
+      margin: 8px 0;
     }
 
     .offer-pic {
@@ -431,7 +440,7 @@ span.close-btn {
   min-height: 500px;
 
   h1 {
-    font-size: 16px;
+    font-size: 12px;
     margin-top: 8px!important;
   }
 }

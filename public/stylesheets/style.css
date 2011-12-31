@@ -1,7 +1,6 @@
 body {
   background: url(/images/bg.png) repeat-x;
-  color: #323a45;
-  height: auto; }
+  color: #323a45; }
 
 a {
   font-size: 11px;
@@ -179,8 +178,14 @@ span.close-btn {
     width: 249px;
     padding-left: 30px;
     font-size: 11px; }
+    #panel-frame .data h1 {
+      margin: 0 5px 10px;
+      line-height: 18px;
+      font-size: 16px; }
     #panel-frame .data li {
       margin-left: 22px; }
+    #panel-frame .data hr {
+      margin: 8px 0; }
     #panel-frame .data .offer-pic {
       width: 249px;
       margin: 0 5px 10px; }
@@ -327,17 +332,14 @@ span.close-btn {
   background-color: #fff;
   min-height: 500px; }
   #deallist h1 {
-    font-size: 16px;
+    font-size: 12px;
     margin-top: 8px!important; }
 
 #deallist.nonempty {
   border: none; }
-<<<<<<< HEAD
-=======
 
 #deallist.empty {
   width: 608px; }
->>>>>>> f4cc153e79601e5d6522b03fcc042dece70835c7
 
 .wrapper {
   width: 960px;

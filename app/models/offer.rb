@@ -30,7 +30,7 @@ class Offer < ActiveRecord::Base
   end
   
   def expired?
-    (self.end_date <= Time.now) and (self.status == "active") and (self.company.verified == true)
+    (self.end_date <= Time.now) #and (self.status == "active") and (self.company.verified == true)
   end
 
   def price

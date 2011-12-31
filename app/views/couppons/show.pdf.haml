@@ -8,20 +8,26 @@
     = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
-  %body
+  %body{:style=>"color:#323A45; font-family: 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
     -@offer = @couppon.offer
     -offer = @couppon.offer
-    .photo
-      %img{:src => "http://localhost:3000/images/dealframe.png"}
-      %hr
+    .header{:style=>"height: 60px;overflow:hidden;"}
+      %img{:style=>"width: 212px; float:left;", :src => "http://localhost:3000/images/df_logo_mono.png"}
+      #couppon-code{:style=>"margin-top: 14px; font-size: 26px;font-weight: bold; float: right;"}
+        ="##{@couppon.couppon_code}"
+        %p{:style=>"font-weight: normal; font-size: 8px"}
+          kod zabezpieczający:
+          =@couppon.security_code
+    %hr{:style=>"clear:both; border-style:none none solid; border: 1px solid #f4f4f4;"}
 
 
-    #company-summary{:style => "float: left;"}
+    #company-summary{:style => "height: 500px; float: left;"}
       #picture
-        =image_tag @offer.photo(:normal), :width => "200px", :style => "margin-top: 20px"
-      %h4 Tu zrealizujesz kupon:
-      #contact-details.left{:style => "width: 230px; line-height: 24px;"}
-        %strong=@offer.company.short_name
+        =image_tag @offer.photo(:large), :width => "200px", :style => "margin-top: 20px"
+      #code 
+        %div{:style => "margin: 6px 0; color:#1E90FF;"} Tu zrealizujesz kupon:
+      #contact-details.left{:style => "font-size: 12px; width: 230px;"}
+        %strong=@offer.company.full_name
         %p
           =@offer.company.address
           %br
@@ -35,29 +41,32 @@
 
 
     #offer
-      %h1=@offer.title
-      %p{:style=>"margin-top: -10px;"}=@offer.invoice_description
-      %h2
-        Wartość kuponu:
-        =number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+
+      %h1=@offer.invoice_description
+      %div{:style=>"font-size: 20px; font-weight: bold;"}=@couppon.couppon_code
+      %div{:style=>"font-size: 10px;"}KOD KUPONU
+
+      %div{:style=>"margin-top: 20px; color: green; font-size: 42px; font-weight: bold;"}="#{@offer.discount}%"
+      %div{:style=>"font-size: 10px;"} ZNIŻKI
       %h3
-        Kod kuponu:
-        =@couppon.couppon_code
 
-      %p
-        Zabezpieczenie:
-        =@couppon.security_code
-      %p
-        Ważny do:
+      %div{:style=>"font-size: 18px; font-weight: bold;"}
         =@couppon.expiration_date.strftime("%d-%m-%Y")
-      %p
-        Kupiony przez:
+      %div{:style=>"font-size: 10px;"} DATA WAŻNOŚCI KUPONU 
+      %div{:style=>"font-size: 18px; margin-top: 20px;"}
         ="#{@couppon.user.name} #{@couppon.user.surname}"
+      %div{:style=>"font-size: 10px;"} NABYWCA 
 
+      %div{:style=>"color:#1E90FF;  margin-top: 20px; font-size: 16px; font-weight: normal;"}
+        SZCZEGÓŁY OFERTY:
       %p=@offer.description
-      %p=raw @offer.additional_info
-      %p=raw @offer.fine_print
       %p=raw @offer.details unless blank?
+      %div{:style=>"color:#1E90FF;  margin-top: 20px; font-size: 16px; font-weight: normal;"}
+        DODATKOWE INFORMACJE: 
+      %p=raw @offer.additional_info
+      <br /><br />
+      %div{:style=>"color:#1E90FF;  margin-top: 20px; font-size: 16px; font-weight: normal;"}
+        FINE PRINT: 
+      %p{:style=>"font-size: 8px;"}=raw @offer.fine_print
     #rest
       #map
-

@@ -30,6 +30,7 @@ class Company < ActiveRecord::Base
   validates :city, :presence => true
   validates :zip_code, :presence => true
   validates :email, :presence => true
+  validates :verified, :presence => true
 
   after_create :notify
 
@@ -38,17 +39,22 @@ class Company < ActiveRecord::Base
   end
   
   def verified?
-    verified
+    if verified == nil
+      return false
+    else
+      return true
+    end
   end
 
   def fresh_offers
-    self.offers.where("created_at >= :last_day", {:last_day => Time.now - (60*60*48) })
+    self.offers.where("created_at > :last_day", {:last_day => Time.now - (60*60*48) })
+    #self.offers
   end
 
   def self.not_verified
-    where("verified = 0")
+    where("verified = false")
   end
-  
+
   private
   def notify
     Notifier.new_company(self).deliver 

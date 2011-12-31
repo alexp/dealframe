@@ -13,11 +13,11 @@
               #offers
                 -#=render :partial => "shared/deallist", :locals => { :offers => venue.fresh_offers }
                 -venue.fresh_offers.each do |offer|
-                  .deals{:class => (offer == venue.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+                  .deals{:class => cycle("odd", "even"), :id => "deal-#{offer.id}"}
                     .photo
-                      =link_to(image_tag(offer.photo(:normal)), offer)
+                      =image_tag(offer.photo(:normal))
                     .content
-                      %h1= link_to offer.title, offer
+                      %h1= offer.title
                       %p.description= offer.description
                       %span.clock= image_tag 'clock.png'
                       =render :partial => 'shared/time_counter', :locals => {:offer => offer }

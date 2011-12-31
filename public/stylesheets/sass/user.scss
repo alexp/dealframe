@@ -1,4 +1,4 @@
-h1,h2 {  font-family: 'Droid Sans', Arial, sans-serif;
+h1,h2 {  /*font-family: 'Droid Sans', Arial, sans-serif;*/
 }
 
 h2 {
@@ -39,11 +39,13 @@ h3 {
     padding: 40px 100px;
     float: none;
     margin: 0;
+    width: 612px;
     .odd {
       background: url('/images/deal_bg.gif') no-repeat;
+      padding: 0;
     }
     .even {
-      background: url('/images/deal_bg.gif') no-repeat 0 -140px;
+      background: url('/images/deal_bg.gif') no-repeat 1px -140px;
     }
     .deals {
       &:hover {
@@ -53,7 +55,7 @@ h3 {
       width: 610px;
       .content {
         h1 {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
@@ -73,7 +75,6 @@ h3 {
   span.red {color: #E95D42;}
   span.exp {
     font-size: 11px;
-    margin-left: 4px;
   }
   span.code {
     font-size: 11px;
@@ -339,8 +340,7 @@ h3 {
       }
       .new_offers {
         float: left;
-        margin: auto;
-        width: 608px;
+        #offers { padding: 0; }
         h4 {
           width: 120px;
           margin: 80px auto;
@@ -351,7 +351,7 @@ h3 {
       .contact-details {
         float: right;
         width: 184px;
-        font-size: 12px;
+        font-size: 11px;
       }
     }
 

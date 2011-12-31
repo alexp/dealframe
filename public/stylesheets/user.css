@@ -1,5 +1,5 @@
 h1, h2 {
-  font-family: 'Droid Sans', Arial, sans-serif; }
+  /*font-family: 'Droid Sans', Arial, sans-serif;*/ }
 
 h2 {
   font-size: 16px; }
@@ -28,18 +28,20 @@ h3 {
 .user #offers {
   padding: 40px 100px;
   float: none;
-  margin: 0; }
+  margin: 0;
+  width: 612px; }
   .user #offers .odd {
-    background: url("/images/deal_bg.gif") no-repeat; }
+    background: url("/images/deal_bg.gif") no-repeat;
+    padding: 0; }
   .user #offers .even {
-    background: url("/images/deal_bg.gif") no-repeat 0 -140px; }
+    background: url("/images/deal_bg.gif") no-repeat 1px -140px; }
   .user #offers .deals {
     width: 610px; }
     .user #offers .deals:hover {
       background: url("/images/deal_hover.gif") no-repeat;
       cursor: auto; }
     .user #offers .deals .content h1 {
-      font-size: 14px; }
+      font-size: 12px; }
   .user #offers .pending:hover {
     cursor: auto; }
 .user h1.empty {
@@ -52,8 +54,7 @@ h3 {
 .user span.red {
   color: #E95D42; }
 .user span.exp {
-  font-size: 11px;
-  margin-left: 4px; }
+  font-size: 11px; }
 .user span.code {
   font-size: 11px;
   font-weight: bold;
@@ -236,9 +237,9 @@ h3 {
   .user .followed .followed-company-content .company {
     margin-bottom: 40px; }
   .user .followed .followed-company-content .new_offers {
-    float: left;
-    margin: auto;
-    width: 608px; }
+    float: left; }
+    .user .followed .followed-company-content .new_offers #offers {
+      padding: 0; }
     .user .followed .followed-company-content .new_offers h4 {
       width: 120px;
       margin: 80px auto;
@@ -247,7 +248,7 @@ h3 {
   .user .followed .followed-company-content .contact-details {
     float: right;
     width: 184px;
-    font-size: 12px; }
+    font-size: 11px; }
   .user .followed span {
     font-size: 12px;
     font-weight: bold; }

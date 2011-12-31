@@ -20,7 +20,7 @@ class CoupponsController < ApplicationController
           format.pdf do
             render :pdf => "test.pdf",
                    :template => 'couppons/show.pdf.haml',
-                   :orientation => 'Portrait',
+                   :orientation => 'landscape',
                    :encoding => 'utf-8'
           end
         end
@@ -36,12 +36,12 @@ class CoupponsController < ApplicationController
     @offer = Offer.find(params[:offer_id])
 
     if @offer.expired?
-      flash[:error] = "Promocja wygasła 'obserwuj' tę firmę, aby być na bieżąco z nadchodzącymi ofertami!"
-      redirect_to @offer
-      return
+      flash[:error] = "Promocja wygasła. #{view_context.link_to('Obserwuj', @offer.company)} tę firmę, aby być na bieżąco z nadchodzącymi ofertami!".html_safe
+      redirect_to :controller => 'offers', :action=>'purchase', :id=>@offer.id
     end
 
     quantity = @offer.price * params[:quantity][:value].to_i
+
 
     if !signed_in?
       if params[:user][:email].blank?
@@ -79,6 +79,7 @@ class CoupponsController < ApplicationController
           end
 
           @couppon = Couppon.new
+          @couppon.quantity = quantity 
           @couppon.user = @user
           @couppon.company = @offer.company
           @couppon.offer = @offer

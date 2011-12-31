@@ -52,6 +52,7 @@ class OffersController < ApplicationController
   def create
     if signed_in?
       @company = Company.new
+      @company.verified = false
       @offer = Offer.new
       @user = current_user
 
