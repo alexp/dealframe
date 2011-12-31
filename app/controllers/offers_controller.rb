@@ -67,13 +67,14 @@ class OffersController < ApplicationController
         end
       else
         puts "company not selected"
-        if !params[:add_company_clicked].blank? && params[:add_company_clicked]="true"
+        # check if user has no companies
+        if @user.companies.empty? or !params[:add_company_clicked].blank? && params[:add_company_clicked]="true"
           puts "add company clicked"
           @company = Company.new(params[:company])
           @company.user = current_user
           @offer = @company.offers.build(params[:offer])
           if @company.save
-            redirect_to :controller =>"users", :action => "companies"
+            redirect_to :controller =>"users", :action => "companies", :id => @company.id
           else
             render :action => "new", :layout => "purchase"
           end
