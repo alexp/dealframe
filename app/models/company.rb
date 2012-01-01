@@ -39,11 +39,7 @@ class Company < ActiveRecord::Base
   end
   
   def verified?
-    if verified == nil
-      return false
-    else
-      return true
-    end
+    verified
   end
 
   def fresh_offers
