@@ -15,7 +15,7 @@ class CoupponsController < ApplicationController
     else
       @couppon = Couppon.find(params[:id])
       if current_user.couppons.include?(@couppon) 
-        if @couppon.valid?
+        if @couppon.usable?
           respond_to do |format|
             format.html
             format.pdf do
