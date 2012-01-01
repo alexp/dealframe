@@ -1,24 +1,18 @@
-%ul.companies
-  -if @user.companies.empty?
-    =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
-  -else
-    -@user.companies.each do |c|
-      %li
-        %table{:style=>"width: 100%"}
-          %tr
-            %th 
-              %strong Logo
-            %th 
-              %strong Nazwa 
-            %th 
-              %strong Status
-          %tr 
-            %td=link_to(image_tag(c.logo(:big)), c)
-            %td=link_to c.full_name, c 
-            %td
-              %span.company-status
-              -if c.verified  
-                zweryfikowana
-              -else
-                oczekuje
-              =link_to "Edytuj firmę", :controller => 'companies', :action => 'edit', :id => c.id
+-if @user.companies.empty?
+  =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
+-else
+  -@user.companies.each do |c|
+    %table.company-index
+      %tr 
+        %td.logo=link_to(image_tag(c.logo(:normal)), c)
+        %td.name
+          =link_to c.full_name, c 
+          %span.label status 
+          -if c.verified  
+            %span.company-status.verified
+              zweryfikowana
+          -else
+            %span.company-status.pending
+              w trakcie weryfikacji 
+        %td.actions
+          =link_to raw("Edytuj firmę <span class='quo'>&raquo;</span>"), :controller => 'companies', :action => 'edit', :id => c.id

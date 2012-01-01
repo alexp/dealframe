@@ -8,6 +8,13 @@
         .company
           .new_offers
             -if venue.fresh_offers.blank?
+              .empty
+                %h3 Brak nowych ofert. 
+                Tutaj wyświetlają się tylko oferty dodane w ciągu 
+                %strong ostatnich 24h.
+                %br
+                =link_to "Wejdź na profil firmy", venue
+                i sprawdź wszystkie oferty
             -else 
               #offers
                 -#=render :partial => "shared/deallist", :locals => { :offers => venue.fresh_offers }

@@ -45,9 +45,6 @@ class CoupponsController < ApplicationController
       redirect_to :controller => 'offers', :action=>'purchase', :id=>@offer.id
     end
 
-    quantity = @offer.price * params[:quantity][:value].to_i
-
-
     if !signed_in?
       if params[:user][:email].blank?
         flash[:error] = "Wprowadź swój email"
@@ -84,7 +81,7 @@ class CoupponsController < ApplicationController
           end
 
           @couppon = Couppon.new
-          @couppon.quantity = quantity 
+          @couppon.quantity = params[:quantity][:value] 
           @couppon.user = @user
           @couppon.company = @offer.company
           @couppon.offer = @offer
