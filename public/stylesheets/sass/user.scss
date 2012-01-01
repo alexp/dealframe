@@ -247,14 +247,15 @@ h3 {
         display: block;
         float: left;
         white-space: nowrap;
-        width: 70px;
+        width: 76px;
         color: white;
-        text-align: right;
+        text-align: center;
         font-size: 10px;
+        font-weight: bold;
       }
 
       span.verified {
-        background-color: green;
+        background-color: #66D620;
       }
       span.pending {
         background-color: red;
