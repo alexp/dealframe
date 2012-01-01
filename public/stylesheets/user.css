@@ -161,9 +161,11 @@ h3 {
       width: 81px; }
       .user #content table.company-index td.logo a {
         display: block; }
-    .user #content table.company-index td.name a {
-      font-size: 18px;
-      font-weight: bold; }
+    .user #content table.company-index td.name {
+      width: 300px; }
+      .user #content table.company-index td.name a {
+        font-size: 18px;
+        font-weight: bold; }
     .user #content table.company-index td.actions a {
       display: block;
       padding: 6px 20px; }
