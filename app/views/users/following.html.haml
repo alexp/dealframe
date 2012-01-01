@@ -8,7 +8,6 @@
         .company
           .new_offers
             -if venue.fresh_offers.blank?
-              %h4 Nic do pokazania
             -else 
               #offers
                 -#=render :partial => "shared/deallist", :locals => { :offers => venue.fresh_offers }

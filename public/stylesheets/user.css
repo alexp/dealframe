@@ -36,7 +36,7 @@ h3 {
   .user #offers .even {
     background: url("/images/deal_bg.gif") no-repeat 1px -140px; }
   .user #offers .deals {
-    width: 610px; }
+    width: 612px; }
     .user #offers .deals:hover {
       background: url("/images/deal_hover.gif") no-repeat;
       cursor: auto; }

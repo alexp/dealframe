@@ -47,7 +47,7 @@ class Company < ActiveRecord::Base
   end
 
   def fresh_offers
-    self.offers.where("created_at > :last_day", {:last_day => Time.now - (60*60*48) })
+    self.offers.where("end_date >= :now and created_at > :last_day", {:now => Time.now, :last_day => Time.now - (60*60*48) }) if self.verified?
     #self.offers
   end
 
