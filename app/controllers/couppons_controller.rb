@@ -14,15 +14,20 @@ class CoupponsController < ApplicationController
       redirect_to root_path
     else
       @couppon = Couppon.find(params[:id])
-      if current_user.couppons.include?(@couppon)
-        respond_to do |format|
-          format.html
-          format.pdf do
-            render :pdf => "test.pdf",
-                   :template => 'couppons/show.pdf.haml',
-                   :orientation => 'landscape',
-                   :encoding => 'utf-8'
+      if current_user.couppons.include?(@couppon) 
+        if @couppon.valid?
+          respond_to do |format|
+            format.html
+            format.pdf do
+              render :pdf => "test.pdf",
+                     :template => 'couppons/show.pdf.haml',
+                     :orientation => 'landscape',
+                     :encoding => 'utf-8'
+            end
           end
+        else
+          flash[:error] = "Nie można wydrukować tego kuponu."
+          redirect_to :controller => 'users', :action => 'couppons', :id => current_user.id
         end
       else
         flash[:error] = "Przepraszamy, nie masz uprawnień do oglądania tej strony"

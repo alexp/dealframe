@@ -26,6 +26,12 @@ class Couppon < ActiveRecord::Base
     return ActiveSupport::SecureRandom.hex(length)
   end
 
+  def valid?
+    return expiration_date > Time.now && 
+      status == 'wykonany' &&
+      used == false 
+  end
+
   def is_expired?
     return true if expiration_date < Time.new
   end
