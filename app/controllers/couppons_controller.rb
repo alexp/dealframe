@@ -71,7 +71,7 @@ class CoupponsController < ApplicationController
         if !flash[:error]
           safe_desc = CGI::escape(@offer.invoice_description)
           amount = params[:quantity][:value].to_i * @offer.price
-          redir_url = url_for(:controller => 'users', :action => 'show', :id => @user.id)
+          redir_url = url_for(:controller => 'users', :action => 'couppons', :id => @user.id)
           if signed_in?
             user_email = current_user.email
           else
