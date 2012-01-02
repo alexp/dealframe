@@ -1,0 +1,40 @@
+=render :partial => 'dashboard', :locales => { :user => @user }
+
+#content
+  %h2
+    %span.icon=image_tag 'promotion.png'
+    ="#{@company.full_name} - Oferty"
+    
+  .section
+    =link_to raw("<span class='quo'>&laquo;</span> Powrót do listy firm"), :back, :class=>"back"
+
+  -if !@company.active_offers.blank?
+    .section
+      %h2 Aktywne
+      -@company.active_offers.each do |o|
+        %table.company-index
+          %tr 
+            %td.logo=image_tag(o.photo(:normal))
+            %td.name
+              =link_to o.title, o 
+              %span.label zakupiono 
+              %span.bought=o.couppon_count
+              %span.desc kuponów
+              %span.redeemed.red=Couppon.redeem_count(o.id)
+              %span.desc zrealizowano 
+            
+
+  -if !@company.expired_offers.blank?
+    .section
+      %h2 Zakończone 
+      -@company.expired_offers.each do |o|
+        %table.company-index
+          %tr 
+            %td.logo=image_tag(o.photo(:normal))
+            %td.name
+              =link_to o.title, o 
+              %span.label zakupiono 
+              %span.bought=o.couppon_count
+              %span.desc kuponów
+              %span.redeemed.red=Couppon.redeem_count(o.id)
+              %span.desc zrealizowano 
