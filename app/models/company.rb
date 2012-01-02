@@ -34,6 +34,10 @@ class Company < ActiveRecord::Base
 
   after_create :notify
 
+  def expired_offers 
+    self.offers.where("end_date < :now", {:now => Time.now}) if self.verified?
+  end
+
   def active_offers
     self.offers.where("end_date >= :now", {:now => Time.now}) if self.verified?
   end

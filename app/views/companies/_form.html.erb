@@ -1,9 +1,9 @@
 <%= form_for(@company, :html => { :multipart => true }) do |f| %>
   <% if @company.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <h2 class="error_head">Ooops! Wystąpiły błędy przy aktualizacji danych firmy</h2>
 
-      <ul>
+      <ul class="error_list">
       <% @company.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -11,50 +11,55 @@
     </div>
   <% end %>
 
-  
-  <div class="field">
-    <%= f.label "Logo" %><br />
+  <h2>
+    <span class="icon"><%= image_tag 'info_icon.png' %>
+    </span>
+      Edycja firmy
+  </h2> 
+  <div class="section">
+  <ul>
+  <li>
+    <%= f.label "Logo" %>
     <%= f.file_field :logo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category_id %><br />
+  </li>
+  <li>
+    <%= f.label :category_id %>
     <%= f.collection_select(:category_id, Category.all, :id, :name, { :prompt => true}) %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :full_name %><br />
+  </li> 
+  <li>
+    <%= f.label :full_name %>
     <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :short_name %><br />
+  </li>
+  <li>
+    <%= f.label :short_name %>
     <%= f.text_field :short_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
+  </li>
+  <li>
+    <%= f.label :address %>
     <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :zip_code %><br />
+  </li>
+  <li>
+    <%= f.label :zip_code %>
     <%= f.text_field :zip_code %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br />
+  </li>
+  <li>
+    <%= f.label :city %>
     <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :nip %><br />
+  </li>
+  <li>
+    <%= f.label :nip %>
     <%= f.text_field :nip %>
-  </div>
-  <div class="field">
-    <%= f.label :regon %><br />
+  </li>
+  <li>
+    <%= f.label :regon %>
     <%= f.text_field :regon %>
-  </div>
-  <div class="field">
-    <%= f.label :vat %><br />
+  </li>
+  <li class="last">
+    <%= f.label :vat %>
     <%= f.check_box :vat %>
-  </div>
+  </li>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Zaktualizuj firmę", :style => "margin-top: 20px" %>
+  </div>
   </div>
 <% end %>

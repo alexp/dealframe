@@ -46,6 +46,8 @@ class CompaniesController < ApplicationController
     if signed_in?
       @company = Company.find(params[:id])
       if current_user.companies.include?(@company)
+        @user = current_user
+        @page_name = "Edycja firmy"
         render :action => "edit", :layout => "user"
       else
         redirect_to @company
@@ -62,7 +64,7 @@ class CompaniesController < ApplicationController
       if current_user.companies.include?(@company)
         respond_to do |format|
           if @company.save
-            format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
+            format.html { redirect_to(@company, :notice => 'Utworzono nową firmę') }
             format.xml  { render :xml => @company, :status => :created, :location => @company }
           else
             format.html { render :action => "new" }
@@ -77,14 +79,19 @@ class CompaniesController < ApplicationController
   # PUT /companies/1.xml
   def update
     @company = Company.find(params[:id])
-
-    respond_to do |format|
-      if @company.update_attributes(params[:company])
-        format.html { redirect_to(@company, :notice => 'Company was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
+    @user = current_user
+    if current_user.companies.include?(@company)
+      respond_to do |format|
+        if @company.update_attributes(params[:company])
+          format.html { redirect_to(@company, :notice => "Pomyślnie zaktualizowano dane firmy. Chcesz coś jeszcze poprawić? #{view_context.link_to('Edytuj ponownie firmę.', edit_company_path)}".html_safe) }
+          format.xml  { head :ok }
+        else
+          format.html { 
+            @page_name = "Edycja firmy"
+            render :action => "edit", :layout => "user"
+          }
+          format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

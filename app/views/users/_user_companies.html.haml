@@ -16,3 +16,4 @@
               oczekuje
         %td.actions
           =link_to raw("Edytuj firmę <span class='quo'>&raquo;</span>"), :controller => 'companies', :action => 'edit', :id => c.id
+          =link_to raw("Oferty <span class='quo'>&raquo;</span>"), :controller => 'users', :action => 'company_offers', :id => @user.id, :company_id => c.id #if !c.active_offers.blank?

@@ -36,6 +36,10 @@ class Couppon < ActiveRecord::Base
     return true if expiration_date < Time.new
   end
 
+  def self.redeem_count(offer_id)
+    self.count(:conditions => ["used = true and offer_id = ?", offer_id]) 
+  end
+
   def self.redeem(code)
     couppon = find_by_couppon_code(code)
     return nil if couppon.nil?

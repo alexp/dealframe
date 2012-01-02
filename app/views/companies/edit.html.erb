@@ -1,6 +1,4 @@
-<h1>Editing company</h1>
-
+<%=render :partial => 'users/dashboard', :locales => { :user => @user } %>
+<div id="content">
 <%= render 'form' %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+</div>

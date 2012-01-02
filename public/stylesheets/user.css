@@ -184,6 +184,16 @@ h3 {
       text-align: center;
       font-size: 10px;
       font-weight: bold; }
+    .user #content table.company-index span.bought {
+      font-size: 40px;
+      font-weight: bold;
+      color: #66D620; }
+    .user #content table.company-index span.redeemed {
+      font-size: 28px;
+      font-weight: bold; }
+    .user #content table.company-index span.desc {
+      color: #666;
+      font-weight: bold; }
     .user #content table.company-index span.verified {
       background-color: #66D620; }
     .user #content table.company-index span.pending {
@@ -193,6 +203,14 @@ h3 {
 .user .section {
   padding: 0px 26px;
   margin: auto; }
+  .user .section span.quo {
+    font-size: 16px;
+    font-weight: bold; }
+  .user .section a.back {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block; }
 .user #left-col {
   width: 119px;
   margin-top: 2px; }

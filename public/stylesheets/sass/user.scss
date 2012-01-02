@@ -236,6 +236,10 @@ h3 {
         }
       }
 
+      td.offer-status {
+          
+      }
+
       span.label {
         font-size: 10px;
         text-transform: uppercase;
@@ -252,6 +256,22 @@ h3 {
         color: white;
         text-align: center;
         font-size: 10px;
+        font-weight: bold;
+      }
+
+      span.bought {
+        font-size: 40px;
+        font-weight: bold;
+        color: #66D620;
+      }
+      
+      span.redeemed {
+        font-size: 28px;  
+        font-weight: bold;
+      }
+
+      span.desc {
+        color: #666;
         font-weight: bold;
       }
 
@@ -274,6 +294,16 @@ h3 {
     padding: 0px 26px;
     margin: auto;
 
+    span.quo {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    a.back {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display:block;
+    }
   }
 
   #left-col {

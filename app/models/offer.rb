@@ -57,6 +57,10 @@ class Offer < ActiveRecord::Base
     self.joins(:company).where("end_date >= :now and companies.verified = true", {:now => Time.now})
   end
 
+  def couppon_count
+    Couppon.count(:conditions => ["offer_id = ? and status = 'wykonany'", id])
+  end
+
   private
   def notify
     Notifier.new_offer(self).deliver

@@ -249,15 +249,15 @@ pl:
     attributes:
       company:
         id: "firma"
-        full_name: "pełna nazwa"
-        offers: "oferty"
-        logo_file_name: "logo"
-        category: "kategoria"
-        address: "adres"
-        city: "miasto"
-        email: "email"
-        category_id: "kategoria" # hack
-        phone_number: "nr. telefonu"
+        full_name: "Pełna nazwa"
+        offers: "Oferty"
+        logo_file_name: "Logo"
+        category: "Kategoria"
+        address: "Adres"
+        city: "Miasto"
+        email: "Email"
+        category_id: "Kategoria" # hack
+        phone_number: "Nr. telefonu"
       offer:
         title: "tytuł"
         details: "szczegółowy opis oferty"

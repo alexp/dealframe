@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -136,4 +135,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def company_offers
+    @company = Company.find(params[:company_id])
+    @user = User.find(params[:id])
+    @page_name = "Oferty"
+  end
 end

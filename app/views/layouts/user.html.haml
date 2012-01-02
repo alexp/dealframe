@@ -16,21 +16,21 @@
         Witamy w Dealframe - Wersja alpha 0.1
         %span.close-btn zamknij
     .wrapper
-
+      -@user = current_user
       =render :partial => 'shared/header'
 
       #content-wrapper
         #left-col
           %ul
             %li{:class => (params[:action]=="edit" || params[:action]=="change_password")?"active":""}
-              =link_to 'Twoje konto', :controller => 'users', :action => 'edit'
+              =link_to 'Twoje konto', :controller => 'users', :action => 'edit', :id => current_user.id
             %li{:class => params[:action]=="couppons"?"active":""}
-              =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons'
+              =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons', :id => current_user.id
             %li{:class => params[:action]=="following"?"active":""}
-              =link_to 'Obserwowane', :controller => 'users', :action => 'following'
+              =link_to 'Obserwowane', :controller => 'users', :action => 'following', :id => current_user.id
             -if !@user.companies.blank?
-              %li{:class => params[:action]=="companies"?"active":""}
-                =link_to 'Twoje firmy!', :controller => 'users', :action => 'companies'
+              %li{:class => (params[:action]=="companies" || params[:action] == "company_offers")?"active":""}
+                =link_to 'Twoje firmy!', :controller => 'users', :action => 'companies', :id => current_user.id
         #right-col
           #top-nav
             %h1
