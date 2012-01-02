@@ -71,6 +71,8 @@
                 =@company.phone_number
                 %br
                 =mail_to @company.email
+
+            .clear
             #map-canvas{:style => "width: 260px; height: 200px;"}
               :javascript
                 var latlng = new google.maps.LatLng(#{@company.lat},#{@company.long});
@@ -87,30 +89,30 @@
                 });
 
                 marker.setMap(map);
-            .clear
-      .clear
   .clear
-  #bottom-content
-    -if !@company.active_offers.blank?
-      #company-offers-nav
-        %h3 Aktywne oferty zniżkowe:
-      #offers
-        -@company.active_offers.each do |offer|
-          .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
-            .photo
-              =link_to(image_tag(offer.photo(:normal)), offer)
-            .content
-              %h1= link_to offer.title, offer
-              %p.description= offer.description
-              %span.clock= image_tag 'clock.png'
-              =render :partial => 'shared/time_counter', :locals => {:offer => offer }
-              %div{:id => "offer-#{offer.id}", :class => "timer"}
-              %hr
-              %span.quo &rsaquo;
-              =link_to "Zobacz szczegóły", offer
-            .details
-              %h2 Kupon zniżkowy:
-              .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-              .price-tag
-                .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-                .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+#bottom-content
+  -if !@company.active_offers.blank?
+    #company-offers-nav
+      %h3 Aktywne oferty zniżkowe:
+    #offers
+      -@company.active_offers.each do |offer|
+        #deallist-container
+          #deallist.left.nonempty
+            .deals{:class => (offer == @company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
+              .photo
+                =link_to(image_tag(offer.photo(:normal)), offer)
+              .content
+                %h1= link_to offer.title, offer
+                %p.description= offer.description
+                %span.clock= image_tag 'clock.png'
+                =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+                %div{:id => "offer-#{offer.id}", :class => "timer"}
+                %hr
+                %span.quo &rsaquo;
+                =link_to "Zobacz szczegóły", offer
+              .details
+                %h2 Kupon zniżkowy:
+                .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+                .price-tag
+                  .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
+                  .discount= number_to_percentage("-#{offer.discount}", :precision => 0)

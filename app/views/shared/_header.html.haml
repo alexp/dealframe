@@ -1,7 +1,7 @@
 #header
   #header_left
     #logo= link_to(image_tag('df_logo.png', :style=> "width: 212px;"), '/offers')
-    -if params[:controller] == 'offers' || params[:controller] == 'categories'
+    -if (params[:controller] == 'offers' && params[:action] == 'index') || params[:controller] == 'categories'
       #doodles
   #header_right
     .top-menu

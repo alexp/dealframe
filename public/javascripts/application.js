@@ -37,7 +37,9 @@ $(function() {
     $("span.liloader").css("display", "inline");
   });
 
-  show_offer_register();
+  if ($('#filter').length > 0) {
+    show_offer_register();
+  }
 
   $('#promoted').click(function() {
     if(!$(this).hasClass("active")) {
