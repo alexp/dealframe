@@ -87,6 +87,7 @@ class OffersController < ApplicationController
       end
     else
       @company = Company.new(params[:company])
+      @company.verified = false
       @offer = @company.offers.build(params[:offer])
       @user = User.new(params[:user])
 
