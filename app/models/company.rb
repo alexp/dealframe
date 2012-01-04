@@ -30,7 +30,6 @@ class Company < ActiveRecord::Base
   validates :city, :presence => true
   validates :zip_code, :presence => true
   validates :email, :presence => true
-  validates :verified, :presence => true
 
   after_create :notify
 
