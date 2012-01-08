@@ -7,12 +7,11 @@
     = csrf_meta_tag
     = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
-    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
   %body{:style=>"color:#323A45; font-family: 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
     -@offer = @couppon.offer
     -offer = @couppon.offer
     .header{:style=>"height: 60px;overflow:hidden;"}
-      %img{:style=>"width: 212px; float:left;", :src => "#{root_url}images/df_logo_mono.png"}
+      %img{:style=>"width: 212px; float:left;", :src => "#{root_url}images/df_logo.png"}
       #couppon-code{:style=>"margin-top: 14px; font-size: 26px;font-weight: bold; float: right;"}
         ="##{@couppon.couppon_code}"
         %p{:style=>"font-weight: normal; font-size: 8px"}
@@ -22,7 +21,6 @@
 
     #company-summary{:style => "height: 500px; float: left;"}
       #picture
-        =image_tag @offer.photo(:large), :width => "200px", :style => "margin-top: 20px"
       #code 
         %div{:style => "margin: 6px 0; color:#1E90FF;"} Tu zrealizujesz kupon:
       #contact-details.left{:style => "font-size: 12px; width: 230px;"}
