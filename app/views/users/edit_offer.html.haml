@@ -1,0 +1,89 @@
+=render :partial => 'dashboard', :locales => { :user => @user }
+
+#content
+  =form_for(@offer) do |f|
+    %h2
+      %span.icon=image_tag 'promotion.png'
+      Oferta - 
+      =@offer.title
+      -if @offer.errors.any?
+        %h2.error_head Oops! Wystąpiły błędy przy zapisie oferty.
+        %ul.error_list
+          -user.errors.full_messages.each do |msg|
+            %li= msg
+
+    .section
+      %ul
+        -if @offer.couppon_count == 0
+          %li.prices
+            =f.label :value, "Cena wyjściowa (przed zniżką):" 
+            =f.text_field :value, :class => "currency"
+            %span.currency PLN
+          %li.prices
+            =f.label :discount, "Wartość zniżki:"
+            =f.text_field :discount, :class => "currency"
+            %span.currency %
+            
+          %li
+            =f.label :photo, "Zdjęcie do oferty:" 
+            =f.file_field :photo
+
+          %li
+            =f.label :category, "Kategoria oferty:" 
+            =collection_select(:offer, :category_id, Category.all, :id, :name, { :prompt => "wybierz jedną" })
+
+          %li
+            =f.label :title, "Tytuł:" 
+            =f.text_field :title
+
+          %li
+            =f.label :description, "Opis:"
+            =f.text_area :description
+
+          %li
+            =f.label :invoice_description, "Opis na rachunku:"
+            =f.text_area :invoice_description
+
+          %li
+            =f.label :start_date, "Termin uruchomienia kampanii:"
+            %br
+            %br
+            =f.datetime_select :start_date
+            .clear
+
+          %li
+            =f.label :end_date, "Termin zakończenia kampanii:", :style=>"width: 300px;"
+            %br
+            =f.datetime_select :end_date
+            .clear
+
+          %li
+            =f.label :expiration_date, "Data wygaśnięcia kuponu:"
+            %br
+            =f.datetime_select :expiration_date
+            .clear
+
+          %li
+            =f.label :additional_info, "Kluczowe informacje o ofercie:"
+            =f.text_area :additional_info
+
+          %li
+            =f.label :details, "Szczegółowy opis oferty:"
+            =f.text_area :details
+
+          %li.last
+            =f.label :fine_print, "Ograniczenia oferty:"
+            =f.text_area :fine_print, :value => "np.: 'oferta ważna codziennie, w godz. 10:00 - 16:00; jeden kupon najedną osobę"
+        -else 
+          %li
+            =f.label :photo, "Zdjęcie do oferty:" 
+            =f.file_field :photo
+          %li
+            =f.label :description, "Opis:"
+            =f.text_area :description
+          %li.last
+            =f.label :end_date, "Termin zakończenia kampanii:"
+            =f.datetime_select :end_date
+          .clear
+    .section
+      =f.submit "Zapisz zmiany", :class=>'save'

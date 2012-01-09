@@ -1,0 +1,70 @@
+%li.prices
+  =f.label :value, "Cena wyjściowa (przed zniżką):" 
+  =f.text_field :value, :class => "currency"
+  %span.currency PLN
+%li.prices
+  =f.label :discount, "Wartość zniżki:"
+  =f.text_field :discount, :class => "currency"
+  %span.currency %
+  
+%li
+  =f.label :photo, "Zdjęcie do oferty:" 
+  =f.file_field :photo
+
+%li
+  =f.label :category, "Kategoria oferty:" 
+  =collection_select(:offer, :category_id, Category.all, :id, :name, { :prompt => "wybierz jedną" })
+
+%li
+  =f.label :title, "Tytuł:" 
+  =f.text_field :title
+  %span np.: "Weekend na mazurach 20% taniej!"
+
+%li
+  =f.label :description, "Opis:"
+  =f.text_area :description
+  %span np.: "Tylko teraz, znizka na ferie zimowe dla grupy do 12os."
+
+%li
+  =f.label :invoice_description, "Opis na rachunku:"
+  =f.text_area :invoice_description
+  %span Bardziej oficjalny, na przykład: "Dwudniowa Zniżka na pobyt 12 osób w bazie hotelowej"
+
+%li
+  =f.label :start_date, "Termin uruchomienia kampanii:"
+  %br
+  %br
+  =f.datetime_select :start_date
+  %span 
+    Wtedy Twój kupon zacznie się wyświetlać.
+%li
+  =f.label :end_date, "Termin zakończenia kampanii:"
+  %br
+  =f.datetime_select :end_date
+  %span
+    Wtedy Twój kupon przestanie się wyświetlać.
+
+%li
+  =f.label :expiration_date, "Data wygaśnięcia kuponu:"
+  %br
+  =f.datetime_select :expiration_date
+  %span
+    Data, kiedy kupon przestaje być ważny. Sugerujemy 3 - 6 miesięcy od dnia dzisiejszego.
+
+%li
+  =f.label :additional_info, "Kluczowe informacje o ofercie:"
+  =f.text_area :additional_info
+
+%li
+  =f.label :details, "Szczegółowy opis oferty:"
+  =f.text_area :details
+  %span 
+    =link_to raw("zobacz opcje formatowania &raquo;"), "#"
+
+%li
+  =f.label :fine_print, "Ograniczenia oferty:"
+  =f.text_area :fine_print, :value => "np.: 'oferta ważna codziennie, w godz. 10:00 - 16:00; jeden kupon najedną osobę"
+
+%li
+  =f.label :terms, raw('Akceptuję <a href="http://www.dealframe.pl/regulamin.html">Regulamin serwisu</a>') 
+  =f.check_box :terms
