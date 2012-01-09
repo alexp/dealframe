@@ -136,8 +136,32 @@ class UsersController < ApplicationController
   end
 
   def company_offers
-    @company = Company.find(params[:company_id])
-    @user = User.find(params[:id])
-    @page_name = "Oferty"
+    if signed_in?
+      @user = User.find(params[:id])
+      if(current_user == @user)
+        @company = Company.find(params[:company_id])
+        @page_name = "Oferty"
+      else
+        redirect_to current_user
+      end
+    else 
+      redirect_to signin_path
+    end
+  end
+
+
+  def edit_offer
+    if signed_in? 
+      @user = User.find(params[:id])
+      if @user == current_user
+        @offer = Offer.find(params[:offer_id])
+        @page_name="Edycja oferty"
+      else 
+        flash[:notice] = "Nie znaleziono rekordu"
+        redirect_to current_user
+      end
+    else
+      redirect_to signin_path
+    end
   end
 end

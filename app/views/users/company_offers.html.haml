@@ -17,6 +17,7 @@
             %td.logo=image_tag(o.photo(:normal))
             %td.name
               =link_to o.title, o 
+              =link_to "Edytuj", :action => 'edit_offer', :offer_id => o.id
               %span.label zakupiono 
               %span.bought=o.couppon_count
               %span.desc kuponów

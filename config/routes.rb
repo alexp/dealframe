@@ -34,6 +34,7 @@ Dealframe::Application.routes.draw do
   match '/users/:id/change_password', :to => 'users#change_password' 
   match '/users/:id/update_password', :to => 'users#update_password' 
   match '/users/:id/companies/:company_id/offers', :to => 'users#company_offers'
+  match '/users/:id/edit_offer/:offer_id/edit', :to => 'users#edit_offer'
   match '/sessions/forgot_password', :to => 'sessions#forgot_password'  
   match '/admin', :to => 'admin#index'
   match '/admin/companies', :to => 'admin#companies'
