@@ -8,13 +8,4 @@
     = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
   %body{:style=>"color:#323A45; font-family: 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
-    -@offer = @couppon.offer
-    -offer = @couppon.offer
-    .header{:style=>"height: 60px;overflow:hidden;"}
-      %img{:style=>"width: 212px; float:left;", :src => "#{root_url}images/df_logo.png"}
-      #couppon-code{:style=>"margin-top: 14px; font-size: 26px;font-weight: bold; float: right;"}
-        ="##{@couppon.couppon_code}"
-        %p{:style=>"font-weight: normal; font-size: 8px"}
-          kod zabezpieczający:
-          =@couppon.security_code
-    %hr{:style=>"clear:both; border-style:none none solid; border: 1px solid #f4f4f4;"}
+    hello word
