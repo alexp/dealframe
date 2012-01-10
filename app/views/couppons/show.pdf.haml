@@ -8,4 +8,5 @@
     = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
   %body{:style=>"color:#323A45; font-family: 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
+    %h1=@couppon.offer.title 
     =debug(@couppon) 
