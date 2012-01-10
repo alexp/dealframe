@@ -19,8 +19,7 @@ class CoupponsController < ApplicationController
           respond_to do |format|
             format.html
             format.pdf do
-              render :pdf => "test.pdf",
-                     :template => 'couppons/show.pdf.haml',
+              render :template => 'couppons/show.pdf.haml',
                      :orientation => 'landscape',
                      :encoding => 'utf-8'
             end
