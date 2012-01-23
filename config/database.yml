@@ -12,11 +12,12 @@ development:
   database: dealframe
   pool: 5
   username: root
-  password: chuj123
+  password: 
   #socket: /private/tmp/mysql.sock
   #socket: /opt/local/var/run/mysql5/mysqld.sock
-  socket: /var/run/mysqld/mysqld.sock
-  #socket: /var/lib/mysql/mysql.sock
+  #socket: /var/run/mysqld/mysqld.sock
+  socket: /var/lib/mysql/mysql.sock
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -27,7 +28,7 @@ test:
   database: dealframe_test
   pool: 5
   username: root
-  password: chuj123
+  password: 
   #socket: /private/tmp/mysql.sock 
   socket: /var/lib/mysql/mysql.sock
 
@@ -38,6 +39,6 @@ production:
   database: dealframe
   pool: 5
   username: root
-  password: chuj123
+  password: 
   #socket: /private/tmp/mysql.sock 
   socket: /var/run/mysqld/mysqld.sock

@@ -2,11 +2,56 @@
 !!!
 %html
   %head
-    %title= @title
-    %meta{:name => "robots", :content => "noindex", :charset => "utf-8"}
+  %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+  %title= @title
+  %meta{:name => "robots", :content => "noindex", :charset => "utf-8"}
     = csrf_meta_tag
     = stylesheet_link_tag 'reset', 'style', 'text', 'pdf'
     = javascript_include_tag :defaults
-  %body{:style=>"color:#323A45; font-family: 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
-    %h1=@couppon.offer.title 
-    =debug(@couppon) 
+  %body{:style=>"color:#000; font-family: 'Droid Sans', 'Myriad Pro', Arial, sans-serif; border: 1px solid #fafafa; padding: 10px;"}
+    =image_tag "http://hermanowa-wola.pl/images/logo.png", :width => "100px"
+    %h1{:style=>"font-size: 16px; color: #000; font-weight: 400; font-family: 'Droid Sans', sans-serif"}=@couppon.offer.title 
+    %div{:style=>"float: left; width: 500px; font-size: 10px; border-right: 1px solid #ccc;"}
+      zniżka:
+      %div{:style => "color: #000; font-size: 80px; font-weight: 700;"}
+        ="-#{@couppon.offer.discount}%"
+
+      %div
+        opis:
+        %span{:style=>"color: #606060;"}
+          =@couppon.offer.invoice_description
+      %div{:style=>"font-size: 20px; margin: 10px 0;"}
+        kod kuponu:
+        %span{:style=>"color: #606060;"}
+          =@couppon.couppon_code
+      %div
+        data waznosci:
+        %br
+        %span{:style=>"color: #606060;"}
+          =@couppon.expiration_date.strftime("%d-%m-%Y")
+     
+      %div{:style=>"margin: 10px 0"}
+        szczegóły:
+        %br
+        %span{:style=>"color: #606060;"}
+          =@couppon.offer.details
+    %div{:style=>"margin-left: 10px;float:left; width:300px;"}
+      odbierz kupon:
+      %br
+      %br
+      %div{:style=>"color: #009CD5"}
+        =@couppon.company.full_name
+      %div{:style=>"font-size: 10px;"}
+        =@couppon.company.address
+      %div{:style=>"font-size: 10px;"}
+        =@couppon.company.zip_code
+        =@couppon.company.city
+    %br{:style=>"clear:both"}
+
+    %div
+      fine print:
+      %div{:style=>"color: #323a45; font-size: 10px; "}
+        =@couppon.offer.fine_print
+    %div{:style=>"background-color: #009CD5; margin-top: 20px;"}
+      footer
+      =image_tag "df_logo.png"
