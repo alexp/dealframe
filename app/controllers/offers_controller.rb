@@ -33,6 +33,7 @@ class OffersController < ApplicationController
   end
 
   def new
+=begin
     @company = Company.new
     @offer = Offer.new
 
@@ -43,6 +44,8 @@ class OffersController < ApplicationController
     end
 
     render :layout => 'purchase'
+=end
+    render :action => 'contact', :layout => 'purchase'
   end
 
   def edit
