@@ -54,6 +54,7 @@ class CoupponsController < ApplicationController
         if @user.save
           sign_in @user
           flash[:success] = "signed in!!"
+          UserMailer.welcome_email(@user).deliver
         else
           flash[:error] = @user.errors
           redirect_to :back
@@ -86,7 +87,6 @@ class CoupponsController < ApplicationController
           @couppon.company = @offer.company
           @couppon.offer = @offer
           @couppon.status = "niezweryfikowany"
-          @couppon.couppon_code = @couppon.generate_security_code(5)
           @couppon.security_code = @couppon.generate_security_code(6)
           @couppon.expiration_date = @offer.expiration_date
           @couppon.used = false
@@ -125,12 +125,15 @@ class CoupponsController < ApplicationController
         @couppon.status = "nowy"
       elsif params[:t_status] == '2' and !@couppon.nil?
         @couppon.status = "wykonany"
+        @couppon.couppon_code = @couppon.generate_security_code(5)
+        UserMailer.couppon_bought(@user, @couppon).deliver
       elsif params[:t_status] == '3' and !@couppon.nil?
         @couppon.status = "odmowa"
       end
 
       if @couppon.save
         render :text => "OK"
+
       end
     else
       render :status => :forbidden, :text => "Unauthorized access"

@@ -17,4 +17,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject=> "#{user.name}, nowe hasło dla Ciebie")
   end
+
+  def couppon_bought(user, couppon)
+    @user = user
+    @couppon = couppon 
+    
+    mail(:to => user.email, 
+         :subject => "#{@user.name}, twój kupon")
+  end
+
 end

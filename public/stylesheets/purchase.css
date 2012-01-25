@@ -48,7 +48,8 @@ span.currency {
   padding: 14px 18px; }
 
 h1 {
-  font-size: 23px; }
+  font-size: 23px;
+  margin-top: 20px; }
 
 h2 {
   font-size: 18px; }
@@ -305,3 +306,24 @@ h1.add_offer {
   margin-top: 20px; }
 #new-offer .details {
   padding: 20px; }
+
+#dotpay {
+  margin: 20px auto;
+  text-align: center; }
+  #dotpay a {
+    display: block; }
+    #dotpay a img {
+      width: 100px; }
+
+.buynow {
+  background: transparent url("/images/buy_now_btn_all.png") center top;
+  text-indent: -1000em;
+  border: 0;
+  margin: 0px auto;
+  padding: 0;
+  width: 255px;
+  height: 41px;
+  display: block;
+  cursor: pointer; }
+  .buynow:hover {
+    background: transparent url("/images/buy_now_btn_all.png") center 40px; }

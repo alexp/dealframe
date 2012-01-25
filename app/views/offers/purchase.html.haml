@@ -47,7 +47,7 @@
           %tbody
             %tr
               %td.desc=@offer.invoice_description
-              %td.quantity#quantity= select("quantity", "value", {"1" => "1", "2" => "2", "3" => "3", "4" => "4"},
+              %td.quantity#quantity= select("quantity", "value", {"1" => "1"},
                 {},
                 {:onchange => "updatePrice($('#cart-total'), this.value, '#{@offer.price}')"})
               %td.mult x
@@ -61,8 +61,6 @@
         %h3 Oferent:
         -if @offer.company.logo.exists?
           =image_tag @offer.company.logo(:normal), :class => "left"
-        -else
-          =image_tag @offer.company.logo_url, :class => "left"
         #contact-details.left
           =link_to @offer.company.full_name, @offer.company, :class => 'company-name'
           %p=@offer.company.address
@@ -123,6 +121,9 @@
         .clear
       %br
 
-      =image_submit_tag 'logo_dotpay.jpg', :width => "120px", :name => "payment_method", :value => "dotpay", :class => "left"
+      =submit_tag '', :name => "payment_method", :value => "dotpay", :class => "buynow"
+      #dotpay
+        Płatności obsługuje:
+        =link_to(image_tag('logo_dotpay.jpg'), 'http://dotpay.pl/')
       .clear
 

@@ -496,8 +496,10 @@ span.close-btn {
         span#desc {
           color: #f4f4f4;
           /*font-family: 'Droid Sans', 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;*/
-          font-weight: bold;
-          font-size: 18px;
+          font-weight: normal;
+          font-size: 15px;
+          margin: 0px 0px 0px 10px;
+          
         }
 
         a.current-cat {
@@ -800,27 +802,28 @@ span.close-btn {
 
 #footer {
   margin-top: 150px;
-
-  /*background: transparent url(/images/footer_bg.png);
-  height: 50px;
-  width: 100%;
-  z-index: 99;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  p {
-    line-height: 15px;
-    font-size: 13px;
-    margin-top: 18px;
-  }
-  ul {
-    position: absolute;
-    right: 0;
-    list-style-type: none;
-    margin: 0;
-  }
-  ul li {
-  }*/
+  display: none;
+  /** background: transparent url(/images/footer_bg.png);
+    height: 50px;
+    width: 100%;
+    z-index: 99;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    p {
+      line-height: 15px;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+    ul {
+      position: absolute;
+      right: 0;
+      list-style-type: none;
+      margin: 0;
+    }
+    ul li {
+    }
+  */
 }
 
 #footer-content {
@@ -864,7 +867,7 @@ span.close-btn {
   background-color: white;
   padding: 10px;
   position:absolute;
-  left: 187px;
+  left: 160px;
   top: 51px;
   z-index: 9999;
   border-radius: 5px;
@@ -874,7 +877,6 @@ span.close-btn {
     display: block;
     margin: 6px;
     font-size: 12px;
-    font-family: 'Georgia';
   }
 }
 

@@ -61,6 +61,7 @@ span.currency {
 
 h1 {
   font-size: 23px;
+  margin-top: 20px;
 }
 
 h2 {
@@ -398,5 +399,32 @@ h1.add_offer {
   }
   .details {
     padding: 20px;
+  }
+}
+
+#dotpay {
+  margin: 20px auto;
+  text-align: center;
+  a {
+    display: block;
+    img {
+      width: 100px;
+    }
+  }
+}
+
+.buynow {
+  background: transparent url('/images/buy_now_btn_all.png') center top;
+  text-indent: -1000em;
+  border: 0;
+  margin: 0px auto;
+  padding: 0;
+  width: 255px;
+  height: 41px;
+  display: block;
+  cursor: pointer;
+
+  &:hover {
+    background: transparent url('/images/buy_now_btn_all.png') center 40px;
   }
 }

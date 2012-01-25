@@ -164,4 +164,14 @@ class UsersController < ApplicationController
       redirect_to signin_path
     end
   end
+
+  def remove_account
+    if signed_in?
+      @user = current_user
+      sign_out
+      User.destroy(@user)
+      flash[:success] = "Przykro nam, że nas opuszczasz. Twoje konto zostało usunięte. Nie obrażamy się! Możesz zawsze założyć nowe konto!! :)"
+      redirect_to root_path
+    end
+  end
 end

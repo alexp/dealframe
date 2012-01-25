@@ -18,8 +18,10 @@
       %li
         =f.label :email, "Email: "
         =f.text_field :email
-      %li.last.change_pass
+      %li.change_pass
         =link_to raw('Zmień hasło &raquo;'), :action => 'change_password'
+      %li.last.change_pass
+        =link_to raw('Usuń konto &raquo;'), :action => 'remove_account'
   %h2
     %span.icon=image_tag 'question_icon.png'
     Opcjonalne dane:

@@ -25,9 +25,18 @@
         -else
           %span.quo &rsaquo;
           %li= link_to "Zaloguj się", signin_path
-    -if params[:controller] == 'offers' || params[:controller] == 'categories'
+    -if (params[:controller] == 'offers' || params[:controller] == 'categories') && (params[:action] != 'new')
       #add-offer
         =link_to("Dodaj ofertę", :controller => "offers", :action => "new")
   .clear
 -flash.each do |key, value|
   .flash{:class => "#{key}"}= value
+
+-if !params[:status].nil?
+  -if params[:status] == 'OK'
+    .flash{:class => "success"}
+      Gratulacje. Kupiłeś kupon. Czekamy na weryfikację
+  -else 
+    .flash{:class => "error"}
+      Transakcja nie powiodła się. Skontaktuj się z działem obsługi klienta: 
+      =mail_to "bok@dealframe.pl"
