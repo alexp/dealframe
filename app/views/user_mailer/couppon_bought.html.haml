@@ -1,0 +1,68 @@
+!!! XML
+!!!
+%html
+  %head
+    %meta{:content => 'text/html', :charset => 'UTF-8', 'http-equiv' => 'Content-Type'}
+  %body
+    %div{:style => "background: #D8F0F9; margin:0; padding: 0;",:bgcolor => "#D8F0F9"}
+      %table{:width => "100%", :style => "width: 100%; margin: 0; padding: 0;"}
+        %td{:style => "background:#D8F0F9; padding: 10px 10px 40px;",:bgcolor => "#D8F0F9;"}
+          %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
+            %tr
+              %td{:align => "left", :style => "padding: 10px 0;"}
+                =image_tag("http://beta.dealframe.pl/images/dealframe.png", :style => "width: 150px;")
+              %td{:align => "right", :style => "padding: 14px 4px;" }
+                %div{:style => "font-size: 11px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #249dd0; padding: 10px 0;"}
+                  =link_to  "Zaloguj się", "http://beta.dealframe.pl/signin", {:style => "color: #3fb704; text-decoration: none;"}
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  %a{:href => "http://biznes.dealframe.pl/", :style => "color: #249dd0; text-decoration: none;" } Dla biznesu
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  %a{:href => "http://biznes.dealframe.pl/biznes-kontakt.html", :style => "color: #249dd0; text-decoration: none;" } Kontakt
+          %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
+            %tr
+              %td{:width => "542px", :height => "15px"}=image_tag 'http://beta.dealframe.pl/images/mail_top.png'
+            %tr 
+              %td{:width => "540px", :style => "border-left: 1px solid #D5D3FF; border-right: 1px solid #D5D3FF; background-color: #fff;", :bgcolor => "#fff"}
+                %table{:style => "margin:0 auto; width: 520px; font-size: 11px; color: #424242; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif", :align => "center", :width => "520px", :cellspacing => "0", :cellpadding => "0"  }
+                  %tr
+                    %td
+                      %div{:style => "padding: 0 10px; font-size: 11px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #50646d;"}
+                        %p
+                          = @user.name + ","
+                        %p
+                          Kupiłeś kupon do oferty
+                          =@offer.invoice_description
+
+                        %p 
+                          Kod Twojego kuponu to:
+                          =@couppon.code
+                        %p Dziękujemy
+                        %p 
+                          Aby się zalogować, wejdź na poniższy adres:
+                          %a{:href => @url}= @url
+                        %p
+                          Dziękujemy!
+                          %br
+                          Zespół Dealframe
+            %tr
+              %td{:width => "542px", :height => "15px"}
+                =image_tag 'http://beta.dealframe.pl/images/mail_bottom.png'
+
+
+          %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
+            %tr
+              %td{:width => "542px", :align => "center"}
+                %div{:style => "padding: 10px 10px; font-size: 11px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #61a0ba;"}
+                  Zobacz co u nas słychać:
+                  %a{:href => "http://dealframe.pl/blog", :style=> "text-decoration: underline; color: #61a0ba;"} dealframe.pl/blog
+                  ,
+                  %a{:href => "http://twitter.com/dealframe", :style=> "text-decoration: underline; color: #61a0ba;"} @dealframe
+                  ,
+                  %a{:href => "http://facebook.com/dealframe", :style=> "text-decoration: underline; color: #61a0ba;"} facebook.com/dealframe
+
+                %div{:style => "padding: 10px 10px; font-size: 10px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #61a0ba;"}
+                  Ten email został wysłany z sewrisu dealframe.pl. Zobacz 
+                  %a{:href => "http://www.dealframe.pl/regulamin.html", :style=> "text-decoration: underline; color: #61a0ba;" } Regulamin serwisu.
+                  %br
+                  Jeśli nie chcesz otrzymywać podobnych wiadomości
+                  %a{:href => @url, :style=> "text-decoration: underline; color: #61a0ba;"} zmień ustawienia w serwisue dealframe.pl

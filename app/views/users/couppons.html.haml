@@ -87,7 +87,7 @@
           -offer = couppon.offer
           .deals.pending{:class => (offer == couppon.company.offers.first ? "first" : cycle("odd", "even")), :id => "deal-#{offer.id}"}
             .photo
-              =link_to(image_tag(offer.photo_url), offer)
+              =image_tag(offer.photo(:normal)) if !offer.photo(:normal).blank?
             .content
               %h1= link_to offer.title, offer
               %p.description= offer.description
