@@ -899,3 +899,56 @@ span.close-btn {
     background-position: 0 -26px;
   }
 }
+
+#temporary-add-offer {
+  margin-top: 40px;
+  a {
+  margin-top: 20px; display: block;font-size: 20px; font-weight: bold;
+  }
+  
+  .contact {
+    margin-left: 40px;
+  }
+
+  .image {
+    width: 120px;
+    height: 96px;
+    background-image: url('/images/steps_bg.png');
+    float: left;
+  }
+  .text {
+    float: left;
+    width: 400px;
+  }
+
+  h4 { margin-top: 20px; }
+}
+
+.step { 
+  margin: 20px 0px 0px 0px; 
+  .text {
+    margin-top: 30px;
+  }
+}
+
+.step-2 {
+  .image {
+    background-position: -184px 0px;
+  }
+  .text { margin-top: 20px; margin-left: 20px; }
+}
+
+.step-3 {
+  .image { 
+    background-position: -458px 0px; 
+  }
+}
+
+.step-4 {
+  .image { 
+    background-position: -638px 0px; 
+  }
+  .text {
+    margin-left: 20px;
+  }
+}

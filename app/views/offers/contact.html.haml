@@ -3,6 +3,50 @@
   %h1.add_offer
     Dodaj swoją ofertę
 
-  Pracujemy nad formularzem dodawania oferty <br />
-  <a style="margin-top: 20px; display: block;font-size: 20px; font-weight: bold;" href="mailto:biznes@dealframe.pl">Skontaktuj się z nami</a> <br />jeśli chcesz dodać swoją firmę do naszego katalogu
+  %hr 
+  #temporary-add-offer
+    .left{:style=>"width: 300px;"}
+      %h6 Właśnie pracujemy nad formularzem dodawania oferty.
+      %p
+        Pracujemy nad nowoczesnymi rozwiązaniami dla firm w zakresie marketingu internetowego praz zintegrowanej komunikacji. 
+        Jeśli chcesz dowiedzieć się więcej skontaktuj się z nami;
+    .contact.left
+      =image_tag "mail.svg"
+      =mail_to "biznes@dealframe.pl", "Skontaktuj się z nami" 
+      Jeśli chcesz dodać swoją firmę do naszego katalogu
+    .clear
+   
+    %hr 
+    %h4
+      Jak to działa?
+    
+    .step.step-1
+      .image
+      .text
+        Dodajesz specjalną ofertę zniżkową na produkt/usługę Twojej firmy do dealframe
+        Dodajesz specjalną ofertę zniżkową na produkt/usługę Twojej firmy do dealframe
+      .clear
   
+    .step.step-2
+      .image
+      .text
+        Twoja oferta trafia do użytkowników internetu poprzez serwis dealframe.pl oraz serwisy partnerskie i wigdety.
+      .clear
+
+    .step.step-3
+      .image
+      .text
+        Osoby, którym spodoba się Twoje oferta - kupią ją on-line na zasadzie przedpłaty
+      .clear
+
+    .step.step-4
+      .image
+      .text
+        dealframe procesuje płatności i wysyła Ci przelew zbiorczy + informację o kuponach
+      .clear
+
+    .step.step-1
+      .image
+      .text
+        Aby zrealizować kupon uruchamiasz serwis dealframe.pl i weryfikujesz kupon online.
+      .clear

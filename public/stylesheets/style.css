@@ -646,3 +646,42 @@ span.close-btn {
   height: 26px; }
   .save:hover {
     background-position: 0 -26px; }
+
+#temporary-add-offer {
+  margin-top: 40px; }
+  #temporary-add-offer a {
+    margin-top: 20px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold; }
+  #temporary-add-offer .contact {
+    margin-left: 40px; }
+  #temporary-add-offer .image {
+    width: 120px;
+    height: 96px;
+    background-image: url("/images/steps_bg.png");
+    float: left; }
+  #temporary-add-offer .text {
+    float: left;
+    width: 400px; }
+  #temporary-add-offer h4 {
+    margin-top: 20px; }
+
+.step {
+  margin: 20px 0px 0px 0px; }
+  .step .text {
+    margin-top: 30px; }
+
+.step-2 .image {
+  background-position: -184px 0px; }
+.step-2 .text {
+  margin-top: 20px;
+  margin-left: 20px; }
+
+.step-3 .image {
+  background-position: -458px 0px; }
+
+.step-4 .image {
+  background-position: -638px 0px; }
+.step-4 .text {
+  margin-left: 20px; }
