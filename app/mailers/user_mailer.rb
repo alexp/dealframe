@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @couppon = couppon 
     
-    mail(:to => user.email, 
+    mail(:to => @user.email, 
          :subject => "#{@user.name}, twój kupon")
   end
 
