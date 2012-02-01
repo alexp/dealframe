@@ -10,17 +10,17 @@
           %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
             %tr
               %td{:align => "left", :style => "padding: 10px 0;"}
-                =image_tag("http://beta.dealframe.pl/images/dealframe.png", :style => "width: 150px;")
+                =image_tag("http://dealframe.pl/images/dealframe.png", :style => "width: 150px;")
               %td{:align => "right", :style => "padding: 14px 4px;" }
                 %div{:style => "font-size: 11px; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #249dd0; padding: 10px 0;"}
-                  =link_to  "Zaloguj się", "http://beta.dealframe.pl/signin", {:style => "color: #3fb704; text-decoration: none;"}
+                  =link_to  "Zaloguj się", "http://dealframe.pl/signin", {:style => "color: #3fb704; text-decoration: none;"}
                   &nbsp;&nbsp;|&nbsp;&nbsp;
                   %a{:href => "http://biznes.dealframe.pl/", :style => "color: #249dd0; text-decoration: none;" } Dla biznesu
                   &nbsp;&nbsp;|&nbsp;&nbsp;
                   %a{:href => "http://biznes.dealframe.pl/biznes-kontakt.html", :style => "color: #249dd0; text-decoration: none;" } Kontakt
           %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
             %tr
-              %td{:width => "542px", :height => "15px"}=image_tag 'http://beta.dealframe.pl/images/mail_top.png'
+              %td{:width => "542px", :height => "15px"}=image_tag 'http://dealframe.pl/images/mail_top.png'
             %tr 
               %td{:width => "540px", :style => "border-left: 1px solid #D5D3FF; border-right: 1px solid #D5D3FF; background-color: #fff;", :bgcolor => "#fff"}
                 %table{:style => "margin:0 auto; width: 520px; font-size: 11px; color: #424242; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif", :align => "center", :width => "520px", :cellspacing => "0", :cellpadding => "0"  }
@@ -36,17 +36,15 @@
                         %p 
                           Kod Twojego kuponu to:
                           =@couppon.couppon_code
-                        %p Dziękujemy
                         %p 
-                          Aby się zalogować, wejdź na poniższy adres:
-                          %a{:href => @url}= @url
+                          %a{:href => "http://dealframe.pl/signin/"} Zaloguj się do serwisu aby wydrukować kupon
                         %p
                           Dziękujemy!
                           %br
                           Zespół Dealframe
             %tr
               %td{:width => "542px", :height => "15px"}
-                =image_tag 'http://beta.dealframe.pl/images/mail_bottom.png'
+                =image_tag 'http://dealframe.pl/images/mail_bottom.png'
 
 
           %table{:width => "542px", :style => "width: 542px; margin: 0 auto;", :cellspacing => "0", :cellpadding => "0", :align =>"center"}
