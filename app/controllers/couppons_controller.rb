@@ -71,6 +71,17 @@ class CoupponsController < ApplicationController
         end
       when "dotpay"
 
+  
+        # TODO: przeleciec po kuponach i sprawdzić czy zaden nie dotyczy tej oferty
+
+        @user.couppons.each do |c| 
+          if c.offer == @offer
+            flash[:error] = "Już kupiłeś kupon do tej oferty. Sprawdź czy nie ma innych kuponów, które Cię interesują :)"
+            redirect_to :back
+            return
+          end
+        end
+
         if !flash[:error]
           safe_desc = CGI::escape(@offer.invoice_description)
           amount = params[:quantity][:value].to_i * @offer.price
@@ -133,7 +144,6 @@ class CoupponsController < ApplicationController
 
       if @couppon.save
         render :text => "OK"
-
       end
     else
       render :status => :forbidden, :text => "Unauthorized access"
