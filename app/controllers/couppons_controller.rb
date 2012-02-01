@@ -126,7 +126,7 @@ class CoupponsController < ApplicationController
       elsif params[:t_status] == '2' and !@couppon.nil?
         @couppon.status = "wykonany"
         @couppon.couppon_code = @couppon.generate_security_code(5)
-        UserMailer.couppon_bought(@user, @couppon).deliver
+        UserMailer.couppon_bought(@couppon.user, @couppon).deliver
       elsif params[:t_status] == '3' and !@couppon.nil?
         @couppon.status = "odmowa"
       end
