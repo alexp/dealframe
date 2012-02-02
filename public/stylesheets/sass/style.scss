@@ -802,7 +802,8 @@ span.close-btn {
 
 #footer {
   margin-top: 150px;
-  display: none;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
   /** background: transparent url(/images/footer_bg.png);
     height: 50px;
     width: 100%;
