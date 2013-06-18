@@ -37,3 +37,7 @@ production:
   reconnect: false
   database: dealframe
   pool: 5
+  host: apsz.megiteam.pl
+  port: 5432
+  username: "pg_11202"
+  password: "chuj123?><"
