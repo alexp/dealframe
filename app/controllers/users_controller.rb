@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       UserMailer.welcome_email(@user).deliver
 
       sign_in @user
-      flash[:success] = "Witaj w Dealframe"
+      flash[:success] = "Witaj w Kanei.pl"
       redirect_to root_path
     else
       #flash[:error] = "Nie udało się dokonać rejestracji. Wszystkie pola muszą być wypełnione. Hasło musi mieć co najmniej 6 znaków."

@@ -20,14 +20,14 @@ Dealframe::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'dealframe.pl',
+    :domain               => 'kanei.pl',
     :user_name            => 'alex.pszczolkowski@gmail.com',
-    :password             => 'chuj123?><',
+    :password             => 'catchit015801',
     :authentication       => 'plain',
     :enable_starttls_auto => true  
   }
-  config.action_mailer.asset_host = "94.75.125.226:3000"
-  config.action_mailer.default_url_options = { :host => '94.75.125.226:3000' }
+  config.action_mailer.asset_host = "kanei.pl"
+  config.action_mailer.default_url_options = { :host => 'kanei.pl' }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

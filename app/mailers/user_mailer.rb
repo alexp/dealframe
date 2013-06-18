@@ -1,13 +1,13 @@
 # coding: utf-8
 class UserMailer < ActionMailer::Base
-  default :from => "no-reply@dealframe.pl"
+  default :from => "no-reply@kanei.pl"
 
   def welcome_email(user)
     @user = user
-    @url = "http://dealframe.pl/signin"
+    @url = "http://kanei.pl/signin"
 
     mail(:to => user.email, 
-         :subject=> "#{user.name}, witaj w Dealframe.pl")
+         :subject=> "#{user.name}, witaj w Kanei.pl")
   end
 
   def new_password(user, password)
@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     @couppon = couppon 
     
     mail(:to => @user.email, 
-         :subject => "#{@user.name}, twój kupon")
+         :subject => "#{@user.name}, twój bilet na szkolenie")
   end
 
 end

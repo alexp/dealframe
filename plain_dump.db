@@ -1,0 +1,1028 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: active_admin_comments; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE active_admin_comments (
+    id integer NOT NULL,
+    resource_id integer NOT NULL,
+    resource_type character varying(255) NOT NULL,
+    author_id integer,
+    author_type character varying(255),
+    body text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    namespace character varying(255)
+);
+
+
+ALTER TABLE public.active_admin_comments OWNER TO aps;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE active_admin_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.active_admin_comments_id_seq OWNER TO aps;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE active_admin_comments_id_seq OWNED BY active_admin_comments.id;
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('active_admin_comments_id_seq', 1, false);
+
+
+--
+-- Name: admin_users; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE admin_users (
+    id integer NOT NULL,
+    email character varying(255) NOT NULL,
+    encrypted_password character varying(128) NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.admin_users OWNER TO aps;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE admin_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_users_id_seq OWNER TO aps;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE admin_users_id_seq OWNED BY admin_users.id;
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('admin_users_id_seq', 2, false);
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255),
+    parent_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    icon_url character varying(255)
+);
+
+
+ALTER TABLE public.categories OWNER TO aps;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categories_id_seq OWNER TO aps;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 8, false);
+
+
+--
+-- Name: companies; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE companies (
+    id integer NOT NULL,
+    full_name character varying(255),
+    short_name character varying(255),
+    address text,
+    zip_code character varying(255),
+    city character varying(255),
+    nip character varying(255),
+    regon character varying(255),
+    vat boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    description text,
+    phone_number character varying(255),
+    email character varying(255),
+    logo_url character varying(255),
+    category_id integer,
+    website_url character varying(255),
+    opening_hrs character varying(255),
+    first_photo_url character varying(255),
+    second_photo_url character varying(255),
+    lat double precision,
+    long double precision,
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone,
+    verified boolean,
+    user_id integer
+);
+
+
+ALTER TABLE public.companies OWNER TO aps;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE companies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.companies_id_seq OWNER TO aps;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE companies_id_seq OWNED BY companies.id;
+
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('companies_id_seq', 59, true);
+
+
+--
+-- Name: company_profiles; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE company_profiles (
+    id integer NOT NULL,
+    name character varying(255),
+    website_url character varying(255),
+    type character varying(255),
+    open_times character varying(255),
+    lat double precision,
+    lng double precision,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.company_profiles OWNER TO aps;
+
+--
+-- Name: company_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE company_profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.company_profiles_id_seq OWNER TO aps;
+
+--
+-- Name: company_profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE company_profiles_id_seq OWNED BY company_profiles.id;
+
+
+--
+-- Name: company_profiles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('company_profiles_id_seq', 1, false);
+
+
+--
+-- Name: couppons; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE couppons (
+    id integer NOT NULL,
+    company_id integer,
+    user_id integer,
+    offer_id integer,
+    couppon_code character varying(255),
+    security_code character varying(255),
+    expiration_date timestamp without time zone,
+    status character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    used boolean,
+    quantity integer
+);
+
+
+ALTER TABLE public.couppons OWNER TO aps;
+
+--
+-- Name: couppons_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE couppons_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.couppons_id_seq OWNER TO aps;
+
+--
+-- Name: couppons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE couppons_id_seq OWNED BY couppons.id;
+
+
+--
+-- Name: couppons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('couppons_id_seq', 29, true);
+
+
+--
+-- Name: offers; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE offers (
+    id integer NOT NULL,
+    start_date timestamp without time zone,
+    expiration_date timestamp without time zone,
+    value numeric(10,0),
+    discount integer,
+    title character varying(255),
+    description text,
+    photo_url character varying(255),
+    lat double precision,
+    lgn double precision,
+    additional_info text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    category_id integer,
+    end_date timestamp without time zone,
+    bought integer,
+    promoted_status integer,
+    company_id integer,
+    fine_print text,
+    details text,
+    invoice_description character varying(255),
+    map_iframe character varying(255),
+    status character varying(255),
+    photo_file_name character varying(255),
+    photo_content_type character varying(255),
+    photo_file_size integer,
+    photo_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.offers OWNER TO aps;
+
+--
+-- Name: offers_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE offers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.offers_id_seq OWNER TO aps;
+
+--
+-- Name: offers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE offers_id_seq OWNED BY offers.id;
+
+
+--
+-- Name: offers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('offers_id_seq', 19, true);
+
+
+--
+-- Name: relationships; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE relationships (
+    id integer NOT NULL,
+    follower_id integer,
+    followed_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.relationships OWNER TO aps;
+
+--
+-- Name: relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE relationships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.relationships_id_seq OWNER TO aps;
+
+--
+-- Name: relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE relationships_id_seq OWNED BY relationships.id;
+
+
+--
+-- Name: relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('relationships_id_seq', 13, false);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO aps;
+
+--
+-- Name: taggings; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE taggings (
+    id integer NOT NULL,
+    tag_id integer,
+    taggable_id integer,
+    taggable_type character varying(255),
+    tagger_id integer,
+    tagger_type character varying(255),
+    context character varying(255),
+    created_at timestamp without time zone
+);
+
+
+ALTER TABLE public.taggings OWNER TO aps;
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE taggings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.taggings_id_seq OWNER TO aps;
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('taggings_id_seq', 4, false);
+
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE tags (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+
+ALTER TABLE public.tags OWNER TO aps;
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tags_id_seq OWNER TO aps;
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('tags_id_seq', 6, false);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255),
+    salt character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    name character varying(255),
+    encrypted_password character varying(255),
+    surname character varying(255),
+    avatar_file_name character varying(255),
+    avatar_content_type character varying(255),
+    avatar_file_size integer,
+    avatar_updated_at timestamp without time zone,
+    photo_file_name character varying(255),
+    photo_content_type character varying(255),
+    photo_file_size integer,
+    role character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO aps;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: aps
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO aps;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aps
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aps
+--
+
+SELECT pg_catalog.setval('users_id_seq', 88, true);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY active_admin_comments ALTER COLUMN id SET DEFAULT nextval('active_admin_comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY admin_users ALTER COLUMN id SET DEFAULT nextval('admin_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY companies ALTER COLUMN id SET DEFAULT nextval('companies_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY company_profiles ALTER COLUMN id SET DEFAULT nextval('company_profiles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY couppons ALTER COLUMN id SET DEFAULT nextval('couppons_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY offers ALTER COLUMN id SET DEFAULT nextval('offers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY relationships ALTER COLUMN id SET DEFAULT nextval('relationships_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aps
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: active_admin_comments; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY active_admin_comments (id, resource_id, resource_type, author_id, author_type, body, created_at, updated_at, namespace) FROM stdin;
+\.
+
+
+--
+-- Data for Name: admin_users; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at) FROM stdin;
+1	admin@example.com	$2a$10$KpMTvdwtydLy0obF1yw63.ZBkGpHm.8/xks4lJDnEatBh.GJMNoTq	\N	\N	2011-11-01 21:03:36	7	2011-11-01 21:51:59	2011-11-01 21:51:16	127.0.0.1	127.0.0.1	2011-11-01 20:52:30	2011-11-01 21:51:59
+\.
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY categories (id, name, parent_id, created_at, updated_at, icon_url) FROM stdin;
+1	Restauracje i Bary	\N	2011-08-18 20:02:22	2011-08-18 20:02:22	\N
+2	Zdrowie i uroda	\N	2011-08-18 20:02:40	2011-08-18 20:03:07	\N
+3	Kultura i rozrywka	\N	2011-08-18 20:03:20	2011-08-18 20:03:20	\N
+4	Turystyka i Sport	\N	2011-08-18 20:04:19	2011-08-18 20:04:19	\N
+5	Produkty i Usługi	\N	2011-08-18 20:04:37	2011-08-18 20:04:37	\N
+6	Biznes i nauka	\N	2011-08-18 20:04:58	2011-08-18 20:04:58	\N
+7	Oferta Internetowa	\N	2011-08-18 20:05:21	2011-08-18 20:05:21	\N
+\.
+
+
+--
+-- Data for Name: companies; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY companies (id, full_name, short_name, address, zip_code, city, nip, regon, vat, created_at, updated_at, description, phone_number, email, logo_url, category_id, website_url, opening_hrs, first_photo_url, second_photo_url, lat, long, logo_file_name, logo_content_type, logo_file_size, logo_updated_at, verified, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: company_profiles; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY company_profiles (id, name, website_url, type, open_times, lat, lng, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: couppons; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY couppons (id, company_id, user_id, offer_id, couppon_code, security_code, expiration_date, status, created_at, updated_at, used, quantity) FROM stdin;
+\.
+
+
+--
+-- Data for Name: offers; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY offers (id, start_date, expiration_date, value, discount, title, description, photo_url, lat, lgn, additional_info, created_at, updated_at, category_id, end_date, bought, promoted_status, company_id, fine_print, details, invoice_description, map_iframe, status, photo_file_name, photo_content_type, photo_file_size, photo_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: relationships; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY relationships (id, follower_id, followed_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY schema_migrations (version) FROM stdin;
+20110514101016
+20110514103033
+20110514111958
+20110514145110
+20110514160617
+20110514175744
+20110514195031
+20110514230101
+20110514230900
+20110528145643
+20110528150417
+20110529092007
+20110529101401
+20110529115105
+20110529115138
+20110619181038
+20110620202751
+20110621002245
+20110621003820
+20110621003902
+20110621005527
+20110724083556
+20110818194326
+20110820230927
+20110827112508
+20110828002703
+20110828011235
+20110828012240
+20110828012756
+20110828012823
+20110828014306
+20110828014322
+20110828112925
+20110901193407
+20110901203057
+20110910132034
+20110911104549
+20111016160701
+20111016170436
+20111029233901
+20111030180634
+20111101175603
+20111101204712
+20111101214721
+20111101214722
+20111113155549
+20111231154340
+\.
+
+
+--
+-- Data for Name: taggings; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY taggings (id, tag_id, taggable_id, taggable_type, tagger_id, tagger_type, context, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY tags (id, name) FROM stdin;
+1	Promowane
+2	Dla dzieci
+3	Dla męźczyzn
+4	Dla kobiet
+5	Dla mężczyzn
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: aps
+--
+
+COPY users (id, email, salt, created_at, updated_at, name, encrypted_password, surname, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, photo_file_name, photo_content_type, photo_file_size, role) FROM stdin;
+\.
+
+
+--
+-- Name: active_admin_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY active_admin_comments
+    ADD CONSTRAINT active_admin_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admin_users_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY admin_users
+    ADD CONSTRAINT admin_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY companies
+    ADD CONSTRAINT companies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY company_profiles
+    ADD CONSTRAINT company_profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: couppons_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY couppons
+    ADD CONSTRAINT couppons_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: offers_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY offers
+    ADD CONSTRAINT offers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY relationships
+    ADD CONSTRAINT relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY taggings
+    ADD CONSTRAINT taggings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY tags
+    ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: aps; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_author_type_and_author_id ON active_admin_comments USING btree (author_type, author_id);
+
+
+--
+-- Name: index_active_admin_comments_on_namespace; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_namespace ON active_admin_comments USING btree (namespace);
+
+
+--
+-- Name: index_admin_notes_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_admin_notes_on_resource_type_and_resource_id ON active_admin_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_admin_users_on_email; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_email ON admin_users USING btree (email);
+
+
+--
+-- Name: index_admin_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_reset_password_token ON admin_users USING btree (reset_password_token);
+
+
+--
+-- Name: index_offers_on_category_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_offers_on_category_id ON offers USING btree (category_id);
+
+
+--
+-- Name: index_relationships_on_followed_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_relationships_on_followed_id ON relationships USING btree (followed_id);
+
+
+--
+-- Name: index_relationships_on_follower_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_relationships_on_follower_id ON relationships USING btree (follower_id);
+
+
+--
+-- Name: index_relationships_on_follower_id_and_followed_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_relationships_on_follower_id_and_followed_id ON relationships USING btree (follower_id, followed_id);
+
+
+--
+-- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
+
+
+--
+-- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: aps; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: aps
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM aps;
+GRANT ALL ON SCHEMA public TO aps;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

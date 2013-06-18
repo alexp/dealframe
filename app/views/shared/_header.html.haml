@@ -9,10 +9,10 @@
         -if !signed_in?
           %li
             %span.quo &rsaquo;
-            =link_to 'Dealframe dla biznesu', 'http://biznes.dealframe.pl/'
+            =link_to 'Kanei dla biznesu', 'http://biznes.kanei.pl/'
           %li
             %span.quo &rsaquo;
-            =link_to 'Blog', 'http://www.dealframe.pl/blog'
+            =link_to 'Blog', 'http://blog.kanei.pl/'
         -if signed_in?
           %li
             ="Witaj #{current_user.name}!"
@@ -35,8 +35,8 @@
 -if !params[:status].nil?
   -if params[:status] == 'OK'
     .flash{:class => "success"}
-      Gratulacje. Kupiłeś kupon. Czekamy na weryfikację
+      Gratulacje. Kupiłeś udział w szkoleniu. Czekamy na weryfikację Twojej płatności.
   -else 
     .flash{:class => "error"}
       Transakcja nie powiodła się. Skontaktuj się z działem obsługi klienta: 
-      =mail_to "bok@dealframe.pl"
+      =mail_to "bok@kanei.pl"

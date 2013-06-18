@@ -2,8 +2,8 @@
   =stylesheet_link_tag "companies"
   -if !@company.verified?
     .flash.error
-      Ta firma czeka na zatwierdzenie przez administratora
-      %strong dealframe
+      Ta firma czeka na zatwierdzenie przez Administratora
+      %strong Kanei 
   #categories
     =render :partial => "shared/categories", :locals => {:company_category => @company.category}
   #company-profile
@@ -44,7 +44,7 @@
             %p
               %strong Strona www:
               %br
-              =link_to truncate(@company.website_url, :lengh => 30), @company.website_url
+              =link_to @company.website_url, "http://#{@company.website_url}"
           .subcol
             %p
               %strong Miasto:

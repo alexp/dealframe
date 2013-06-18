@@ -112,7 +112,7 @@ class CoupponsController < ApplicationController
 
             flash[:success] = "Kupiłeś szkolenie: #{@offer.invoice_description}"
           else
-            flash[:error] = "Cos nie dziala"
+            flash[:error] = ""
           end
         end
 
@@ -183,7 +183,7 @@ class CoupponsController < ApplicationController
       redirect_to pay_response.approve_paypal_payment_url
     else
       puts pay_response.errors.first['message']
-      flash[:error] = "ERRORRR!!!!!!"
+      flash[:error] = "Błąd"
       redirect_to @offer
     end
   end

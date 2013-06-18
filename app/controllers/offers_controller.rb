@@ -33,19 +33,19 @@ class OffersController < ApplicationController
   end
 
   def new
-=begin
-    @company = Company.new
-    @offer = Offer.new
+    begin
+      @company = Company.new
+      @offer = Offer.new
 
-    if !signed_in?
-      @user = User.new
-    else
-      @user = current_user
+      if !signed_in?
+        @user = User.new
+      else
+        @user = current_user
+      end
+
+      render :layout => 'purchase'
     end
-
-    render :layout => 'purchase'
-=end
-    render :action => 'contact', :layout => 'purchase'
+    #render :action => 'contact', :layout => 'purchase'
   end
 
   def edit
@@ -56,6 +56,7 @@ class OffersController < ApplicationController
       @company = Company.new
       @company.verified = false
       @offer = Offer.new
+      @offer.discount = 0
       @user = current_user
 
       if !params[:company][:id].blank?
@@ -64,7 +65,7 @@ class OffersController < ApplicationController
         @offer.company = Company.find(params[:company][:id])
 
         if @offer.save
-          redirect_to :controller => "users", :action => "companies"
+          redirect_to :controller => "users", :action => "companies", :id => current_user.id
         else
           render :action => "new", :layout => "purchase"
         end
@@ -83,6 +84,7 @@ class OffersController < ApplicationController
           end
         else
           # company not selected and not defined in new form
+          @offer = @company.offers.build(params[:offer])
           @company.errors.add :id, :custom_company_id # "wybierz firmę z listy lub dodaj nową"
           render :action => "new", :layout => "purchase"
         end
@@ -91,12 +93,15 @@ class OffersController < ApplicationController
       @company = Company.new(params[:company])
       @company.verified = false
       @offer = @company.offers.build(params[:offer])
+      @offer.discount = 0
       @user = User.new(params[:user])
 
       if @user.save
         sign_in @user
+        @user.companies << @company
         if @company.save
-          redirect_to root_path
+          flash[:success] = "Pomyślnie dodano Twoje szkolenie. W tej chwili przechodzi ono proces weryfikacji, po którym poinformujemy Cię o uruchomieniu sprzedaży."
+          redirect_to :controller => "users", :action => "companies", :id => @user.id
         else
           render :action => "new", :layout => "purchase"
         end

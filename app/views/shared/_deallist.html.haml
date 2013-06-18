@@ -27,13 +27,15 @@
 -else
   #deallist.left.empty
     .blank-state
-      %h1 Aktualnie, brak ofert w tej kategorii
+      %h1 Aktualnie, brak ofert szkoleń
+      %br
       %p
-        Dopiero wystartowaliśmy! Staramy się zapełnić wszystkie kategorie najlepszymi ofertami znizkowymi. W międzyczasie,
-        =link_to "zobacz wszystkie oferty.", :controller => 'offers', :action => 'index'
+        Dopiero wystartowaliśmy!
+        %br
+        Staramy się zapełnić serwis najlepszymi ofertami szkoleń dostępnych na rynku.
       %p
-        Jeśli masz firmę i szukasz nowych form promocji
-        =link_to "kliknij tutaj", "http://biznes.dealframe.pl/"
+        Jeśli prowadzisz szkolenia i szukasz nowych form promocji
+        =link_to "kliknij tutaj", "http://biznes.kanei.pl/"
         aby zobaczyć jak możemy pomóc Ci promować swoją markę i koniecznie
         =link_to "załóż konto.", :controller => 'sessions', :action => 'new'
 .clear

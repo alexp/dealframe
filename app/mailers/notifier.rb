@@ -1,6 +1,6 @@
 # coding: utf-8
 class Notifier < ActionMailer::Base
-  default :from => 'no-reply@dealframe.pl'
+  default :from => 'no-reply@kanei.pl'
 
   def new_company(company)
     @company = company

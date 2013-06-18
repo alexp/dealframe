@@ -11,10 +11,10 @@ class Offer < ActiveRecord::Base
 
   validates_attachment_presence :photo, :message => "musi być wypełnione"
   validates_acceptance_of :terms 
-  validates_presence_of :fine_print, :value, :discount, :additional_info, :category, :details, :title,:description,:start_date,:expiration_date,:end_date
+  validates_presence_of :fine_print, :value, :additional_info, :category, :details, :title,:description,:start_date,:expiration_date,:end_date
 
   validates :value, :numericality => { :less_than_or_equal_to => 1000, :greater_than_or_equal_to => 2}
-  validates :discount, :numericality => { :less_than_or_equal_to => 100, :greater_than_or_equal_to => 2}
+  #validates :discount, :numericality => { :less_than_or_equal_to => 100, :greater_than_or_equal_to => 2}
   after_create :notify
 
 
