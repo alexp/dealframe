@@ -93,7 +93,7 @@
 #bottom-content
   -if !@company.active_offers.blank?
     #company-offers-nav
-      %h3 Aktywne oferty zniżkowe:
+      %h3 Szkolenia
     #offers
       -@company.active_offers.each do |offer|
         #deallist-container
@@ -104,15 +104,18 @@
               .content
                 %h1= link_to offer.title, offer
                 %p.description= offer.description
-                %span.clock= image_tag 'clock.png'
-                =render :partial => 'shared/time_counter', :locals => {:offer => offer }
+
+                Termin szkolenia:
+                %span{:style=>"font-weight: bold;"}
+                  =offer.end_date.strftime("%Y-%m-%d %H:%M:%S")
+
                 %div{:id => "offer-#{offer.id}", :class => "timer"}
                 %hr
                 %span.quo &rsaquo;
                 =link_to "Zobacz szczegóły", offer
               .details
-                %h2 Kupon zniżkowy:
-                .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+                %h2{:style => "text-align:left;"}
+                  Cena:
                 .price-tag
                   .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-                  .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+                  /.discount= number_to_percentage("-#{offer.discount}", :precision => 0)

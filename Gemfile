@@ -5,13 +5,16 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '< 0.3'
+#gem 'mysql2', '< 0.3'
+#gem 'mysql2', '=0.2.7'
+gem 'pg'
 gem 'paypal_adaptive'
 gem 'json'
 gem 'jquery-rails', '>=1.0.3'
 gem 'haml'
 gem 'sass'
 gem 'acts-as-taggable-on'
+gem 'nokogiri', '1.4.4'
 #gem 'paperclip', '~> 2.3'
 #gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
 gem 'paperclip'

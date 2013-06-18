@@ -3,25 +3,26 @@
 =raw(@offer.additional_info)
 %hr
 
-%span Do końca pozostało:
+%span Termin szkolenia:
 .offer-body-timer
   %span.clock= image_tag 'clock.png'
-  =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "medium"}
+  /=render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "medium"}
+  =@offer.end_date.strftime("%Y-%m-%d %H:%M:%S")
   %div{:id => "offer-#{@offer.id}-medium", :class => "timer-medium"}
   .clear 
 
 .offer-body-details
   .obd-wrapper
-    =link_to("KUP TERAZ", { :controller => "offers", :action => "purchase", :id => @offer.id }, {:class => "buynow"})
-    %span.before Przed zniżką:
-    .init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
-
-    %span.after Rabat:
+    %span.after Cena:
     .price-tag
       .price= number_to_currency(@offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-      .discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
+      /.discount= number_to_percentage("-#{@offer.discount}", :precision => 0)
+
+    =link_to("KUP TERAZ", { :controller => "offers", :action => "purchase", :id => @offer.id }, {:class => "buynow"})
+    /%span.before Przed zniżką:
+    /.init-price= number_to_currency(@offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
   #company-info
-    %strong Ten kupon znizkowy oferuje:
+    %strong To szkolenie oferuje:
     #company-logo
       -if @offer.company.logo.exists?
         =link_to(image_tag(@offer.company.logo(:normal)), @offer.company)

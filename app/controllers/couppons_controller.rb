@@ -37,6 +37,7 @@ class CoupponsController < ApplicationController
   end
 
   def payment
+      puts "!!!!!!!!! jestem"
 
     @offer = Offer.find(params[:offer_id])
 
@@ -46,9 +47,12 @@ class CoupponsController < ApplicationController
     end
 
     if !signed_in?
+      logger.error "!!!!!!!!! jestem"
       if params[:user][:email].blank?
+        logger.error "!!!!!!!!! jestem222"
         flash[:error] = "Wprowadź swój email"
         redirect_to :back
+        return
       else
         @user = User.new(params[:user])
         if @user.save
@@ -58,6 +62,7 @@ class CoupponsController < ApplicationController
         else
           flash[:error] = @user.errors
           redirect_to :back
+          return
         end
       end
     else

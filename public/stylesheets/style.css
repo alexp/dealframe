@@ -130,7 +130,7 @@ span.close-btn {
   text-decoration: line-through; }
 
 .price-tag {
-  background: url("/images/price.png");
+  background: url("/images/price2.png") no-repeat;
   font-size: 1.6em;
   font-weight: bold;
   margin-top: 8px;
@@ -162,7 +162,7 @@ span.close-btn {
     /*background-color: #f0fcf2;*/
     background-color: #fff;
     border: 1px solid #1EFB05;
-    width: 309px;
+    width: 299px;
     min-height: 540px;
     margin-top: 0px;
     position: relative;
@@ -173,12 +173,13 @@ span.close-btn {
     #panel-frame .panel .clock {
       float: left;
       margin-right: 5px;
+      margin-top: -4px;
       padding-top: 1px; }
   #panel-frame #map-canvas {
     margin: 20px 0; }
   #panel-frame .data {
     width: 249px;
-    padding-left: 30px;
+    padding-left: 21px;
     font-size: 11px; }
     #panel-frame .data h1 {
       margin: 0 5px 10px;
@@ -205,7 +206,7 @@ span.close-btn {
     margin-top: 8px; }
 
 .offer-body-timer {
-  /**margin-top: 10px;**/ }
+  margin-top: 6px; }
 
 .offer-body-details {
   margin-top: 8px; }
@@ -225,7 +226,10 @@ span.close-btn {
     margin: 0 -29px;
     padding: 17px 26px; }
   .offer-body-details span.before, .offer-body-details span.after {
-    font-size: 1.4em;
+    font-size: 2.2em;
+    margin-right: 10px;
+    display: block;
+    float: left;
     font-weight: bold;
     padding: 4px 0; }
   .offer-body-details span.after {
@@ -233,9 +237,14 @@ span.close-btn {
   .offer-body-details .init-price {
     display: inline; }
   .offer-body-details .price-tag {
-    background: url("/images/price_tag_07.png") no-repeat;
-    width: 256px;
+    background: none;
+    width: auto;
+    padding-left: 7px;
+    margin-top: 0px;
     height: 43px; }
+    .offer-body-details .price-tag .price {
+      text-align: left;
+      width: auto; }
   .offer-body-details .price {
     font-size: 1.4em;
     text-align: center;
@@ -277,6 +286,7 @@ span.close-btn {
   float: left;
   width: 40px;
   position: relative;
+  display: none;
   top: 87px;
   z-index: 4; }
   #categories a {
@@ -331,7 +341,6 @@ span.close-btn {
   border: 1px solid #cccccc;
   border-position: inside;
   margin-top: -4px;
-  background-color: #fff;
   min-height: 500px; }
   #deallist h1 {
     font-size: 12px;
@@ -353,10 +362,12 @@ span.close-btn {
     float: left;
     width: 650px;
     position: relative; }
+    .wrapper #left-col #hide {
+      display: none; }
     .wrapper #left-col #filter {
       background: url("/images/filter_bg.png") repeat-x 0px 0px;
-      height: 81px;
-      margin-bottom: 0px;
+      height: 50px;
+      margin-bottom: 4px;
       width: 610px;
       border-top-left-radius: 6px;
       -moz-border-radius-topleft: 6px;

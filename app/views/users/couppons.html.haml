@@ -3,15 +3,15 @@
 #content
   -if @user.couppons.paid.blank? && @user.couppons.payment_pending.blank?
     .blank-state
-      %h1 Nie masz jeszcze kuponów na swoim koncie.
-      %p Tutaj wyświetli się Twoja historia transakcji - wszystkie zakupione i wykorzystane kupony.
-      %h2= link_to "Przejdź na stronę główną i kup pierwszy kupon :)", root_path
+      %h1 Nie masz jeszcze szkoleń na swoim koncie.
+      %p Tutaj wyświetli się Twoja historia transakcji - wszystkie zakupione i wykorzystane szkolenia i kursy.
+      %h2= link_to "Przejdź na stronę główną i kup pierwsze szkolenie :)", root_path
       %p
-        Wybierz interesującą Cię ofertę i dokonaj transakcji. Szczegóły dotyczące realizacji poszczególnych kuponów znajdują się w opisie oferty i na samym kuponie.
+        Wybierz interesującą Cię ofertę i dokonaj transakcji. Szczegóły dotyczące realizacji poszczególnych ofert znajdują się w opisie i na samym bilecie na szkolenie.
   -unless @user.couppons.paid.blank?
     %h2
       %span= image_tag 'promotion.png'
-      Wykorzystaj poniższe kupony:
+      Wykorzystaj poniższe szkolenia:
 
     #offers
       -@user.couppons.paid.each do |couppon|
@@ -31,8 +31,8 @@
               %strong
                 =couppon.expiration_date.strftime("%d-%m-%Y")
           .details
-            %h3 Kupon zniżkowy:
-            .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+          %h2{:style => "text-align:left;"}
+            Cena:
             .price-tag
               .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
               .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
@@ -68,11 +68,11 @@
                 %strong
                   =couppon.expiration_date.strftime("%d-%m-%Y")
             .details
-              %h3 Kupon zniżkowy:
-              .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+              %h3{:style => "text-align:left;"}
+                Cena:
               .price-tag
                 .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-                .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+                /.discount= number_to_percentage("-#{offer.discount}", :precision => 0)
           %br
   .clear
   -unless @user.couppons.cancelled.blank?

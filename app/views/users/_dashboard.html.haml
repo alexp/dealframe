@@ -18,14 +18,14 @@
     Skorzystałeś(-aś) z
     %span.red
       = @user.couppons.paid.count
-      ofert zniżkowych
+      szkoleń i kursów 
     %br 
     Obserwujesz:
     =@user.following.count
     -if @user.following.count == 1
-      miejsce
-    -elsif @user.following.count == 2..4
-      miejsca
-    -elsif @user.following.count > 4
-      miejsc
+      firmę 
+    -elsif @user.following.count < 4 && @user.following.count > 1
+      firmy 
+    -else @user.following.count > 4
+      firm 
     %br

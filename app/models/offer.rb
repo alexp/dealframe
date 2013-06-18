@@ -5,15 +5,8 @@ class Offer < ActiveRecord::Base
   
   acts_as_taggable
   has_attached_file :photo, 
-    :storage => :s3,
-    :s3_credentials => {
-      :access_key_id => ENV['S3_KEY'],
-      :secret_access_key => ENV['S3_SECRET']
-    },
-    :path => "offers/:id/:style/:basename.:extension",
-    :bucket => ENV['S3_BUCKET'], # "dealframedevel",
-    :s3_protocol => "https",
-    :url => ":s3_eu_url",
+    #:path => "offers/:id/:style/:basename.:extension",
+    :default_url => "/images/:styles/missing.png",
     :styles => { :normal => "140x90" , :large => "249x160"}
 
   validates_attachment_presence :photo, :message => "musi być wypełnione"

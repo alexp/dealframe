@@ -19,9 +19,9 @@ Dealframe::Application.routes.draw do
   resources :relationships, :only => [:create, :destroy]
   
   match 'offers/:id/purchase' => 'offers#purchase', :as => :purchase
-  match 'couppons/complete' => 'couppons#complete'
-  match 'couppons/payment' => 'couppons#payment'
-  match 'couppons/print/:id' => 'couppons#print'
+  match 'product/complete' => 'couppons#complete'
+  match 'product/payment' => 'couppons#payment'
+  match 'product/print/:id' => 'couppons#print'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'

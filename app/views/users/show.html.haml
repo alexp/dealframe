@@ -4,7 +4,7 @@
   -else
     Coś poszło nie tak..sprawdzamy
 
-%h1 Twoje kupione kupony:
+%h1 Twoje szkolenia:
 #offers
   -@user.couppons.each do |couppon|
     -offer = couppon.offer
@@ -22,8 +22,8 @@
         %span.quo &rsaquo;
         =link_to "Zobacz szczegóły", offer
       .details
-        %h2 Kupon zniżkowy:
-        .init-price= number_to_currency(offer.value, :unit => 'zł', :format => '%n %u', :precision => 0)
+        %h2{:style => "text-align:left;"}
+          Cena:
         .price-tag
           .price= number_to_currency(offer.price, :unit => 'zł', :format => '%n %u', :precision => 0)
-          .discount= number_to_percentage("-#{offer.discount}", :precision => 0)
+          /.discount= number_to_percentage("-#{offer.discount}", :precision => 0)

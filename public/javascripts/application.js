@@ -195,7 +195,7 @@ function show_offer_register() {
       if(panel.css('left') == "601px") {
       } else {
         panel.animate({
-          left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth()+290 : 0
+          left: parseInt(panel.css('left'),0) == 0 ? +panel.outerWidth()+299 : 0
         });
       }
 

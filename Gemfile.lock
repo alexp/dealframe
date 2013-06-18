@@ -55,7 +55,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mysql2 (0.2.7)
     nokogiri (1.4.4)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -63,6 +62,7 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     paypal_adaptive (0.2.0)
+    pg (0.15.1)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -117,9 +117,10 @@ DEPENDENCIES
   haml
   jquery-rails (>= 1.0.3)
   json
-  mysql2 (< 0.3)
+  nokogiri (= 1.4.4)
   paperclip
   paypal_adaptive
+  pg
   rails (= 3.0.7)
   rspec (= 2.5.0)
   rspec-rails (= 2.5.0)

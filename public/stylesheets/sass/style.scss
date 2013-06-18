@@ -163,7 +163,7 @@ span.close-btn {
 }
 
 .price-tag {
-  background: url('/images/price.png');
+  background: url('/images/price2.png') no-repeat;
   font-size: 1.6em;
   font-weight: bold;
   margin-top: 8px;
@@ -202,7 +202,7 @@ span.close-btn {
     /*background-color: #f0fcf2;*/
     background-color: #fff;
     border: 1px solid #1EFB05;
-    width: 309px;
+    width: 299px; //309px;
     min-height: 540px;
     margin-top: 0px;
     position:relative;
@@ -214,6 +214,7 @@ span.close-btn {
     .clock {
       float: left;
       margin-right: 5px;
+      margin-top:-4px;
       padding-top: 1px;
     }
   }
@@ -224,7 +225,7 @@ span.close-btn {
 
   .data {
     width: 249px;
-    padding-left: 30px;
+    padding-left: 21px; //30px;
     font-size: 11px;
 
     h1 {
@@ -264,7 +265,7 @@ span.close-btn {
 }
 
 .offer-body-timer {
-  /**margin-top: 10px;**/
+  margin-top: 6px;
 }
 .offer-body-details {
   margin-top: 8px;
@@ -291,7 +292,10 @@ span.close-btn {
   }
 
   span.before, span.after {
-    font-size: 1.4em;
+    font-size: 2.2em;
+    margin-right:10px;
+    display:block;
+    float: left;
     font-weight: bold;
     padding: 4px 0;
   }
@@ -302,10 +306,15 @@ span.close-btn {
     display: inline;
   }
   .price-tag {
-    background: url("/images/price_tag_07.png") no-repeat;
-    width: 256px;
+    background: none; //url("/images/price_tag_07.png") no-repeat;
+    width: auto; //256px;
+    padding-left: 7px;
+    margin-top:0px;
     height: 43px;
-
+    .price {
+      text-align:left;
+      width: auto;
+    }
   }
 
   .price {
@@ -366,6 +375,7 @@ span.close-btn {
   float: left;
   width: 40px;
   position: relative;
+  display:none;
   top: 87px;
   z-index: 4;
   a {
@@ -440,7 +450,7 @@ span.close-btn {
   border: 1px solid #cccccc;
   border-position: inside;
   margin-top: -4px;
-  background-color: #fff;
+  //background-color: #fff;
   min-height: 500px;
 
   h1 {
@@ -469,11 +479,15 @@ span.close-btn {
     width: 650px;
     position: relative;
 
+    #hide { 
+      display: none;
+    }
+
 
     #filter {
       background: url('/images/filter_bg.png') repeat-x 0px 0px;
-      height: 81px;
-      margin-bottom: 0px;
+      height: 50px;
+      margin-bottom: 4px;
       width: 610px;
       border-top-left-radius: 6px;
       -moz-border-radius-topleft: 6px;

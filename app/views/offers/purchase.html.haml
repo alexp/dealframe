@@ -1,4 +1,4 @@
--form_tag('/couppons/payment') do
+-form_tag product_payment_path do
   =hidden_field_tag 'offer_id', @offer.id
 
   :javascript
@@ -20,22 +20,22 @@
       %h1 1. Jak to działa?
 
       .flash.static
-        -if signed_in?
-          Podaj swój adres email i hasło do serwisu. Następnie wybierz formę płatności.
-          %br
-          Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
-        -else
-          Podaj swój adres email i wybierz hasło dostępu. Następnie wybierz formę płatności.
-          %br
-          Po dokonaniu transakcji, wyślemy do Ciebie kupon z kodem, który zreazlizujesz za okazaniem w lokalu.
-        %br
-        %strong Firma, która wystawia kupon została przez nas zweryfikowana. Gwarantujemy bezpieczeństwo zakupów.
-
+        %ol{:style=>"margin-bottom:0;"}
+          %li Zweryfikuj poprawność zamówienia
+          -if signed_in?
+            %li Podaj swój adres email i hasło do serwisu. 
+          -else
+            %li Podaj swój adres email i wybierz hasło dostępu. 
+          %li Potwierdź zakup
+          %li Zostaniesz przekierowany na stronę płatności DotPay
+          %li Po dokonaniu płatności na Twój adres email prześlemy bilet na szkolenie
+            
       %h1 2. Twoje zamówienie:
 
-      #timer-desc do końca pozostało:
+      #timer-desc Termin szkolenia:
       %div{:id => "offer-#{@offer.id}", :class => "timer large"}
-      =render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
+        =@offer.end_date.strftime("%Y-%m-%d %H:%M:%S")
+      /=render :partial => 'shared/time_counter', :locals => {:offer => @offer, :size => "large"}
       #order-table.details
         %table
           %thead
