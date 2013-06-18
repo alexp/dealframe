@@ -26,7 +26,7 @@ class CoupponsController < ApplicationController
             end
           end
         else
-          flash[:error] = "Nie można wydrukować tego kuponu."
+          flash[:error] = "Nie można wydrukować biletu na to szkolenie."
           redirect_to :controller => 'users', :action => 'couppons', :id => current_user.id
         end
       else
@@ -81,7 +81,7 @@ class CoupponsController < ApplicationController
 
         @user.couppons.each do |c| 
           if c.offer == @offer
-            flash[:error] = "Już kupiłeś kupon do tej oferty. Sprawdź czy nie ma innych kuponów, które Cię interesują :)"
+            flash[:error] = "Już kupiłeś udział w tym szkoleniu. Sprawdź czy nie ma innych produktów, które Cię interesują"
             redirect_to :back
             return
           end
@@ -110,7 +110,7 @@ class CoupponsController < ApplicationController
           if @couppon.save
             redirect_to 'https://ssl.dotpay.pl/?id=47118&amount='+amount.to_s+"&currency=PLN&description="+safe_desc+"&URL=#{redir_url}&email="+user_email+"&country=POL&control=#{@couppon.id}"
 
-            flash[:success] = "Kupiłeś kupon:#{@offer.invoice_description}"
+            flash[:success] = "Kupiłeś szkolenie: #{@offer.invoice_description}"
           else
             flash[:error] = "Cos nie dziala"
           end

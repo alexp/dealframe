@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def couppons
     if signed_in?
       @user = User.find(params[:id])
-      @page_name = "Twoje kupony"
+      @page_name = "Twoje szkolenia"
     else
       redirect_to '/signin'
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def following
     if signed_in?
       @user = User.find(params[:id])
-      @page_name = "Obserwowane miejsca"
+      @page_name = "Obserwowane firmy"
     else
       redirect_to '/signin'
     end

@@ -13,7 +13,7 @@
   %body.user
     -if !cookies[:dealframe_cookie]
       #top-info
-        Witamy w Dealframe - Wersja alpha 0.1
+        Witamy w Kanei - Wersja alpha 0.1
         %span.close-btn zamknij
     .wrapper
       -@user = current_user
@@ -25,7 +25,7 @@
             %li{:class => (params[:action]=="edit" || params[:action]=="change_password")?"active":""}
               =link_to 'Twoje konto', :controller => 'users', :action => 'edit', :id => current_user.id
             %li{:class => params[:action]=="couppons"?"active":""}
-              =link_to 'Twoje kupony', :controller => 'users', :action => 'couppons', :id => current_user.id
+              =link_to 'Szkolenia', :controller => 'users', :action => 'couppons', :id => current_user.id
             %li{:class => params[:action]=="following"?"active":""}
               =link_to 'Obserwowane', :controller => 'users', :action => 'following', :id => current_user.id
             -if !@user.companies.blank?
